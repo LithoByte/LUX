@@ -106,7 +106,7 @@ open class LUXUserDefaultsSession: LUXAppGroupUserDefaultsSession {
     }
 }
 
-public func loginRegistrationResponse<T:AuthKeyProvider>(data: Data, wrapper: T.Type, hostname: String) -> Bool {
+public func saveJWT<T:AuthKeyProvider>(data: Data, wrapper: T.Type, hostname: String) -> Bool {
     let loginData = JsonProvider.decode(wrapper, from: data)
     if let authToken = loginData?.apiKey {
         let session = LUXUserDefaultsSession(host: hostname, authHeaderKey: "Authorization" )
@@ -117,7 +117,7 @@ public func loginRegistrationResponse<T:AuthKeyProvider>(data: Data, wrapper: T.
     return false
 }
 
-public func loginRegistrationResponseAppGroup<T:AuthKeyProvider>(data: Data, wrapper: T.Type, hostname: String) -> Bool {
+public func saveJWTAppGroup<T:AuthKeyProvider>(data: Data, wrapper: T.Type, hostname: String) -> Bool {
     let loginData = JsonProvider.decode(wrapper, from: data)
     if let authToken = loginData?.apiKey {
         let session = LUXAppGroupUserDefaultsSession(host: hostname, authHeaderKey: "Authorization" )
@@ -127,8 +127,6 @@ public func loginRegistrationResponseAppGroup<T:AuthKeyProvider>(data: Data, wra
     }
     return false
 }
-
-
 
 public protocol AuthKeyProvider: Codable {
     var apiKey: String? { get set }
