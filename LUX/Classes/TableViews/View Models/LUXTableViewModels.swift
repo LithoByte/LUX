@@ -92,6 +92,15 @@ open class LUXItemsTableViewModel: LUXSectionsTableViewModel {
     }
 }
 
+open class LUXSegmentedSectionsTableViewModel: LUXSegmentedTableViewModel {
+    public init(_ refresher: Refreshable, dataSourcePub: AnyPublisher<[FlexDataSource], Never>) {
+        super.init(refresher)
+        dataSourcePub.sink {
+            self.segments = $0
+        }.store(in: &cancelBag)
+    }
+}
+
 public func pageableTableViewModel<T, U, C>(_ call: CombineNetCall,
                                      modelUnwrapper: @escaping (T) -> [U],
                                      _ configurer: @escaping (U, C) -> Void,
