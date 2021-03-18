@@ -75,6 +75,15 @@ extension LUXRefreshableCollectionViewModel {
     }
 }
 
+open class LUXSegmentedSectionsCollectionViewModel: LUXSegmentedCollectionViewModel {
+    public init(_ refresher: Refreshable, dataSourcePub: AnyPublisher<[FlexCollectionDataSource], Never>) {
+        super.init(refresher)
+        dataSourcePub.sink {
+            self.segments = $0
+        }.store(in: &cancelBag)
+    }
+}
+
 open class LUXSectionsCollectionViewModel: LUXRefreshableCollectionViewModel {
     public var sectionsPublisher: AnyPublisher<[FlexCollectionSection], Never>
     
