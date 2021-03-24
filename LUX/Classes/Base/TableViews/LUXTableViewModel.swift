@@ -7,6 +7,7 @@
 
 import FlexDataSource
 import Slippers
+import Combine
 
 open class LUXTableViewModel {
     open var dataSource: UITableViewDataSource? { didSet { didSetDataSource() }}

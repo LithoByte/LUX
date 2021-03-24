@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Slippers
 
 @objc public protocol LUXSession {
     @objc func authHeaders() -> [String: String]?
@@ -103,4 +104,30 @@ open class LUXUserDefaultsSession: LUXAppGroupUserDefaultsSession {
     public init(host: String, authHeaderKey: String) {
         super.init(host: host, authHeaderKey: authHeaderKey)
     }
+}
+
+public func saveJWT<T:AuthKeyProvider>(data: Data, wrapper: T.Type, hostname: String) -> Bool {
+    let loginData = JsonProvider.decode(wrapper, from: data)
+    if let authToken = loginData?.apiKey {
+        let session = LUXUserDefaultsSession(host: hostname, authHeaderKey: "Authorization" )
+        session.setAuthValue(authString: "Bearer \(authToken)")
+        LUXSessionManager.primarySession = session
+        return true
+    }
+    return false
+}
+
+public func saveJWTAppGroup<T:AuthKeyProvider>(data: Data, wrapper: T.Type, hostname: String) -> Bool {
+    let loginData = JsonProvider.decode(wrapper, from: data)
+    if let authToken = loginData?.apiKey {
+        let session = LUXAppGroupUserDefaultsSession(host: hostname, authHeaderKey: "Authorization" )
+        session.setAuthValue(authString: "Bearer \(authToken)")
+        LUXSessionManager.primarySession = session
+        return true
+    }
+    return false
+}
+
+public protocol AuthKeyProvider: Codable {
+    var apiKey: String? { get set }
 }
