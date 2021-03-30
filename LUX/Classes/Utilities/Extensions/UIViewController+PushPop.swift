@@ -125,6 +125,10 @@ public func presentAnimated<T>(_ presenter: T, _ vc: UIViewController) where T: 
     presenter.present(vc, animated: true, completion: nil)
 }
 
+public func dismissAnimated<T>(_ vc: T) where T: UIViewController {
+    vc.dismissAnimated(nil)
+}
+
 public func tabPushAnimated<T>(_ pusher: T, _ vc: UIViewController) where T: UIViewController {
     pusher.tabBarController?.navigationController?.pushViewController(vc, animated: true)
 }

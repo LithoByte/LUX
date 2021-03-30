@@ -13,6 +13,7 @@ import fuikit
 NSSetUncaughtExceptionHandler { exception in
     print("💥 Exception thrown: \(exception)")
 }
+
 //Models
 enum House: String, Codable, CaseIterable {
     case phoenix, dragon, lyorn, tiassa, hawk, dzur, issola, tsalmoth, vallista, jhereg, iorich, chreotha, yendi, orca, teckla, jhegaala, athyra
