@@ -1,7 +1,11 @@
 PODS:
-  - FlexDataSource (0.1.6):
+  - FlexDataSource (0.1.7):
     - fuikit
-  - fuikit (0.0.7)
+  - fuikit (0.1.2):
+    - fuikit/CoreBluetooth (= 0.1.2)
+    - fuikit/CoreLocation (= 0.1.2)
+  - fuikit/CoreBluetooth (0.1.2)
+  - fuikit/CoreLocation (0.1.2)
   - FunNet/Combine (0.0.1):
     - FunNet/Core
     - LithoOperators
@@ -9,7 +13,7 @@ PODS:
     - LithoOperators
   - FunNet/Multipart (0.0.1):
     - LithoOperators
-  - LithoOperators (0.1.0):
+  - LithoOperators (0.1.2):
     - Prelude
   - LUX (0.2.13):
     - LUX/AppOpenFlow (= 0.2.13)
@@ -67,9 +71,9 @@ PODS:
     - Prelude (~> 3.0)
   - PlaygroundVCHelpers (0.0.2)
   - Prelude (3.0.0)
-  - SDWebImage (5.10.2):
-    - SDWebImage/Core (= 5.10.2)
-  - SDWebImage/Core (5.10.2)
+  - SDWebImage (5.10.4):
+    - SDWebImage/Core (= 5.10.4)
+  - SDWebImage/Core (5.10.4)
   - Slippers (0.1.1)
 
 DEPENDENCIES:
@@ -105,16 +109,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FlexDataSource:
-    :commit: ff640567fcbcf7f2db09b5264614dc4bc5811a5f
+    :commit: fc177c3bcb09dfe680ac73aec15cc3f9afa7ba72
     :git: https://github.com/ThryvInc/flex-data-source
   fuikit:
-    :commit: 19d514bd7f9278645973d1811cd867ebe8e8c696
+    :commit: e37baa7ffb1ff64a9e8989aa24f9ba616d931fc2
     :git: https://github.com/ThryvInc/fuikit
   FunNet:
-    :commit: 9e662e4c6516047f1da0db2fe82f0d30864ec5ba
+    :commit: e49900be06b6be2c88536ff71b37ef3cb4db1afe
     :git: https://github.com/schrockblock/funnet
   LithoOperators:
-    :commit: 21acd9f10a7acf0bce48db6ec2931fcd05af2e10
+    :commit: 0a22b6c9ec7ac3e2c07765845e951dd13c3fa695
     :git: https://github.com/ThryvInc/LithoOperators
   PlaygroundVCHelpers:
     :commit: 1b1f5ed572a1965e1d52bbc1b21f3796a6f144e2
@@ -124,14 +128,14 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ThryvInc/slippers
 
 SPEC CHECKSUMS:
-  FlexDataSource: 411e77d3a933d71ae3094e3d4d6ccedd3419f29e
-  fuikit: 9e4c918280be6b292e4564564dd11495e5f91861
+  FlexDataSource: 1fcd8981b6b49f9c4445af8af644d9711d946930
+  fuikit: 18bccda525bba2f46943bdb8ce5def666a560704
   FunNet: e01c3f3e4258f64657bdb2476236e064db2cd9b9
-  LithoOperators: 650e47b30fe99b79c845b28597aa8ad167ef46a9
+  LithoOperators: 3b7f496129bdf95867bd328fc80fa32b8df209ca
   LUX: 4868e24f75013aef7476477c83b9833d96b52b6a
   PlaygroundVCHelpers: c7cc8994d2851ebd1590217101b4c6888d1c9cc8
   Prelude: fe4cc0fd961d34edf48fe6b04d05c863449efb0a
-  SDWebImage: b969dcfc02c40a5da71eac0b03b8f1a0c794a86f
+  SDWebImage: c666b97e1fa9c64b4909816a903322018f0a9c84
   Slippers: 3814c93fd93305f918a984e724d5db4d9569a660
 
 PODFILE CHECKSUM: 522ebf93424ccd78759be20bfc7cb0abe4c241b2

@@ -9,26 +9,28 @@ import UIKit
 import AVKit
 import AVFoundation
 import LithoOperators
+import fuikit
+import Prelude
 
-public class LUXImagePickerDelegate<T>: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate where T: LUXImageViewController {
+public class LUXImagePickerDelegate<T>: FUIImagePickerDelegate where T: LUXImageViewController {
     
     public var presentingVC: T
-    public var onSelectImage: (UIImage?) -> Void
     
     public init(_ vc: T, onSelectImage: @escaping (T, UIImage?) -> Void) {
         self.presentingVC = vc
-        self.onSelectImage = presentingVC >|> onSelectImage
+        super.init()
+        self.onPickerDidPick = dismissPicker >>> (presentingVC >|> onSelectImage)
+        self.onPickerDidCancel = dismissAnimated
     }
-    
-    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return onSelectImage(nil) }
-        onSelectImage(image)
-    }
+}
+
+private func dismissPicker(_ picker:UIImagePickerController, info: [UIImagePickerController.InfoKey : Any]) -> UIImage? {
+    picker.dismiss(animated: true, completion: nil)
+    return infoToImage(info)
+}
+
+private let infoToImage: ([UIImagePickerController.InfoKey : Any]) -> UIImage? = {
+    return $0[UIImagePickerController.InfoKey.editedImage] as? UIImage
 }
 
 public protocol LUXImageViewController {
