@@ -97,12 +97,7 @@ let cancel3 = dataSignal.sink { _ in vm.endRefreshing() }
 
 vm.tableDelegate = FUITableViewDelegate(onSelect: (vm.dataSource as! FlexDataSource).tappableOnSelect)
 
-vc.onViewDidLoad = {
-    $0.view.backgroundColor = UIColor.white
-    
-    vm.tableView = $0.tableView
-    vm.refresh()
-}
+vc.onViewDidLoad = vm.setupOnLoad() <> ^\FUITableViewViewController.view >>> setupBgColor(.white)
 
 PlaygroundPage.current.liveView = nc
 PlaygroundPage.current.needsIndefiniteExecution = true

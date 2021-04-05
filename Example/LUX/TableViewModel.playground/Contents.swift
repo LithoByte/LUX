@@ -80,9 +80,6 @@ let cancel = cycleSignal.sink { vc.title = "\($0.ordinal ?? 0)th Cycle" }
 
 let vm = pageableTableViewModel(call, modelUnwrapper: ^\Cycle.reigns, reignConfigurator) { _ in }
 
-vc.onViewDidLoad = {
-    vm.tableView = $0.tableView
-    vm.refresh()
-}
+vc.onViewDidLoad = vm.setupOnLoad()
 
 PlaygroundPage.current.liveView = nc
