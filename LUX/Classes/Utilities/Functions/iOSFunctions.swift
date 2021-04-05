@@ -38,3 +38,35 @@ public func ifDevice<T>(f: @escaping (T) -> Void) -> (T) -> Void {
     return f
     #endif
 }
+
+public func runOnMain(_ f: @escaping () -> Void) -> () -> Void {
+    return {
+        DispatchQueue.main.async {
+            f()
+        }
+    }
+}
+
+public func runOnMain<T>(_ f: @escaping (T) -> Void) -> (T) -> Void {
+    return { t in
+        DispatchQueue.main.async {
+            f(t)
+        }
+    }
+}
+
+public func runOnMain<T, U>(_ f: @escaping (T, U) -> Void) -> (T, U) -> Void {
+    return { t, u in
+        DispatchQueue.main.async {
+            f(t, u)
+        }
+    }
+}
+
+public func runOnMain<T, U, V>(_ f: @escaping (T, U, V) -> Void) -> (T, U, V) -> Void {
+    return { t, u, v in
+        DispatchQueue.main.async {
+            f(t, u, v)
+        }
+    }
+}
