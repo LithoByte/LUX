@@ -65,6 +65,14 @@ extension LUXRefreshableTableViewModel {
         }.store(in: &cancelBag)
     }
 }
+extension LUXRefreshableTableViewModel {
+    func setupOnLoad() -> (FUITableViewViewController) -> Void {
+        return {
+            self.tableView = $0.tableView
+            self.refresh()
+        }
+    }
+}
 
 open class LUXSectionsTableViewModel: LUXRefreshableTableViewModel, LUXDataSourceProvider {
     public var flexDataSource = FlexDataSource() { didSet { dataSource = flexDataSource }}
