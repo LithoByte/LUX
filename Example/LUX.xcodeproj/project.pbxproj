@@ -205,6 +205,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				607FACE91AFB9204008FA782 /* Supporting Files */,
 				49C9EF92257AB3CC001D3EEE /* DefaultIsIncludedTests.swift */,
 				49D3C364239C416900D59DF0 /* LoginViewModelTests.swift */,
 				4978124F23A02F8C007DFA9F /* ListViewModelTests.swift */,
@@ -220,7 +221,6 @@
 				498DB66423B03E9100112A46 /* SplashViewModelTests.swift */,
 				4978124D23A02F7A007DFA9F /* TableViewModelTests.swift */,
 				49781241239DCE78007DFA9F /* TestHelpers.swift */,
-				607FACE91AFB9204008FA782 /* Supporting Files */,
 				6410ADD62598839C00022E72 /* FlexItemsTests.swift */,
 				6410ADDA259887A400022E72 /* CallRefresherTests.swift */,
 				6410ADDE259938F000022E72 /* ValidatorTests.swift */,
