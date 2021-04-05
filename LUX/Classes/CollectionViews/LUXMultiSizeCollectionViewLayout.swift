@@ -7,19 +7,30 @@
 
 import UIKit
 
-public class LUXPinterestCollectionLayout: UICollectionViewLayout {
+public class LUXMultiSizeCollectionViewLayout: UICollectionViewLayout {
     var cache: [UICollectionViewLayoutAttributes] = []
-    var delegate: LUXPinterestCollectionViewLayoutDelegate?
     
-    private var numCol:Int = 2
-    private var cellHeight: CGFloat = 100
+    public var numCol:Int = 2 {
+        didSet {
+            invalidateLayout()
+        }
+    }
+    public var cellHeight: CGFloat = 100 {
+        didSet {
+            invalidateLayout()
+        }
+    }
     private var numItems: Int {
         return collectionView?.numberOfItems(inSection: 0) ?? 0
     }
     private var numRows: Int {
         return numItems % numCol == 0 ? numItems / numCol : numItems / numCol + 1
     }
-    private var padding: CGFloat = 6
+    public var padding: CGFloat = 6 {
+        didSet {
+            invalidateLayout()
+        }
+    }
     
     var contentWidth: CGFloat {
         guard let collectionView = collectionView else { return 0 }
@@ -31,6 +42,12 @@ public class LUXPinterestCollectionLayout: UICollectionViewLayout {
         return CGSize(width: contentWidth, height: CGFloat(numRows + 1) * cellHeight)
     }
     
+    /**
+     Override these methods to make the collectionviewLayout multisized
+     */
+    open var widthForCellAt = widthForObjectAt
+    open var xForCellAt = xForObjectAt
+    
     public override func prepare() {
         super.prepare()
         guard let collectionView = collectionView else { return }
@@ -38,8 +55,8 @@ public class LUXPinterestCollectionLayout: UICollectionViewLayout {
         for item in 0..<numItems {
             let indexPath = IndexPath(item: item, section: 0)
             let y = CGFloat(Int(item/numCol)) * cellHeight
-            guard let x = delegate?.collectionView(collectionView, xForObjectAt: IndexPath(item: item, section: 0)), let width = delegate?.collectionView(collectionView, widthForObjectAt: IndexPath(item: item, section: 0)) else { continue }
-            
+            let x = self.xForCellAt(collectionView, numCol, IndexPath(item: item, section: 0))
+            let width = self.widthForCellAt(collectionView, numCol, IndexPath(item: item, section: 0))
             let frame = CGRect(x: x, y: y, width: width, height: cellHeight)
             let inset = frame.insetBy(dx: padding, dy: padding)
             
@@ -68,7 +85,11 @@ public class LUXPinterestCollectionLayout: UICollectionViewLayout {
     }
 }
 
-protocol LUXPinterestCollectionViewLayoutDelegate: AnyObject {
-    func collectionView(_ collectionView: UICollectionView, widthForObjectAt indexPath: IndexPath) -> CGFloat
-    func collectionView(_ collectionView: UICollectionView, xForObjectAt indexPath: IndexPath) -> CGFloat
+public let widthForObjectAt: (UICollectionView, Int, IndexPath) -> CGFloat = { collectionView, cols, _ in
+    let insets = collectionView.contentInset
+    return (collectionView.frame.width - insets.left - insets.right)/CGFloat(cols)
+}
+public let xForObjectAt: (UICollectionView, Int, IndexPath) -> CGFloat = { collectionView, cols, path in
+    let width = widthForObjectAt(collectionView, cols, path)
+    return width * CGFloat(path.item % cols)
 }

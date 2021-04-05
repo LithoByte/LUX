@@ -12,27 +12,29 @@ import LithoOperators
 import fuikit
 import Prelude
 
-public class LUXImagePickerDelegate<T>: FUIImagePickerDelegate where T: LUXImageViewController {
+public class LUXImagePickerDelegate: FUIImagePickerDelegate {
     
-    public var presentingVC: T
-    
-    public init(_ vc: T, onSelectImage: @escaping (T, UIImage?) -> Void) {
-        self.presentingVC = vc
+    public init(onSelectMediaURL: @escaping (URL?) -> Void) {
         super.init()
-        self.onPickerDidPick = dismissPicker >>> (presentingVC >|> onSelectImage)
+        self.onPickerDidPick = dismissPicker >>> onSelectMediaURL
         self.onPickerDidCancel = dismissAnimated
     }
 }
 
-private func dismissPicker(_ picker:UIImagePickerController, info: [UIImagePickerController.InfoKey : Any]) -> UIImage? {
+private func dismissPicker(_ picker:UIImagePickerController, info: [UIImagePickerController.InfoKey : Any]) -> URL? {
     picker.dismiss(animated: true, completion: nil)
-    return infoToImage(info)
+    return infoToURL(info)
 }
 
-private let infoToImage: ([UIImagePickerController.InfoKey : Any]) -> UIImage? = {
-    return $0[UIImagePickerController.InfoKey.editedImage] as? UIImage
+private let infoToURL: ([UIImagePickerController.InfoKey : Any]) -> URL? = {
+    return $0[UIImagePickerController.InfoKey.mediaURL] as? URL
 }
 
+public let urlToAvPlayer: (URL) -> AVPlayer? = AVPlayer.init(url:)
+public let urlToImage: (URL) -> UIImage? = urlToData >?> UIImage.init(data:)
+public func urlToData(_ url: URL) -> Data? {
+    return try? Data(contentsOf: url)
+}
 public protocol LUXImageViewController {
     var imageView: UIImageView! { get set }
 }

@@ -11,6 +11,8 @@ import XCTest
 import Combine
 import Prelude
 import LithoOperators
+import FlexDataSource
+import Slippers
 import FunNet
 
 class TableModelViewModelTests: XCTestCase {
@@ -119,4 +121,25 @@ class RefreshableTableViewModelTests: XCTestCase {
 //        })
 //        vm.refresh()
 //    }
+}
+
+class SegmentedTableViewModelTests: XCTestCase {
+    func testEmptyTableView() {
+        let call = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
+        let vm = LUXSegmentedTableViewModel(LUXCallRefresher(call))
+        vm.segments = []
+        XCTAssertNil(vm.dataSource)
+    }
+    
+    func testNonEmptyTableView(){
+        let call = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
+        let vm = LUXSegmentedTableViewModel(LUXCallRefresher(call))
+        let sections = [FlexDataSourceSection(title: "One", items: []), FlexDataSourceSection(title: "Two", items: [])]
+        let source = FlexDataSource(nil, sections)
+        vm.segments = [source]
+        XCTAssertNotNil(vm.dataSource)
+        vm.selectedIndex = 1
+        XCTAssertNotNil(vm.dataSource)
+        XCTAssertEqual(vm.dataSource! as! FlexDataSource, source)
+    }
 }
