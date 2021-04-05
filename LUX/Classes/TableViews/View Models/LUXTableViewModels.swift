@@ -66,7 +66,7 @@ extension LUXRefreshableTableViewModel {
     }
 }
 extension LUXRefreshableTableViewModel {
-    func setupOnLoad() -> (FUITableViewViewController) -> Void {
+    public func setupOnLoad() -> (FUITableViewViewController) -> Void {
         return {
             self.tableView = $0.tableView
             self.refresh()
