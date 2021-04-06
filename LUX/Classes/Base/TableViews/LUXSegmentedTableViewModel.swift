@@ -11,18 +11,19 @@ import FlexDataSource
 open class LUXSegmentedTableViewModel: LUXRefreshableTableViewModel {
     public var selectedIndex: Int = 0 {
         didSet {
-            if let count = segments?.count, selectedIndex < count {
-                dataSource = segments?[selectedIndex]
-                tableView?.reloadData()
-            }
+            configureDataSource()
         }
     }
     public var segments: [FlexDataSource]? {
         didSet {
-            if let count = segments?.count, selectedIndex < count {
-                dataSource = segments?[selectedIndex]
-                tableView?.reloadData()
-            }
+            configureDataSource()
+        }
+    }
+    
+    public func configureDataSource() {
+        if let count = segments?.count, selectedIndex < count {
+            dataSource = segments?[selectedIndex]
+            tableView?.reloadData()
         }
     }
 }
