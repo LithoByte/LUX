@@ -10,7 +10,7 @@ import UIKit
 public class LUXMultiSizeCollectionViewLayout: UICollectionViewLayout {
     var cache: [UICollectionViewLayoutAttributes] = []
     
-    public var numCol:Int = 2 {
+    public var numCol: Int = 2 {
         didSet {
             invalidateLayout()
         }
@@ -21,7 +21,8 @@ public class LUXMultiSizeCollectionViewLayout: UICollectionViewLayout {
         }
     }
     private var numItems: Int {
-        return collectionView?.numberOfItems(inSection: 0) ?? 0
+        guard let collectionView = collectionView, collectionView.numberOfSections > 0 else { return 0 }
+        return collectionView.numberOfItems(inSection: 0) 
     }
     private var numRows: Int {
         return numItems % numCol == 0 ? numItems / numCol : numItems / numCol + 1
