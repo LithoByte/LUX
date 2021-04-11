@@ -6,6 +6,17 @@
 //
 
 import UIKit
+import LithoOperators
+import Prelude
+
+public let setPaddingLeading = \LUXStandardCollectionViewCell.enclosingViewLeadingConstraint.constant >|> set
+public let setPaddingTop = \LUXStandardCollectionViewCell.enclosingViewTopConstraint.constant >|> set
+public let setPaddingTrailing = \LUXStandardCollectionViewCell.enclosingViewTrailingConstraint.constant >|> set
+public let setPaddingBottom = \LUXStandardCollectionViewCell.enclosingViewBottomConstraint.constant >|> set
+
+public func setPadding(_ padding: CGFloat) -> (LUXStandardCollectionViewCell) -> Void {
+    return union(setPaddingTop(padding), setPaddingTrailing(padding), setPaddingLeading(padding), setPaddingBottom(padding))
+}
 
 open class LUXStandardCollectionViewCell: UICollectionViewCell {
     @IBOutlet public weak var activityIndicator: UIActivityIndicatorView!
@@ -35,5 +46,4 @@ open class LUXStandardCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
 }
