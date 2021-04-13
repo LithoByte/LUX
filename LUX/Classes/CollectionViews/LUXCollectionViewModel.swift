@@ -10,6 +10,9 @@ import LithoOperators
 open class LUXCollectionViewModel {
     public var cancelBag = Set<AnyCancellable>()
     public var dataSource: UICollectionViewDataSource? { didSet { didSetDataSource() }}
+    public var flexDataSource: FlexCollectionDataSource? {
+        return dataSource as? FlexCollectionDataSource
+    }
     public var collectionDelegate: UICollectionViewDelegate? { didSet { didSetCollectionDelegate() }}
     
     public var collectionView: UICollectionView? { didSet { configureCollectionView() }}
