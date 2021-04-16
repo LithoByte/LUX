@@ -52,8 +52,11 @@ class CollectionViewModelItemTests: XCTestCase {
     func testCollectionViewModel() {
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: .init())
         let vm = LUXCollectionViewModel()
+        let dataSource = FlexCollectionDataSource(collectionView, [FlexCollectionSection()])
+        vm.dataSource = dataSource
         vm.collectionView = collectionView
         XCTAssert(vm.collectionView != nil)
+        XCTAssertNotNil(vm.flexDataSource)
     }
     
     func testRefreshableViewModel() {
