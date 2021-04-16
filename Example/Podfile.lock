@@ -1,36 +1,42 @@
 PODS:
-  - FlexDataSource (0.1.6):
+  - FlexDataSource (0.1.7):
     - fuikit
-  - fuikit (0.0.7)
-  - FunNet/Combine (0.0.1):
+  - fuikit (0.1.3):
+    - fuikit/Core (= 0.1.3)
+    - fuikit/CoreBluetooth (= 0.1.3)
+    - fuikit/CoreLocation (= 0.1.3)
+  - fuikit/Core (0.1.3)
+  - fuikit/CoreBluetooth (0.1.3)
+  - fuikit/CoreLocation (0.1.3)
+  - FunNet/Combine (0.1.0):
     - FunNet/Core
     - LithoOperators
-  - FunNet/Core (0.0.1):
+  - FunNet/Core (0.1.0):
     - LithoOperators
-  - FunNet/Multipart (0.0.1):
+  - FunNet/Multipart (0.1.0):
     - LithoOperators
-  - LithoOperators (0.1.0):
+  - LithoOperators (0.1.4):
     - Prelude
-  - LUX (0.2.13):
-    - LUX/AppOpenFlow (= 0.2.13)
-    - LUX/Auth (= 0.2.13)
-    - LUX/Base (= 0.2.13)
-    - LUX/BaseAppOpenFlow (= 0.2.13)
-    - LUX/BaseCollectionViews (= 0.2.13)
-    - LUX/BaseFunctional (= 0.2.13)
-    - LUX/BaseNetworking (= 0.2.13)
-    - LUX/BaseSearch (= 0.2.13)
-    - LUX/BaseTableViews (= 0.2.13)
-    - LUX/CollectionViews (= 0.2.13)
-    - LUX/Networking (= 0.2.13)
-    - LUX/Search (= 0.2.13)
-    - LUX/TableViews (= 0.2.13)
-    - LUX/Utilities (= 0.2.13)
-  - LUX/AppOpenFlow (0.2.13):
+  - LUX (0.2.17):
+    - LUX/AppOpenFlow (= 0.2.17)
+    - LUX/Auth (= 0.2.17)
+    - LUX/Base (= 0.2.17)
+    - LUX/BaseAppOpenFlow (= 0.2.17)
+    - LUX/BaseCollectionViews (= 0.2.17)
+    - LUX/BaseFunctional (= 0.2.17)
+    - LUX/BaseNetworking (= 0.2.17)
+    - LUX/BaseSearch (= 0.2.17)
+    - LUX/BaseTableViews (= 0.2.17)
+    - LUX/CollectionViews (= 0.2.17)
+    - LUX/Networking (= 0.2.17)
+    - LUX/Search (= 0.2.17)
+    - LUX/TableViews (= 0.2.17)
+    - LUX/Utilities (= 0.2.17)
+  - LUX/AppOpenFlow (0.2.17):
     - LUX/Auth
     - LUX/Networking
-  - LUX/Auth (0.2.13)
-  - LUX/Base (0.2.13):
+  - LUX/Auth (0.2.17)
+  - LUX/Base (0.2.17):
     - FlexDataSource
     - fuikit
     - FunNet/Core
@@ -38,38 +44,38 @@ PODS:
     - Prelude (~> 3.0)
     - SDWebImage
     - Slippers
-  - LUX/BaseAppOpenFlow (0.2.13):
+  - LUX/BaseAppOpenFlow (0.2.17):
     - LUX/BaseFunctional
-  - LUX/BaseCollectionViews (0.2.13):
+  - LUX/BaseCollectionViews (0.2.17):
     - FlexDataSource
     - LUX/BaseFunctional
-  - LUX/BaseFunctional (0.2.13)
-  - LUX/BaseNetworking (0.2.13):
+  - LUX/BaseFunctional (0.2.17)
+  - LUX/BaseNetworking (0.2.17):
     - FunNet/Core
     - LUX/Auth
     - Slippers
-  - LUX/BaseSearch (0.2.13):
+  - LUX/BaseSearch (0.2.17):
     - LUX/BaseFunctional
-  - LUX/BaseTableViews (0.2.13):
+  - LUX/BaseTableViews (0.2.17):
     - FlexDataSource
     - LUX/BaseFunctional
-  - LUX/CollectionViews (0.2.13):
+  - LUX/CollectionViews (0.2.17):
     - LUX/BaseCollectionViews
-  - LUX/Networking (0.2.13):
+  - LUX/Networking (0.2.17):
     - FunNet/Combine
     - LUX/BaseNetworking
-  - LUX/Search (0.2.13):
+  - LUX/Search (0.2.17):
     - LUX/BaseSearch
     - LUX/TableViews
-  - LUX/TableViews (0.2.13):
+  - LUX/TableViews (0.2.17):
     - LUX/BaseTableViews
-  - LUX/Utilities (0.2.13):
+  - LUX/Utilities (0.2.17):
     - Prelude (~> 3.0)
   - PlaygroundVCHelpers (0.0.2)
   - Prelude (3.0.0)
-  - SDWebImage (5.10.2):
-    - SDWebImage/Core (= 5.10.2)
-  - SDWebImage/Core (5.10.2)
+  - SDWebImage (5.11.0):
+    - SDWebImage/Core (= 5.11.0)
+  - SDWebImage/Core (5.11.0)
   - Slippers (0.1.1)
 
 DEPENDENCIES:
@@ -105,16 +111,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FlexDataSource:
-    :commit: ff640567fcbcf7f2db09b5264614dc4bc5811a5f
+    :commit: fc177c3bcb09dfe680ac73aec15cc3f9afa7ba72
     :git: https://github.com/ThryvInc/flex-data-source
   fuikit:
-    :commit: 19d514bd7f9278645973d1811cd867ebe8e8c696
+    :commit: 6ff07048f3ac9674ec7bb608f7a801187c7afa68
     :git: https://github.com/ThryvInc/fuikit
   FunNet:
-    :commit: 9e662e4c6516047f1da0db2fe82f0d30864ec5ba
+    :commit: 3a0489551a9597700d5785c96ce87f584ef7af16
     :git: https://github.com/schrockblock/funnet
   LithoOperators:
-    :commit: 21acd9f10a7acf0bce48db6ec2931fcd05af2e10
+    :commit: 963967655ed290e8bbe26742912392d092ec78e8
     :git: https://github.com/ThryvInc/LithoOperators
   PlaygroundVCHelpers:
     :commit: 1b1f5ed572a1965e1d52bbc1b21f3796a6f144e2
@@ -124,14 +130,14 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ThryvInc/slippers
 
 SPEC CHECKSUMS:
-  FlexDataSource: 411e77d3a933d71ae3094e3d4d6ccedd3419f29e
-  fuikit: 9e4c918280be6b292e4564564dd11495e5f91861
-  FunNet: e01c3f3e4258f64657bdb2476236e064db2cd9b9
-  LithoOperators: 650e47b30fe99b79c845b28597aa8ad167ef46a9
-  LUX: 4868e24f75013aef7476477c83b9833d96b52b6a
+  FlexDataSource: 1fcd8981b6b49f9c4445af8af644d9711d946930
+  fuikit: 662c521062e61d2116e15e6beab4800d56bf34b3
+  FunNet: 8ce1a19086179760c3fd69ee3dde87867a7b4963
+  LithoOperators: 8fc0c6a49e34a8d1ca01b777844f58e36c062d9f
+  LUX: 797e4eddbca768473d00cd17c17d52fff09a72ce
   PlaygroundVCHelpers: c7cc8994d2851ebd1590217101b4c6888d1c9cc8
   Prelude: fe4cc0fd961d34edf48fe6b04d05c863449efb0a
-  SDWebImage: b969dcfc02c40a5da71eac0b03b8f1a0c794a86f
+  SDWebImage: 7acbb57630ac7db4a495547fb73916ff3e432f6b
   Slippers: 3814c93fd93305f918a984e724d5db4d9569a660
 
 PODFILE CHECKSUM: 522ebf93424ccd78759be20bfc7cb0abe4c241b2
