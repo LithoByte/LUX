@@ -11,6 +11,8 @@ import XCTest
 import Combine
 import Prelude
 import LithoOperators
+import FlexDataSource
+import Slippers
 import FunNet
 
 class TableModelViewModelTests: XCTestCase {
@@ -81,15 +83,6 @@ class RefreshableTableViewModelTests: XCTestCase {
         
     }
     
-//    func testUnwrapPageableTableViewModel() {
-//        let call: CombineNetCall = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
-//        let configurer: (Human, UITableViewCell) -> Void = {
-//            humanConfigurer($0)($1)
-//        }
-//        let getHumans: (HumanHolder) -> [Human] = ^\HumanHolder.humans
-//        let vm: LUXItemsTableViewModel = pageableTableViewModel(call, modelUnwrapper: getHumans, configurer, { _ in })
-//    }
-    
     func testRefreshableTableViewModel() {
         let call: CombineNetCall = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
         call.firingFunc = { $0.responder?.data = json.data(using: .utf8) }
@@ -103,20 +96,5 @@ class RefreshableTableViewModelTests: XCTestCase {
         })
         vm.refresh()
     }
-    
-//    func testUnwrapRefreshableTableViewModel() {
-//        struct HumanHolder: Codable {
-//            var humans: [Human]
-//        }
-//        let call: CombineNetCall = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
-//        call.firingFunc = { $0.responder?.data = json.data(using: .utf8) }
-//        let configurer: (Human, UITableViewCell) -> Void = {
-//            humanConfigurer($0)($1)
-//        }
-//        let getHumans: (HumanHolder) -> [Human] = ^\HumanHolder.humans
-//        let vm: LUXRefreshableTableViewModel = refreshableTableViewModel(call, modelUnwrapper: getHumans, configurer, { _ in
-//            
-//        })
-//        vm.refresh()
-//    }
 }
+

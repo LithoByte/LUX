@@ -80,6 +80,10 @@ public extension UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    func presentAnimated(_ vc: UIViewController, completion: @escaping (() -> Void)) {
+        present(vc, animated: true, completion: completion)
+    }
+    
     func presentAnimated(_ vc: UIViewController) {
         present(vc, animated: true, completion: nil)
     }
@@ -104,6 +108,10 @@ public extension UIViewController {
         tabBarController?.present(vc, animated: true, completion: nil)
     }
     
+    func tabDismissAnimated(_ vc: UIViewController, completion: @escaping (() -> Void)) {
+        vc.dismiss(animated: true, completion: completion)
+    }
+    
     func tabDismissAnimated(_ vc: UIViewController) {
         vc.dismiss(animated: true, completion: nil)
     }
@@ -121,8 +129,20 @@ public func popAnimated<T>(_ vc: T) where T: UIViewController {
     vc.popAnimated()
 }
 
+public func presentAnimated<T>(_ presenter: T, _ vc: UIViewController, completion: @escaping (() -> Void)) where T: UIViewController {
+    presenter.present(vc, animated: true, completion: completion)
+}
+
 public func presentAnimated<T>(_ presenter: T, _ vc: UIViewController) where T: UIViewController {
     presenter.present(vc, animated: true, completion: nil)
+}
+
+public func dismissAnimated<T>(_ vc: T, completion: @escaping (() -> Void)) where T: UIViewController{
+    vc.dismissAnimated(completion)
+}
+
+public func dismissAnimated<T>(_ vc: T) where T: UIViewController {
+    vc.dismissAnimated(nil)
 }
 
 public func tabPushAnimated<T>(_ pusher: T, _ vc: UIViewController) where T: UIViewController {

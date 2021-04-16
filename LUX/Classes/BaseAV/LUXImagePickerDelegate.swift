@@ -9,28 +9,38 @@ import UIKit
 import AVKit
 import AVFoundation
 import LithoOperators
+import fuikit
+import Prelude
+import Photos
 
-public class LUXImagePickerDelegate<T>: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate where T: LUXImageViewController {
+public class LUXImagePickerDelegate: FUIImagePickerDelegate {
+    var dismissPicker: (UIImagePickerController, [UIImagePickerController.InfoKey : Any]) -> Void = ignoreSecondArg(f: dismissAnimated)
+    var getInfo: (UIImagePickerController, [UIImagePickerController.InfoKey : Any]) -> URL? = ignoreFirstArg(f: infoToMediaURL)
     
-    public var presentingVC: T
-    public var onSelectImage: (UIImage?) -> Void
-    
-    public init(_ vc: T, onSelectImage: @escaping (T, UIImage?) -> Void) {
-        self.presentingVC = vc
-        self.onSelectImage = presentingVC >|> onSelectImage
-    }
-    
-    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
-        guard let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return onSelectImage(nil) }
-        onSelectImage(image)
+    public init(onSelectMediaURL: (@escaping (URL?) -> Void) = { _ in },
+                onSelectEditedImage: (@escaping (UIImage?) -> Void) = { _ in },
+                onSelectOriginalImage: (@escaping (UIImage?) -> Void) = { _ in },
+                onSelectImageUrl: (@escaping (UIImage?) -> Void) = { _ in },
+                onSelectCropRect: (@escaping (CGRect?) -> Void) = { _ in },
+                onSelectLivePhoto: (@escaping (PHLivePhoto?) -> Void) = { _ in },
+                onSelectMediaData: (@escaping (Data?) -> Void) = { _ in },
+                onSelectAVPlayer: (@escaping (AVPlayer?) -> Void) = { _ in }) {
+        super.init()
+        let videoHandler = getInfo >?> urlToAvPlayer >?> onSelectAVPlayer
+        let dataHandler = getInfo >?> urlToData >?> onSelectMediaData
+        self.onPickerDidPick = union(getInfo >>> onSelectMediaURL,
+                                     ignoreFirstArg(f: infoToOriginalImage) >>> onSelectOriginalImage,
+                                     ignoreFirstArg(f: infoToEditedImage) >>> onSelectEditedImage,
+                                     ignoreFirstArg(f: infoToLivePhoto) >>> onSelectLivePhoto,
+                                     dataHandler,
+                                     videoHandler,
+                                     dismissPicker)
+        self.onPickerDidCancel = dismissAnimated
     }
 }
 
-public protocol LUXImageViewController {
-    var imageView: UIImageView! { get set }
+public let urlToAvPlayer: (URL) -> AVPlayer? = AVPlayer.init(url:)
+public let urlToImage: (URL) -> UIImage? = urlToData >?> UIImage.init(data:)
+public func urlToData(_ url: URL) -> Data? {
+    return try? Data(contentsOf: url)
 }

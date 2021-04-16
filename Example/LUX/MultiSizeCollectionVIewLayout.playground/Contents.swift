@@ -93,11 +93,16 @@ vc.searchViewModel?.onIncrementalSearch = { text in
 
 let vm: LUXItemsCollectionViewModel = pageableCollectionViewModel(call, modelUnwrapper: ^\Cycle.reigns, searcher.filteredIncrementalPublisher(from:), reignConfigurator) { _ in }
 
+let layout = LUXMultiSizeCollectionViewLayout()
+layout.cellAspectRatio = CGSize(width: 200, height: 300)
+layout.setColumnCount(3)
+
 let setupView: (LUXSearchCollectionViewController<Reign>) -> Void = { (searchVC: LUXSearchCollectionViewController<Reign>) in
     vm.collectionView = searchVC.collectionView
+    vm.collectionView?.collectionViewLayout = layout
     vm.refresh()
 }
-vc.onViewDidLoad = optionalCast >?> setupView
+vc.onViewDidLoad = ~>setupView
 vc.collectionViewModel = vm
 
 PlaygroundPage.current.liveView = nc
