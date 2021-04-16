@@ -31,7 +31,7 @@ public class LUXMultiSizeCollectionViewLayout: UICollectionViewLayout {
     private var _baseCellHeight: CGFloat? { didSet { invalidateLayout() }}
     public func setBaseCellHeight(_ height: CGFloat) { _baseCellHeight = height }
     
-    private var _contentSize: CGSize?
+    private var _contentSize: CGSize? { didSet { invalidateLayout() }}
     public func setContentSize(_ contentSize: CGSize) { _contentSize = contentSize }
     
     private var itemCount: Int { calculateItemCount() }

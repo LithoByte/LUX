@@ -20,6 +20,9 @@ public let setCappedEnds: (UIView) -> Void = {
 public let setupButtonTitleColor: (UIColor) -> (UIButton) -> Void = { color in
     return { $0.setTitleColor(color, for: .normal) }
 }
+public let setupButtonTitle: (String) -> (UIButton) -> Void = { title in
+    return { $0.setTitle(title, for: .normal) }
+}
 
 public let setupBgColor: (UIColor) -> (UIView) -> Void = \UIView.backgroundColor >|> set
 
@@ -35,3 +38,6 @@ public let setBorderColor: (CGColor) -> (UIView) -> Void = \UIView.layer.borderC
 public let setCornerRadius: (CGFloat) -> (UIView) -> Void = \UIView.layer.cornerRadius >|> set
 
 public let setCapAndClip: (UIView) -> Void = setCappedEnds <> setClipBounds
+
+public let roundTopCorners: (UIView) -> Void = set(\UIView.layer.maskedCorners, [.layerMinXMinYCorner, .layerMaxXMinYCorner])
+public let roundBottomCorners: (UIView) -> Void = set(\UIView.layer.maskedCorners, [.layerMinXMaxYCorner, .layerMaxXMaxYCorner])

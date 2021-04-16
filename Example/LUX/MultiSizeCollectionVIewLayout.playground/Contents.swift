@@ -95,6 +95,7 @@ let vm: LUXItemsCollectionViewModel = pageableCollectionViewModel(call, modelUnw
 
 let layout = LUXMultiSizeCollectionViewLayout()
 layout.cellAspectRatio = CGSize(width: 200, height: 300)
+layout.setColumnCount(3)
 
 let setupView: (LUXSearchCollectionViewController<Reign>) -> Void = { (searchVC: LUXSearchCollectionViewController<Reign>) in
     vm.collectionView = searchVC.collectionView
