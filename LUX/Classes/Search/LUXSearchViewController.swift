@@ -29,9 +29,7 @@ open class LUXSearchViewController<T, U>: LUXFlexViewController<T> {
         
         searchBar?.delegate = searchViewModel?.searchBarDelegate
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
+        addTapToDismissKeyboard()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -59,10 +57,6 @@ open class LUXSearchViewController<T, U>: LUXFlexViewController<T> {
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         searchViewModel?.savedSearch = searchBar?.text
-    }
-    
-    @objc open func dismissKeyboard() {
-        view.endEditing(true)
     }
     
     open override func refresh() {

@@ -21,9 +21,7 @@ open class LUXSearchCollectionViewController<U>: FUIViewController {
         
         searchBar?.delegate = searchViewModel?.searchBarDelegate
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
+        addTapToDismissKeyboard()
     }
     
     open override func viewWillAppear(_ animated: Bool) {
@@ -46,9 +44,5 @@ open class LUXSearchCollectionViewController<U>: FUIViewController {
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         searchViewModel?.savedSearch = searchBar?.text
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
 }
