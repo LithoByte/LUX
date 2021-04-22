@@ -14,10 +14,15 @@ public extension Configurable {
     ///     let frame = UIView().configure {
     ///       $0.backgroundColor = .red
     ///     }
-    func configure(_ block: (inout Self) -> Void) -> Self {
+    func configureCopy(_ block: (inout Self) -> Void) -> Self {
         var copy = self
         block(&copy)
         return copy
+    }
+    
+    func configure(_ block: (Self) -> Void) -> Self {
+        block(self)
+        return self
     }
 }
 extension NSObject: Configurable {}
