@@ -19,5 +19,10 @@ public extension Configurable {
         block(&copy)
         return copy
     }
+    
+    func configure(_ block: (Self) -> Void) -> Self {
+        block(self)
+        return self
+    }
 }
 extension NSObject: Configurable {}
