@@ -8,12 +8,12 @@ PODS:
   - fuikit/Core (0.1.5)
   - fuikit/CoreBluetooth (0.1.5)
   - fuikit/CoreLocation (0.1.5)
-  - FunNet/Combine (0.1.0):
+  - FunNet/Combine (0.1.1):
     - FunNet/Core
     - LithoOperators
-  - FunNet/Core (0.1.0):
+  - FunNet/Core (0.1.1):
     - LithoOperators
-  - FunNet/Multipart (0.1.0):
+  - FunNet/Multipart (0.1.1):
     - LithoOperators
   - LithoOperators (0.1.4):
     - Prelude
@@ -73,9 +73,9 @@ PODS:
     - Prelude (~> 3.0)
   - PlaygroundVCHelpers (0.0.2)
   - Prelude (3.0.0)
-  - SDWebImage (5.11.0):
-    - SDWebImage/Core (= 5.11.0)
-  - SDWebImage/Core (5.11.0)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
   - Slippers (0.1.1)
 
 DEPENDENCIES:
@@ -117,10 +117,10 @@ CHECKOUT OPTIONS:
     :commit: ef3b0ddbe64f20188c0a6a8b904e09348ece585a
     :git: https://github.com/ThryvInc/fuikit
   FunNet:
-    :commit: 3a0489551a9597700d5785c96ce87f584ef7af16
+    :commit: 9ca5a81f8b96a71b2cd671fca642a152823c3704
     :git: https://github.com/schrockblock/funnet
   LithoOperators:
-    :commit: 7e5bf9eb5059e53f899c9e9e284af75ed8b16270
+    :commit: d4096580fd12b7ef793698cbaf7fbcdbb0bc27ff
     :git: https://github.com/ThryvInc/LithoOperators
   PlaygroundVCHelpers:
     :commit: 1b1f5ed572a1965e1d52bbc1b21f3796a6f144e2
@@ -132,12 +132,12 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   FlexDataSource: 1fcd8981b6b49f9c4445af8af644d9711d946930
   fuikit: 976080e1c04037e01d14541135a104cb208d8c0d
-  FunNet: 8ce1a19086179760c3fd69ee3dde87867a7b4963
+  FunNet: e66d2df77a5663556970a1914c5911ecde2842ef
   LithoOperators: 8fc0c6a49e34a8d1ca01b777844f58e36c062d9f
   LUX: 5bb30110f5aecde38b1826f95d83fe39ff52d439
   PlaygroundVCHelpers: c7cc8994d2851ebd1590217101b4c6888d1c9cc8
   Prelude: fe4cc0fd961d34edf48fe6b04d05c863449efb0a
-  SDWebImage: 7acbb57630ac7db4a495547fb73916ff3e432f6b
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   Slippers: 3814c93fd93305f918a984e724d5db4d9569a660
 
 PODFILE CHECKSUM: 522ebf93424ccd78759be20bfc7cb0abe4c241b2
