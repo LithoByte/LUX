@@ -23,6 +23,18 @@ public func ifSimulator<T>(f: @escaping (T) -> Void) -> (T) -> Void {
     #endif
 }
 
+public func isSimulator() -> Bool {
+    #if targetEnvironment(simulator)
+        return true
+    #else
+        return false
+    #endif
+}
+
+public func isDevice() -> Bool {
+    return !isSimulator()
+}
+
 public func ifDevice(f: () -> Void) {
     #if targetEnvironment(simulator)
     return

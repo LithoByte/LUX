@@ -8,6 +8,10 @@
 import Foundation
 import Combine
 
+public func bind<T>(_ pub: AnyPublisher<T, Never>, keyPath: WritableKeyPath<T, Bool>, cancelBag: inout Set<AnyCancellable>) {
+    
+}
+
 public func bindButtonEnabledToPublisher(_ button: UIButton, publisher: AnyPublisher<Bool, Never>, cancelBag: inout Set<AnyCancellable>){
     publisher.sink{ button.isEnabled = $0 }.store(in: &cancelBag)
 }
