@@ -18,8 +18,8 @@ public func bindActivityIndicatorVisibleToPublisher(_ activity: UIActivityIndica
     publisher.sink{ activity.isHidden = !$0 }.store(in: &cancelBag)
 }
 
-extension Publisher where Output == Bool , Failure == Never {
-    public func bind<T>(keyPath: WritableKeyPath<T, Bool>, value: T, cancelBag: inout Set<AnyCancellable>) {
-        self.sink(receiveValue: (keyPath >|> set) >>> (value >|> (*>)) >>> execute).store(in: &cancelBag)
+extension Publisher where Output == Bool, Failure == Never {
+    public func bind<T>(to keyPath: WritableKeyPath<T, Bool>, on value: T, storingIn cancelBag: inout Set<AnyCancellable>) {
+        self.sink(receiveValue: value >|> setter(keyPath)).store(in: &cancelBag)
     }
 }
