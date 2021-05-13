@@ -34,4 +34,13 @@ class BindViewModelTests: XCTestCase {
         subject.send(false)
         XCTAssertTrue(activity.isHidden)
     }
+    
+    func testBind() {
+        let subject = PassthroughSubject<Bool, Never>()
+        let button = UIButton()
+        button.isEnabled = true
+        subject.bind(to: \UIButton.isEnabled, on: button, storingIn: &cancelBag)
+        subject.send(false)
+        XCTAssertFalse(button.isEnabled)
+    }
 }
