@@ -39,7 +39,7 @@ class BindViewModelTests: XCTestCase {
         let subject = PassthroughSubject<Bool, Never>()
         let button = UIButton()
         button.isEnabled = true
-        subject.bind(keyPath: \UIButton.isEnabled, value: button, cancelBag: &cancelBag)
+        subject.bind(to: \UIButton.isEnabled, on: button, storingIn: &cancelBag)
         subject.send(false)
         XCTAssertFalse(button.isEnabled)
     }
