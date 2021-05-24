@@ -9,6 +9,7 @@ import UIKit
 import fuikit
 import LithoOperators
 import Prelude
+import LithoUtils
 
 open class LUXSearchViewController<T, U>: LUXFlexViewController<T> {
     @IBOutlet open weak var searchBar: UISearchBar?

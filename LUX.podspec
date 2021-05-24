@@ -23,9 +23,10 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/elliot_schrock'
 
   s.ios.deployment_target = '11.0'
-
+  
   s.source_files = 'LUX/Classes/**/*.swift'
   s.resources = 'LUX/**/*.xib'
+  s.dependency 'LithoUtils'
   
   s.subspec 'Base' do |sp|
     sp.source_files = 'LUX/Classes/Base/**/*.swift'
