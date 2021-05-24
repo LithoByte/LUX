@@ -140,13 +140,13 @@ CHECKOUT OPTIONS:
     :commit: fc177c3bcb09dfe680ac73aec15cc3f9afa7ba72
     :git: https://github.com/ThryvInc/flex-data-source
   fuikit:
-    :commit: ef3b0ddbe64f20188c0a6a8b904e09348ece585a
+    :commit: fdc92715a7401a323be9ac3f4960c6a890e47f24
     :git: https://github.com/ThryvInc/fuikit
   FunNet:
     :commit: 9ca5a81f8b96a71b2cd671fca642a152823c3704
     :git: https://github.com/schrockblock/funnet
   LithoOperators:
-    :commit: d4096580fd12b7ef793698cbaf7fbcdbb0bc27ff
+    :commit: a39bdd37f06f50e8284d94dbcd13caf116883cde
     :git: https://github.com/ThryvInc/LithoOperators
   LithoUtils:
     :commit: b9f4f35d692f1a9001ba7135a40ae69fa3d71e35

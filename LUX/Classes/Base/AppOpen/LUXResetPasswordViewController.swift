@@ -8,6 +8,7 @@
 import UIKit
 import fuikit
 import LithoOperators
+import LithoUtils
 
 public let disableSubmitButton: (LUXResetPasswordViewController) -> Void = ^\.submitButton >?> set(\.isEnabled, false)
 public let enableSubmitButton: (LUXResetPasswordViewController) -> Void = ^\.submitButton >?> set(\.isEnabled, true)
