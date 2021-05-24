@@ -26,6 +26,7 @@ Pod::Spec.new do |s|
 
   s.source_files = 'LUX/Classes/**/*.swift'
   s.resources = 'LUX/**/*.xib'
+  s.dependency 'LithoUtils'
   
   s.subspec 'Base' do |sp|
     sp.source_files = 'LUX/Classes/Base/**/*.swift'

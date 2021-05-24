@@ -48,8 +48,8 @@
 		6418E0FD25AC0AC50050BEFB /* FlexViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418E0FC25AC0AC50050BEFB /* FlexViewControllerTests.swift */; };
 		6466B25B25A0023C009DA066 /* LandingViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6466B25A25A0023C009DA066 /* LandingViewControllerTests.swift */; };
 		6466B25F25A0105E009DA066 /* ViewControllerPushPopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6466B25E25A0105E009DA066 /* ViewControllerPushPopTests.swift */; };
-		64E57AAC261CC62400FF91C8 /* SegmentedTableViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E57AAB261CC62400FF91C8 /* SegmentedTableViewModelTests.swift */; };
 		6494DAC72628D02A00F04FD1 /* BindViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6494DAC62628D02A00F04FD1 /* BindViewModelTests.swift */; };
+		64E57AAC261CC62400FF91C8 /* SegmentedTableViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E57AAB261CC62400FF91C8 /* SegmentedTableViewModelTests.swift */; };
 		B5DDDA9015D5B0752B631707 /* Pods_LUX_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B42B4BEA58B69C8BD8FE4014 /* Pods_LUX_Example.framework */; };
 		CDA5AA489BA6AEB8016EA9DC /* Pods_LUX_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84AB7549E70A7D5F45143895 /* Pods_LUX_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -120,9 +120,9 @@
 		6418E0FC25AC0AC50050BEFB /* FlexViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexViewControllerTests.swift; sourceTree = "<group>"; };
 		6466B25A25A0023C009DA066 /* LandingViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewControllerTests.swift; sourceTree = "<group>"; };
 		6466B25E25A0105E009DA066 /* ViewControllerPushPopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerPushPopTests.swift; sourceTree = "<group>"; };
+		6494DAC62628D02A00F04FD1 /* BindViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindViewModelTests.swift; sourceTree = "<group>"; };
 		64E57AAB261CC62400FF91C8 /* SegmentedTableViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedTableViewModelTests.swift; sourceTree = "<group>"; };
 		64E57AAF261CD70300FF91C8 /* MultiSizeCollectionVIewLayout.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MultiSizeCollectionVIewLayout.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		6494DAC62628D02A00F04FD1 /* BindViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindViewModelTests.swift; sourceTree = "<group>"; };
 		69E2072452A596824D56C8B0 /* Pods-LUX_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LUX_Example.debug.xcconfig"; path = "Target Support Files/Pods-LUX_Example/Pods-LUX_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		78446B6F9C76610C44BC3389 /* Pods-LUX_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LUX_Tests.debug.xcconfig"; path = "Target Support Files/Pods-LUX_Tests/Pods-LUX_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		84AB7549E70A7D5F45143895 /* Pods_LUX_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LUX_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -427,6 +427,7 @@
 				"${BUILT_PRODUCTS_DIR}/FunNet/FunNet.framework",
 				"${BUILT_PRODUCTS_DIR}/LUX/LUX.framework",
 				"${BUILT_PRODUCTS_DIR}/LithoOperators/LithoOperators.framework",
+				"${BUILT_PRODUCTS_DIR}/LithoUtils/LithoUtils.framework",
 				"${BUILT_PRODUCTS_DIR}/PlaygroundVCHelpers/PlaygroundVCHelpers.framework",
 				"${BUILT_PRODUCTS_DIR}/Prelude/Prelude.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -439,6 +440,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FunNet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LUX.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LithoOperators.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LithoUtils.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PlaygroundVCHelpers.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Prelude.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
