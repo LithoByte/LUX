@@ -106,7 +106,7 @@ DEPENDENCIES:
   - FunNet/Combine (from `https://github.com/schrockblock/funnet`)
   - FunNet/Multipart (from `https://github.com/schrockblock/funnet`)
   - LithoOperators (from `https://github.com/ThryvInc/LithoOperators`)
-  - LithoUtils (from `https://github.com/ThryvInc/litho-utils`, branch `cjc8/new-functions`)
+  - LithoUtils (from `https://github.com/ThryvInc/litho-utils`)
   - LUX (from `../`)
   - PlaygroundVCHelpers (from `https://github.com/ThryvInc/playground-vc-helpers`)
   - Slippers (from `https://github.com/ThryvInc/slippers`)
@@ -126,7 +126,6 @@ EXTERNAL SOURCES:
   LithoOperators:
     :git: https://github.com/ThryvInc/LithoOperators
   LithoUtils:
-    :branch: cjc8/new-functions
     :git: https://github.com/ThryvInc/litho-utils
   LUX:
     :path: "../"
@@ -149,7 +148,7 @@ CHECKOUT OPTIONS:
     :commit: a39bdd37f06f50e8284d94dbcd13caf116883cde
     :git: https://github.com/ThryvInc/LithoOperators
   LithoUtils:
-    :commit: b9f4f35d692f1a9001ba7135a40ae69fa3d71e35
+    :commit: 3948a64e5c27163c16a7d82f05071e52f5bbdd09
     :git: https://github.com/ThryvInc/litho-utils
   PlaygroundVCHelpers:
     :commit: 1b1f5ed572a1965e1d52bbc1b21f3796a6f144e2
@@ -170,6 +169,6 @@ SPEC CHECKSUMS:
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   Slippers: 3814c93fd93305f918a984e724d5db4d9569a660
 
-PODFILE CHECKSUM: 1d3ae3ca3f06b49e0726c7586954fd041286746d
+PODFILE CHECKSUM: 96e9f12fac5b5305d7ba10c4e8a78173c09188c9
 
 COCOAPODS: 1.10.0
