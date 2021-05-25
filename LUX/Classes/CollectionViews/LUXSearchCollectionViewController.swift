@@ -6,6 +6,7 @@
 //
 
 import fuikit
+import LithoUtils
 
 open class LUXSearchCollectionViewController<U>: FUIViewController {
     @IBOutlet open weak var collectionView: UICollectionView!
