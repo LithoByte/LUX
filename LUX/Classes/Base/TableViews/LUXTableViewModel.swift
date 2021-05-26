@@ -20,7 +20,7 @@ open class LUXTableViewModel {
     open func didSetTableDelegate() { configureTableView() }
     open func configureTableView() {
         tableView?.dataSource = dataSource
-        if let ds = dataSource as? FlexDataSource {
+        if var ds = dataSource as? FlexDataSource {
             ds.tableView = tableView
         }
         tableView?.delegate = tableDelegate

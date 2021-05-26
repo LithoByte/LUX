@@ -136,7 +136,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FlexDataSource:
-    :commit: fc177c3bcb09dfe680ac73aec15cc3f9afa7ba72
+    :commit: b40d1817e04341ee79698657702c8a7aa8e1de34
     :git: https://github.com/ThryvInc/flex-data-source
   fuikit:
     :commit: fdc92715a7401a323be9ac3f4960c6a890e47f24
@@ -158,7 +158,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ThryvInc/slippers
 
 SPEC CHECKSUMS:
-  FlexDataSource: 1fcd8981b6b49f9c4445af8af644d9711d946930
+  FlexDataSource: 3b1ce4602902bd7f70821a9e88d3753fd424ae4e
   fuikit: 976080e1c04037e01d14541135a104cb208d8c0d
   FunNet: e66d2df77a5663556970a1914c5911ecde2842ef
   LithoOperators: 8fc0c6a49e34a8d1ca01b777844f58e36c062d9f
