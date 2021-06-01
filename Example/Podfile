@@ -10,7 +10,7 @@ target 'LUX_Example' do
   pod 'LithoOperators', git: 'https://github.com/ThryvInc/LithoOperators'
   pod 'FlexDataSource', git: 'https://github.com/ThryvInc/flex-data-source'
   pod 'fuikit', git: 'https://github.com/ThryvInc/fuikit'
-  pod 'LithoUtils', git: 'https://github.com/ThryvInc/litho-utils'
+  pod 'LithoUtils/Core', git: 'https://github.com/ThryvInc/litho-utils'
   
   target 'LUX_Tests' do
     inherit! :search_paths
