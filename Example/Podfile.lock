@@ -1,5 +1,5 @@
 PODS:
-  - FlexDataSource (0.1.7):
+  - FlexDataSource (0.2.0):
     - fuikit
   - fuikit (0.1.5):
     - fuikit/Core (= 0.1.5)
@@ -132,7 +132,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FlexDataSource:
-    :commit: b40d1817e04341ee79698657702c8a7aa8e1de34
+    :commit: d6d7d542d2f1ff514d8cd570301a3ef85e28d9dd
     :git: https://github.com/ThryvInc/flex-data-source
   fuikit:
     :commit: fdc92715a7401a323be9ac3f4960c6a890e47f24
@@ -144,7 +144,7 @@ CHECKOUT OPTIONS:
     :commit: a39bdd37f06f50e8284d94dbcd13caf116883cde
     :git: https://github.com/ThryvInc/LithoOperators
   LithoUtils:
-    :commit: 3948a64e5c27163c16a7d82f05071e52f5bbdd09
+    :commit: ab690d6a0e1ca0db425d53ae90462246e8d1342e
     :git: https://github.com/ThryvInc/litho-utils
   PlaygroundVCHelpers:
     :commit: 1b1f5ed572a1965e1d52bbc1b21f3796a6f144e2
@@ -154,7 +154,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ThryvInc/slippers
 
 SPEC CHECKSUMS:
-  FlexDataSource: 3b1ce4602902bd7f70821a9e88d3753fd424ae4e
+  FlexDataSource: 7ac68abd6ca54a3c043cad19104644ab25c31842
   fuikit: 976080e1c04037e01d14541135a104cb208d8c0d
   FunNet: e66d2df77a5663556970a1914c5911ecde2842ef
   LithoOperators: 8fc0c6a49e34a8d1ca01b777844f58e36c062d9f

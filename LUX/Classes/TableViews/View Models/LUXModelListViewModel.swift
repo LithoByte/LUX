@@ -10,17 +10,15 @@ import FlexDataSource
 import Prelude
 import Combine
 
-public typealias LUXTableDataSource = FlexDataSource & UITableViewDataSource
-
 public protocol LUXDataSourceProvider {
-    var flexDataSource: LUXTableDataSource { get set }
+    var flexDataSource: FlexDataSource { get set }
 }
 
 open class LUXModelListViewModel<T>: LUXModelTableViewModel<T>, LUXDataSourceProvider {
-    public var flexDataSource: LUXTableDataSource
+    public var flexDataSource: FlexDataSource
     
     public override init(modelsPublisher: AnyPublisher<[T], Never>, modelToItem: @escaping (T) -> FlexDataSourceItem) {
-        flexDataSource = FlexSimpleDataSource()
+        flexDataSource = FlexDataSource()
         super.init(modelsPublisher: modelsPublisher, modelToItem: modelToItem)
         
         cancelBag.insert(self.sectionsPublisher.sink {

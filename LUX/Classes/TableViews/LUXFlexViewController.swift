@@ -68,7 +68,7 @@ open class LUXFlexViewController<T>: FUIViewController, Refreshable {
     }
 
     open func configureTableView() {
-        if var vm = viewModel as? LUXDataSourceProvider {
+        if let vm = viewModel as? LUXDataSourceProvider {
             vm.flexDataSource.tableView = tableView
             tableView?.dataSource = vm.flexDataSource
         }

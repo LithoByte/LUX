@@ -14,7 +14,7 @@ open class LUXSegmentedTableViewModel: LUXRefreshableTableViewModel {
             configureDataSource()
         }
     }
-    public var segments: [LUXTableDataSource]? {
+    public var segments: [FlexDataSource]? {
         didSet {
             configureDataSource()
         }

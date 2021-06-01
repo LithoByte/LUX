@@ -19,7 +19,7 @@ class FlexViewControllerTests: XCTestCase {
         let call = CombineNetCall(configuration: ServerConfiguration(host: "lithobyte.co", apiRoute: nil), Endpoint())
         let refreshManager = LUXRefreshableNetworkCallManager(call)
         let tableView = UITableView(frame: .zero)
-        let dataSource = FlexSimpleDataSource(tableView, nil)
+        let dataSource = FlexDataSource(tableView, nil)
         let vc = LUXFlexViewController<FlexDataSource>()
         vc.viewModel = dataSource
         vc.refreshableModelManager = refreshManager
