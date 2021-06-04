@@ -48,18 +48,21 @@ extension LUXRefreshableTableViewModel {
     public func setupEndRefreshing(from publisher: CombineNetworkResponder) {
         publisher.$data.sink { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.tableView?.setContentOffset(.zero, animated: true)
                 self.endRefreshing()
             }
         }.store(in: &cancelBag)
         
         publisher.$error.sink { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.tableView?.setContentOffset(.zero, animated: true)
                 self.endRefreshing()
             }
         }.store(in: &cancelBag)
         
         publisher.$serverError.sink { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.tableView?.setContentOffset(.zero, animated: true)
                 self.endRefreshing()
             }
         }.store(in: &cancelBag)
