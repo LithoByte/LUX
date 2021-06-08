@@ -13,6 +13,7 @@ import Slippers
 import FlexDataSource
 import Prelude
 import LithoOperators
+import LithoUtils
 
 open class LUXRefreshableTableViewModel: LUXTableViewModel, Refreshable {
     public var cancelBag = Set<AnyCancellable>()
@@ -30,6 +31,7 @@ open class LUXRefreshableTableViewModel: LUXTableViewModel, Refreshable {
     }
     
     @objc open func endRefreshing() {
+        tableView?.setContentOffset(.zero, animated: true)
         tableView?.refreshControl?.endRefreshing()
     }
     
@@ -46,26 +48,9 @@ extension LUXRefreshableTableViewModel {
     }
     
     public func setupEndRefreshing(from publisher: CombineNetworkResponder) {
-        publisher.$data.sink { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.tableView?.setContentOffset(.zero, animated: true)
-                self.endRefreshing()
-            }
-        }.store(in: &cancelBag)
-        
-        publisher.$error.sink { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.tableView?.setContentOffset(.zero, animated: true)
-                self.endRefreshing()
-            }
-        }.store(in: &cancelBag)
-        
-        publisher.$serverError.sink { _ in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.tableView?.setContentOffset(.zero, animated: true)
-                self.endRefreshing()
-            }
-        }.store(in: &cancelBag)
+        publisher.$data.sink(receiveValue: ignoreArg(runOnMain(self.endRefreshing))).store(in: &cancelBag)
+        publisher.$error.sink(receiveValue: ignoreArg(runOnMain(self.endRefreshing))).store(in: &cancelBag)
+        publisher.$serverError.sink(receiveValue: ignoreArg(runOnMain(self.endRefreshing))).store(in: &cancelBag)
     }
 }
 extension LUXRefreshableTableViewModel {
