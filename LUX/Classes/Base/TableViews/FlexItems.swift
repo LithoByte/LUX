@@ -54,3 +54,15 @@ open class LUXSwipeTapModelItem<T, C>: LUXTappableModelItem<T, C>, Swipable wher
         super.init(model: model, configurer: configurer, tap: tap)
     }
 }
+
+public func modelItem<T, U: UITableViewCell>(_ configurer: @escaping (T, U) -> Void) -> (T) -> LUXModelItem<T, U> {
+    return configurer >||> LUXModelItem.init
+}
+
+public func tappableModelItem<T, U: UITableViewCell>(_ configurer: @escaping (T, U) -> Void, onTap: @escaping (T) -> Void) -> (T) -> LUXTappableModelItem<T, U> {
+    return (configurer, onTap) >||> LUXTappableModelItem.init
+}
+
+public func swipeTappableModelItem<T, U: UITableViewCell>(_ configurer: @escaping (T, U) -> Void, onTap: @escaping (T) -> Void, onSwipe: @escaping (T) -> Void) -> (T) -> LUXSwipeTapModelItem<T, U> {
+    return (configurer, onTap, onSwipe) >||> LUXSwipeTapModelItem.init
+}
