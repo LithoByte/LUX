@@ -97,7 +97,7 @@ PODS:
   - Slippers (0.1.1)
 
 DEPENDENCIES:
-  - FlexDataSource (from `https://github.com/ThryvInc/flex-data-source`)
+  - FlexDataSource (from `https://github.com/LithoByte/flex-data-source`)
   - fuikit (from `https://github.com/LithoByte/fuikit`)
   - FunNet/Combine (from `https://github.com/schrockblock/funnet`, branch `feature/cjc8/update-lithooperators`)
   - FunNet/Multipart (from `https://github.com/schrockblock/funnet`, branch `feature/cjc8/update-lithooperators`)
@@ -105,7 +105,7 @@ DEPENDENCIES:
   - LithoUtils/Core (from `https://github.com/LithoByte/litho-utils`, branch `cjc8/update-lithooperators`)
   - LUX (from `../`)
   - PlaygroundVCHelpers (from `https://github.com/ThryvInc/playground-vc-helpers`)
-  - Slippers (from `https://github.com/ThryvInc/slippers`)
+  - Slippers (from `https://github.com/LithoByte/slippers`)
 
 SPEC REPOS:
   trunk:
@@ -114,7 +114,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   FlexDataSource:
-    :git: https://github.com/ThryvInc/flex-data-source
+    :git: https://github.com/LithoByte/flex-data-source
   fuikit:
     :git: https://github.com/LithoByte/fuikit
   FunNet:
@@ -131,12 +131,12 @@ EXTERNAL SOURCES:
   PlaygroundVCHelpers:
     :git: https://github.com/ThryvInc/playground-vc-helpers
   Slippers:
-    :git: https://github.com/ThryvInc/slippers
+    :git: https://github.com/LithoByte/slippers
 
 CHECKOUT OPTIONS:
   FlexDataSource:
     :commit: ee22bf5a75ead0c3334186074e3e425812912482
-    :git: https://github.com/ThryvInc/flex-data-source
+    :git: https://github.com/LithoByte/flex-data-source
   fuikit:
     :commit: 7d5c8329b834e8a415cf5217a2d4a118281adcc9
     :git: https://github.com/LithoByte/fuikit
@@ -154,7 +154,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ThryvInc/playground-vc-helpers
   Slippers:
     :commit: c73ac0ab4d39bf981dda7caa23d959a5f22f2bb9
-    :git: https://github.com/ThryvInc/slippers
+    :git: https://github.com/LithoByte/slippers
 
 SPEC CHECKSUMS:
   FlexDataSource: 7d859ae7d182576ec900541a761aa5d4aadc04e6
@@ -168,6 +168,6 @@ SPEC CHECKSUMS:
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   Slippers: 3814c93fd93305f918a984e724d5db4d9569a660
 
-PODFILE CHECKSUM: 393d6b35d96c03684138247ba27419c0d00d966e
+PODFILE CHECKSUM: f60ca6791413ac9398c0ee1448b5a6c0e1bc4d8e
 
 COCOAPODS: 1.10.0

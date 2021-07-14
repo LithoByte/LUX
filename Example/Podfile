@@ -6,9 +6,9 @@ target 'LUX_Example' do
   pod 'PlaygroundVCHelpers', git: 'https://github.com/ThryvInc/playground-vc-helpers'
   pod 'FunNet/Combine', git: 'https://github.com/schrockblock/funnet', branch: 'feature/cjc8/update-lithooperators'
   pod 'FunNet/Multipart', git: 'https://github.com/schrockblock/funnet', branch: 'feature/cjc8/update-lithooperators'
-  pod 'Slippers', git: 'https://github.com/ThryvInc/slippers'
+  pod 'Slippers', git: 'https://github.com/LithoByte/slippers'
   pod 'LithoOperators', git: 'https://github.com/LithoByte/LithoOperators', branch: 'feature/cjc8/file-split'
-  pod 'FlexDataSource', git: 'https://github.com/ThryvInc/flex-data-source'
+  pod 'FlexDataSource', git: 'https://github.com/LithoByte/flex-data-source'
   pod 'fuikit', git: 'https://github.com/LithoByte/fuikit'
   pod 'LithoUtils/Core', git: 'https://github.com/LithoByte/litho-utils', branch: 'cjc8/update-lithooperators'
   
