@@ -22,7 +22,7 @@ open class LUXModelTableViewModel<T>: LUXModelCallViewModel<T> {
         super.init(modelsPublisher: modelsPublisher)
         
         let toSections = itemsToSection >>> arrayOfSingleObject
-        let modelsToItems = modelToItem >||> map
+        let modelsToItems = modelToItem -*> map
         let transform = modelsToItems >>> toSections
         self.sectionsPublisher = self.$models.map(transform).eraseToAnyPublisher()
     }

@@ -65,7 +65,7 @@ open class LUXSearcher<T>: LUXSearchable {
         guard let t = text, t != "" else {
             return array
         }
-        return array.filter(t >|> isIncluded)
+        return array.filter(t *-> isIncluded)
     }
     
     open func filter(tuple: (String?, [T])) -> [T] {

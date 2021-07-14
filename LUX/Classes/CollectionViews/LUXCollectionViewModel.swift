@@ -122,8 +122,8 @@ public func pageableCollectionViewModel<T, U, C>(_ call: CombineNetCall,
         let dataPub = call.publisher.$data.eraseToAnyPublisher()
         let modelPub = unwrappedModelPublisher(from: dataPub, modelUnwrapper)
         let pageManager = LUXPageCallModelsManager(call, modelPub)
-        let modelToItem = configurer >||> LUXModelCollectionItem<U, C>.init
-        let modelsToItems = modelToItem >||> map
+        let modelToItem = configurer -*> LUXModelCollectionItem<U, C>.init
+        let modelsToItems = modelToItem -*> map
         let itemsPub: AnyPublisher<[FlexCollectionItem], Never> = filterItems(pageManager.$models.dropFirst().eraseToAnyPublisher()).map(modelsToItems).eraseToAnyPublisher()
         let vm = LUXItemsCollectionViewModel(pageManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexCollectionDataSource {
@@ -144,8 +144,8 @@ public func pageableCollectionViewModel<U, C>(_ call: CombineNetCall,
         let dataPub = call.publisher.$data.eraseToAnyPublisher()
         let modelPub: AnyPublisher<[U], Never> = modelPublisher(from: dataPub)
         let pageManager = LUXPageCallModelsManager(call, modelPub)
-        let modelToItem = configurer >||> LUXModelCollectionItem<U, C>.init
-        let modelsToItems = modelToItem >||> map
+        let modelToItem = configurer -*> LUXModelCollectionItem<U, C>.init
+        let modelsToItems = modelToItem -*> map
         let itemsPub: AnyPublisher<[FlexCollectionItem], Never> = filterItems(pageManager.$models.dropFirst().eraseToAnyPublisher()).map(modelsToItems).eraseToAnyPublisher()
         let vm = LUXItemsCollectionViewModel(pageManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexCollectionDataSource {
@@ -167,8 +167,8 @@ public func refreshableCollectionViewModel<T, U, C>(_ call: CombineNetCall,
         let dataPub = call.publisher.$data.eraseToAnyPublisher()
         let modelPub = unwrappedModelPublisher(from: dataPub, modelUnwrapper)
         let refreshManager = LUXRefreshableNetworkCallManager(call)
-        let modelToItem = configurer >||> LUXModelCollectionItem<U, C>.init
-        let modelsToItems = modelToItem >||> map
+        let modelToItem = configurer -*> LUXModelCollectionItem<U, C>.init
+        let modelsToItems = modelToItem -*> map
         let itemsPub: AnyPublisher<[FlexCollectionItem], Never> = filterItems(modelPub.eraseToAnyPublisher()).map(modelsToItems).eraseToAnyPublisher()
         let vm = LUXItemsCollectionViewModel(refreshManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexCollectionDataSource {
@@ -188,8 +188,8 @@ public func refreshableCollectionViewModel<U, C>(_ call: CombineNetCall,
         let dataPub = call.publisher.$data.eraseToAnyPublisher()
         let modelPub: AnyPublisher<[U], Never> = modelPublisher(from: dataPub)
         let refreshManager = LUXRefreshableNetworkCallManager(call)
-        let modelToItem: (U) -> LUXModelCollectionItem<U, C> = configurer >||> LUXModelCollectionItem<U, C>.init
-        let modelsToItems: ([U]) -> [LUXModelCollectionItem<U, C>] = modelToItem >||> map
+        let modelToItem: (U) -> LUXModelCollectionItem<U, C> = configurer -*> LUXModelCollectionItem<U, C>.init
+        let modelsToItems: ([U]) -> [LUXModelCollectionItem<U, C>] = modelToItem -*> map
         let itemsPub: AnyPublisher<[FlexCollectionItem], Never> = filterItems(modelPub.eraseToAnyPublisher()).map(modelsToItems).eraseToAnyPublisher()
         let vm = LUXItemsCollectionViewModel(refreshManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexCollectionDataSource {

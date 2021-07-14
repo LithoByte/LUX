@@ -105,8 +105,8 @@ public func pageableTableViewModel<T, U, C>(_ call: CombineNetCall,
         let dataPub = call.publisher.$data.eraseToAnyPublisher()
         let modelPub = unwrappedModelPublisher(from: dataPub, modelUnwrapper)
         let pageManager = LUXPageCallModelsManager(call, modelPub)
-        let modelToItem = configurer >||> LUXModelItem<U, C>.init
-        let modelsToItems = modelToItem >||> map
+        let modelToItem = configurer -*> LUXModelItem<U, C>.init
+        let modelsToItems = modelToItem -*> map
         let itemsPub: AnyPublisher<[FlexDataSourceItem], Never> = pageManager.$models.dropFirst().map(modelsToItems).eraseToAnyPublisher()
         let vm = LUXItemsTableViewModel(pageManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexDataSource {
@@ -126,8 +126,8 @@ public func pageableTableViewModel<U, C>(_ call: CombineNetCall,
         let dataPub = call.publisher.$data.eraseToAnyPublisher()
         let modelPub: AnyPublisher<[U], Never> = modelPublisher(from: dataPub)
         let pageManager = LUXPageCallModelsManager(call, modelPub)
-        let modelToItem = configurer >||> LUXModelItem<U, C>.init
-        let modelsToItems = modelToItem >||> map
+        let modelToItem = configurer -*> LUXModelItem<U, C>.init
+        let modelsToItems = modelToItem -*> map
         let itemsPub: AnyPublisher<[FlexDataSourceItem], Never> = pageManager.$models.dropFirst().map(modelsToItems).eraseToAnyPublisher()
         let vm = LUXItemsTableViewModel(pageManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexDataSource {
@@ -148,8 +148,8 @@ public func refreshableTableViewModel<T, U, C>(_ call: CombineNetCall,
         let dataPub = call.publisher.$data.eraseToAnyPublisher()
         let modelPub = unwrappedModelPublisher(from: dataPub, modelUnwrapper)
         let refreshManager = LUXRefreshableNetworkCallManager(call)
-        let modelToItem = configurer >||> LUXModelItem<U, C>.init
-        let modelsToItems = modelToItem >||> map
+        let modelToItem = configurer -*> LUXModelItem<U, C>.init
+        let modelsToItems = modelToItem -*> map
         let itemsPub: AnyPublisher<[FlexDataSourceItem], Never> = modelPub.map(modelsToItems).eraseToAnyPublisher()
         let vm = LUXItemsTableViewModel(refreshManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexDataSource {
@@ -168,8 +168,8 @@ public func refreshableTableViewModel<U, C>(_ call: CombineNetCall,
         let dataPub = call.publisher.$data.eraseToAnyPublisher()
         let modelPub: AnyPublisher<[U], Never> = modelPublisher(from: dataPub)
         let refreshManager = LUXRefreshableNetworkCallManager(call)
-        let modelToItem = configurer >||> LUXModelItem<U, C>.init
-        let modelsToItems = modelToItem >||> map
+        let modelToItem = configurer -*> LUXModelItem<U, C>.init
+        let modelsToItems = modelToItem -*> map
         let itemsPub: AnyPublisher<[FlexDataSourceItem], Never> = modelPub.map(modelsToItems).eraseToAnyPublisher()
         let vm = LUXItemsTableViewModel(refreshManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexDataSource {
