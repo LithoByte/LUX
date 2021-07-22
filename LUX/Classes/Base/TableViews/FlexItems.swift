@@ -15,7 +15,7 @@ open class LUXModelItem<T, C>: ConcreteFlexDataSourceItem<C> where C: UITableVie
     
     public init(_ model: T, _ configurer: @escaping (T, C) -> Void) {
         self.model = model
-        self.configurer = model >|> configurer
+        self.configurer = model *-> configurer
         super.init(identifier: String(describing: C.self))
     }
     
@@ -56,13 +56,13 @@ open class LUXSwipeTapModelItem<T, C>: LUXTappableModelItem<T, C>, Swipable wher
 }
 
 public func modelItem<T, U: UITableViewCell>(_ configurer: @escaping (T, U) -> Void) -> (T) -> LUXModelItem<T, U> {
-    return configurer >||> LUXModelItem.init
+    return configurer -*> LUXModelItem.init
 }
 
 public func tappableModelItem<T, U: UITableViewCell>(_ configurer: @escaping (T, U) -> Void, onTap: @escaping (T) -> Void) -> (T) -> LUXTappableModelItem<T, U> {
-    return (configurer, onTap) >||> LUXTappableModelItem.init
+    return (configurer, onTap) -**> LUXTappableModelItem.init
 }
 
 public func swipeTappableModelItem<T, U: UITableViewCell>(_ configurer: @escaping (T, U) -> Void, onTap: @escaping (T) -> Void, onSwipe: @escaping (T) -> Void) -> (T) -> LUXSwipeTapModelItem<T, U> {
-    return (configurer, onTap, onSwipe) >||> LUXSwipeTapModelItem.init
+    return (configurer, onTap, onSwipe) -***> LUXSwipeTapModelItem.init
 }

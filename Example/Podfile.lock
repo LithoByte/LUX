@@ -1,6 +1,6 @@
 PODS:
   - FlexDataSource (0.2.0):
-    - fuikit
+    - fuikit/Core
   - fuikit (0.1.5):
     - fuikit/Core (= 0.1.5)
     - fuikit/CoreBluetooth (= 0.1.5)
@@ -18,7 +18,7 @@ PODS:
   - LithoOperators (0.1.4):
     - Prelude
   - LithoUtils/Core (0.1.0):
-    - fuikit
+    - fuikit/Core
     - LithoOperators
   - LUX (0.2.20):
     - LithoUtils/Core
@@ -97,15 +97,15 @@ PODS:
   - Slippers (0.1.1)
 
 DEPENDENCIES:
-  - FlexDataSource (from `https://github.com/ThryvInc/flex-data-source`)
-  - fuikit (from `https://github.com/ThryvInc/fuikit`)
-  - FunNet/Combine (from `https://github.com/schrockblock/funnet`)
-  - FunNet/Multipart (from `https://github.com/schrockblock/funnet`)
-  - LithoOperators (from `https://github.com/ThryvInc/LithoOperators`)
-  - LithoUtils/Core (from `https://github.com/ThryvInc/litho-utils`)
+  - FlexDataSource (from `https://github.com/LithoByte/flex-data-source`)
+  - fuikit (from `https://github.com/LithoByte/fuikit`)
+  - FunNet/Combine (from `https://github.com/schrockblock/funnet`, branch `feature/cjc8/update-lithooperators`)
+  - FunNet/Multipart (from `https://github.com/schrockblock/funnet`, branch `feature/cjc8/update-lithooperators`)
+  - LithoOperators (from `https://github.com/LithoByte/LithoOperators`, branch `feature/cjc8/file-split`)
+  - LithoUtils/Core (from `https://github.com/LithoByte/litho-utils`, branch `cjc8/update-lithooperators`)
   - LUX (from `../`)
   - PlaygroundVCHelpers (from `https://github.com/ThryvInc/playground-vc-helpers`)
-  - Slippers (from `https://github.com/ThryvInc/slippers`)
+  - Slippers (from `https://github.com/LithoByte/slippers`)
 
 SPEC REPOS:
   trunk:
@@ -114,57 +114,60 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   FlexDataSource:
-    :git: https://github.com/ThryvInc/flex-data-source
+    :git: https://github.com/LithoByte/flex-data-source
   fuikit:
-    :git: https://github.com/ThryvInc/fuikit
+    :git: https://github.com/LithoByte/fuikit
   FunNet:
+    :branch: feature/cjc8/update-lithooperators
     :git: https://github.com/schrockblock/funnet
   LithoOperators:
-    :git: https://github.com/ThryvInc/LithoOperators
+    :branch: feature/cjc8/file-split
+    :git: https://github.com/LithoByte/LithoOperators
   LithoUtils:
-    :git: https://github.com/ThryvInc/litho-utils
+    :branch: cjc8/update-lithooperators
+    :git: https://github.com/LithoByte/litho-utils
   LUX:
     :path: "../"
   PlaygroundVCHelpers:
     :git: https://github.com/ThryvInc/playground-vc-helpers
   Slippers:
-    :git: https://github.com/ThryvInc/slippers
+    :git: https://github.com/LithoByte/slippers
 
 CHECKOUT OPTIONS:
   FlexDataSource:
-    :commit: d6d7d542d2f1ff514d8cd570301a3ef85e28d9dd
-    :git: https://github.com/ThryvInc/flex-data-source
+    :commit: ee22bf5a75ead0c3334186074e3e425812912482
+    :git: https://github.com/LithoByte/flex-data-source
   fuikit:
-    :commit: fdc92715a7401a323be9ac3f4960c6a890e47f24
-    :git: https://github.com/ThryvInc/fuikit
+    :commit: 7d5c8329b834e8a415cf5217a2d4a118281adcc9
+    :git: https://github.com/LithoByte/fuikit
   FunNet:
-    :commit: 9ca5a81f8b96a71b2cd671fca642a152823c3704
+    :commit: 4fb1df13db008e5ebfb741954270ad301d4d9eb8
     :git: https://github.com/schrockblock/funnet
   LithoOperators:
-    :commit: a39bdd37f06f50e8284d94dbcd13caf116883cde
-    :git: https://github.com/ThryvInc/LithoOperators
+    :commit: 0be527c121c0c9a947aa167a9656da993f119710
+    :git: https://github.com/LithoByte/LithoOperators
   LithoUtils:
-    :commit: ab690d6a0e1ca0db425d53ae90462246e8d1342e
-    :git: https://github.com/ThryvInc/litho-utils
+    :commit: 8e26bfa63a4910ec22c04c7ed31b9d0a7e148586
+    :git: https://github.com/LithoByte/litho-utils
   PlaygroundVCHelpers:
     :commit: 1b1f5ed572a1965e1d52bbc1b21f3796a6f144e2
     :git: https://github.com/ThryvInc/playground-vc-helpers
   Slippers:
     :commit: c73ac0ab4d39bf981dda7caa23d959a5f22f2bb9
-    :git: https://github.com/ThryvInc/slippers
+    :git: https://github.com/LithoByte/slippers
 
 SPEC CHECKSUMS:
-  FlexDataSource: 7ac68abd6ca54a3c043cad19104644ab25c31842
+  FlexDataSource: 7d859ae7d182576ec900541a761aa5d4aadc04e6
   fuikit: 976080e1c04037e01d14541135a104cb208d8c0d
   FunNet: e66d2df77a5663556970a1914c5911ecde2842ef
   LithoOperators: 8fc0c6a49e34a8d1ca01b777844f58e36c062d9f
-  LithoUtils: 3d89146680c1a7449334069cc75a092c32dde585
+  LithoUtils: 672d313a7fede3968e22f082b293cbc01ebcb7f0
   LUX: 98b3495fc34d7fdb4ec47b4ad5a9d69e5838343d
   PlaygroundVCHelpers: c7cc8994d2851ebd1590217101b4c6888d1c9cc8
   Prelude: fe4cc0fd961d34edf48fe6b04d05c863449efb0a
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   Slippers: 3814c93fd93305f918a984e724d5db4d9569a660
 
-PODFILE CHECKSUM: 40c763534dc4fa52811d392a0a6ff4ec9f1d8588
+PODFILE CHECKSUM: f60ca6791413ac9398c0ee1448b5a6c0e1bc4d8e
 
 COCOAPODS: 1.10.0

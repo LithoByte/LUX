@@ -15,7 +15,7 @@ open class LUXModelCollectionItem<T, C>: ConcreteFlexCollectionItem<C> where C: 
     
     public init(_ model: T, _ configurer: @escaping (T, C) -> Void) {
         self.model = model
-        self.configurer = model >|> configurer
+        self.configurer = model *-> configurer
         super.init(identifier: String(describing: C.self))
     }
     
@@ -56,9 +56,9 @@ open class LUXButtonTappableModelCollectionItem<T, C>: LUXTappableModelCollectio
 }
 
 public func modelItem<T, U: UICollectionViewCell>(_ configurer: @escaping (T, U) -> Void) -> (T) -> LUXModelCollectionItem<T, U> {
-    return configurer >||> LUXModelCollectionItem.init
+    return configurer -*> LUXModelCollectionItem.init
 }
 
 public func tappableModelItem<T, U: UICollectionViewCell>(_ configurer: @escaping (T, U) -> Void, onTap: @escaping (T) -> Void) -> (T) -> LUXTappableModelCollectionItem<T, U> {
-    return (configurer, onTap) >||> LUXTappableModelCollectionItem.init
+    return (configurer, onTap) -**> LUXTappableModelCollectionItem.init
 }
