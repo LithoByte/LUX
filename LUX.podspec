@@ -133,4 +133,12 @@ Pod::Spec.new do |s|
     sp.dependency 'LUX/BaseSearch'
   end
   
+  s.subspec 'StoreKit' do |sp|
+    sp.source_files = 'LUX/Classes/StoreKit/**/*.swift'
+    sp.resources = 'LUX/Classes/StoreKit/**/*.xib'
+    sp.ios.deployment_target = '13.0'
+    sp.dependency 'FlexDataSource'
+    sp.dependency 'LithoOperators'
+  end
+  
 end
