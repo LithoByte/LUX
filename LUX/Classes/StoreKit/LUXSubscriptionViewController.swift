@@ -10,7 +10,19 @@ import fuikit
 import StoreKit
 import Combine
 import LithoOperators
+import PlaygroundVCHelpers
 
+public func subscriptionViewController<C: LUXSubscriptionTableViewCell>(styleVC: @escaping (LUXSubscriptionViewController) -> Void, configureCell: @escaping (SKProduct, C) -> Void = configureSubscriptionCell, onTap: @escaping (SKProduct) -> Void = productToPayment >?> addPayment, termsPressed: (() -> Void)? = nil, delegate: LUXSubscriptionDelegate = LUXSubscriptionDelegate()) -> LUXSubscriptionViewController{
+    let vc = LUXSubscriptionViewController.makeFromXIB()
+    let vm = subscriptionViewModel(configureCell: configureCell, onTap: onTap, delegate: delegate)
+    vc.onViewDidLoad = {
+        vm.tableView = $0.tableView
+        vm.tableView?.reloadData()
+        vm.refresh()
+    }
+    vc.onTermsPressed = termsPressed
+    return vc
+}
 
 public func subscriptionViewModel<C: LUXSubscriptionTableViewCell>(configureCell: @escaping (SKProduct, C) -> Void = configureSubscriptionCell, onTap: @escaping (SKProduct) -> Void = productToPayment >?> addPayment, delegate: LUXSubscriptionDelegate = LUXSubscriptionDelegate()) -> LUXItemsTableViewModel {
     let modelToItem = tappableModelItem(configureCell, onTap: onTap) -*> map
