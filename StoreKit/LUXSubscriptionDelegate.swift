@@ -13,8 +13,6 @@ import Prelude
 import LithoOperators
 import FunNet
 
-
-
 public class LUXSubscriptionDelegate: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, Refreshable {
     
     public var cancelBag: Set<AnyCancellable> = []
@@ -36,6 +34,7 @@ public class LUXSubscriptionDelegate: NSObject, SKProductsRequestDelegate, SKPay
         self.onPurchasing = onPurchasing
         self.onDeferred = onDeferred
         self.onRestored = onRestored
+        SKPaymentQueue.default().add(self)
     }
     
     public func refresh() {
@@ -43,6 +42,7 @@ public class LUXSubscriptionDelegate: NSObject, SKProductsRequestDelegate, SKPay
     }
     
     open func fetchProducts(withIdentifiers identifiers: [String]) {
+        print(identifiers.count)
         let request = productIdsToRequest(identifiers)
         request.delegate = self
         request.start()
@@ -53,9 +53,11 @@ public class LUXSubscriptionDelegate: NSObject, SKProductsRequestDelegate, SKPay
         self.productsCall = call
         let productPub = unwrappedModelPublisher(from: call.publisher.$data.eraseToAnyPublisher(), unwrapper)
         productPub.sink(receiveValue: fetchProducts).store(in: &cancelBag)
+        call.fire()
     }
     
     open func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+        print("received response")
         DispatchQueue.main.async {
             self.products = response.products
         }

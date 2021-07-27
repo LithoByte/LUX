@@ -8,6 +8,7 @@ import FlexDataSource
 import LithoOperators
 import PlaygroundVCHelpers
 import fuikit
+import LithoUtils
 
 //Models
 enum House: String, Codable, CaseIterable {
@@ -66,7 +67,7 @@ let emperorConfigurator: (Emperor, UITableViewCell) -> Void = { emperor, cell in
 }
 
 //linking models to views
-let emperorToItemCreator: (@escaping (Emperor) -> Void) -> (Emperor) -> FlexDataSourceItem = { onTap in  emperorConfigurator >||> (onTap >|||> LUXTappableModelItem.init) }
+let emperorToItemCreator: (@escaping (Emperor) -> Void) -> (Emperor) -> FlexDataSourceItem = { onTap in  emperorConfigurator -*> (onTap --*> LUXTappableModelItem.init) }
 func reignToSection(_ emperorToItem: @escaping (Emperor) -> FlexDataSourceItem) -> (Reign) -> FlexDataSourceSection {
     return {
         let section = FlexDataSourceSection()
@@ -92,7 +93,7 @@ let cycleSignal: AnyPublisher<Cycle, Never> = modelPublisher(from: dataSignal)
 let cancel = cycleSignal.sink { vc.title = "\($0.ordinal ?? 0)th Cycle" }
 
 let refreshManager = LUXRefreshableNetworkCallManager(call)
-let vm = LUXSectionsTableViewModel(refreshManager, modelsSignal.map(reignToSection(emperorToItemCreator(onTap)) >||> map).eraseToAnyPublisher())
+let vm = LUXSectionsTableViewModel(refreshManager, modelsSignal.map(reignToSection(emperorToItemCreator(onTap)) -*> map).eraseToAnyPublisher())
 let cancel3 = dataSignal.sink { _ in vm.endRefreshing() }
 
 vm.tableDelegate = FUITableViewDelegate(onSelect: (vm.dataSource as! FlexDataSource).tappableOnSelect)

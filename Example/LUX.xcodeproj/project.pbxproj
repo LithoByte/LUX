@@ -38,6 +38,8 @@
 		6410ADE325993FD100022E72 /* UIColor+HexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6410ADE225993FD100022E72 /* UIColor+HexTests.swift */; };
 		6410ADE7259942A500022E72 /* CollectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6410ADE6259942A500022E72 /* CollectionViewModelTests.swift */; };
 		6410ADEB2599480300022E72 /* LUXSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6410ADEA2599480300022E72 /* LUXSessionTests.swift */; };
+		64133B2526AF6E3C003B61DC /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64133B2426AF6E3C003B61DC /* StoreKit.framework */; };
+		64133B2826AF8BC8003B61DC /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 64133B2626AF6E68003B61DC /* Configuration.storekit */; };
 		6418E0D825AA77480050BEFB /* LUXTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418E0D725AA77480050BEFB /* LUXTableViewCellTests.swift */; };
 		6418E0DC25AA7ED40050BEFB /* LoginViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418E0DB25AA7ED40050BEFB /* LoginViewControllerTests.swift */; };
 		6418E0E025AA9E530050BEFB /* LUXCollectionViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6418E0DF25AA9E530050BEFB /* LUXCollectionViewCellTests.swift */; };
@@ -107,6 +109,9 @@
 		6410ADE225993FD100022E72 /* UIColor+HexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HexTests.swift"; sourceTree = "<group>"; };
 		6410ADE6259942A500022E72 /* CollectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModelTests.swift; sourceTree = "<group>"; };
 		6410ADEA2599480300022E72 /* LUXSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUXSessionTests.swift; sourceTree = "<group>"; };
+		64133B2426AF6E3C003B61DC /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		64133B2626AF6E68003B61DC /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
+		64133B2726AF6F5F003B61DC /* Subscriptions.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Subscriptions.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		6418E0D725AA77480050BEFB /* LUXTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUXTableViewCellTests.swift; sourceTree = "<group>"; };
 		6418E0DB25AA7ED40050BEFB /* LoginViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewControllerTests.swift; sourceTree = "<group>"; };
 		6418E0DF25AA9E530050BEFB /* LUXCollectionViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LUXCollectionViewCellTests.swift; sourceTree = "<group>"; };
@@ -132,6 +137,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5DDDA9015D5B0752B631707 /* Pods_LUX_Example.framework in Frameworks */,
+				64133B2526AF6E3C003B61DC /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +155,7 @@
 		1D9211F776B1E433C8B86795 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				64133B2426AF6E3C003B61DC /* StoreKit.framework */,
 				B42B4BEA58B69C8BD8FE4014 /* Pods_LUX_Example.framework */,
 				84AB7549E70A7D5F45143895 /* Pods_LUX_Tests.framework */,
 			);
@@ -180,6 +187,7 @@
 		607FACD21AFB9204008FA782 /* Example for LUX */ = {
 			isa = PBXGroup;
 			children = (
+				64133B2726AF6F5F003B61DC /* Subscriptions.playground */,
 				64E57AAF261CD70300FF91C8 /* MultiSizeCollectionVIewLayout.playground */,
 				49CBFADB2540F8250007D7E6 /* CollectionViewModel.playground */,
 				491D44E2244A29F1009D6A3A /* SectionTableViewModel.playground */,
@@ -195,6 +203,7 @@
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				64133B2626AF6E68003B61DC /* Configuration.storekit */,
 			);
 			name = "Example for LUX";
 			path = LUX;
@@ -369,6 +378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49D3C363239C414700D59DF0 /* config.yml in Resources */,
+				64133B2826AF8BC8003B61DC /* Configuration.storekit in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,

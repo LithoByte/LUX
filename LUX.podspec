@@ -139,6 +139,7 @@ Pod::Spec.new do |s|
     sp.ios.deployment_target = '13.0'
     sp.dependency 'FlexDataSource'
     sp.dependency 'LithoOperators'
+    sp.dependency 'PlaygroundVCHelpers'
   end
   
 end
