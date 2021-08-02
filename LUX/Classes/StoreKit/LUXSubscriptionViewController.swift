@@ -53,24 +53,27 @@ public func configureSubscriptionCell(product: SKProduct, cell: LUXSubscriptionT
     cell?.priceButton.setTitle(productToPriceString(product), for: .normal)
 }
 
-public func productToPriceString(_ product: SKProduct) -> String {
-    let currency = product.priceLocale.currencySymbol ?? ""
-    let price = product.price
+public let productToPriceString: (SKProduct) -> String = fzip(currency, price, productTimeFrame) >>> combinePriceString
+
+public func productTimeFrame(_ product: SKProduct) -> String {
     let period = product.subscriptionPeriod?.numberOfUnits
-    var unit: String?
     switch product.subscriptionPeriod?.unit {
     case .month:
         if (period != nil && period != 1) {
-            unit = "\(period!) Months"
+            return "\(period!) Months"
         } else {
-            unit = "Month"
+            return "Month"
         }
     case .year:
-        unit = "Year"
+        return "Year"
     case .none:
-        unit = ""
+        return ""
     default:
-        unit = ""
+        return ""
     }
-    return "\(currency)\(price)/\(unit ?? "")"
 }
+
+
+let currency: (SKProduct) -> String = ^\SKProduct.priceLocale.currencySymbol >>> coalesceNil(with: "")
+let price = ^\SKProduct.price
+let combinePriceString: ((String, NSDecimalNumber, String)) -> String = { "\($0.0)\($0.1)/\($0.2)" }
