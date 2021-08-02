@@ -13,6 +13,10 @@ import Prelude
 import LithoOperators
 import FunNet
 
+public protocol CombineProductsProvider {
+    var products: [SKProduct] { get set }
+}
+
 public class LUXSubscriptionDelegate: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
     public var onReceiveProducts: (([SKProduct]) -> Void)?
     
@@ -63,6 +67,16 @@ public class LUXIdSubscriptionDelegate: LUXSubscriptionDelegate, Refreshable {
     }
 }
 
+public class LUXLocalIdSubscriptionDelegate: LUXIdSubscriptionDelegate, CombineProductsProvider {
+    @Published public var products: [SKProduct] = []
+    
+    public init(onFailed: ((SKPaymentTransaction) -> Void)? = SKPaymentQueue.default().finishTransaction, onPurchased: ((SKPaymentTransaction) -> Void)? = SKPaymentQueue.default().finishTransaction, onPurchasing: ((SKPaymentTransaction) -> Void)? = nil, onDeferred: ((SKPaymentTransaction) -> Void)? = nil, onRestored: ((SKPaymentTransaction) -> Void)? = nil, onReceiveProducts: @escaping (LUXLocalIdSubscriptionDelegate, [SKProduct]) -> Void = setter(\.products)) {
+        super.init(onFailed: onFailed, onPurchased: onPurchased, onPurchasing: onPurchasing, onDeferred: onDeferred, onRestored: onRestored, onReceiveProducts: nil)
+        self.onReceiveProducts = self *-> onReceiveProducts
+    }
+    
+}
+
 public class LUXNetCallSubscriptionDelegate<T: NetworkCall & Fireable>: LUXIdSubscriptionDelegate {
     var call: T?
     public init(call: T, onFailed: ((SKPaymentTransaction) -> Void)? = SKPaymentQueue.default().finishTransaction,
@@ -88,7 +102,7 @@ public class LUXNetCallSubscriptionDelegate<T: NetworkCall & Fireable>: LUXIdSub
 public class LUXCombineSubscriptionDelegate: LUXNetCallSubscriptionDelegate<CombineNetCall> {
     var cancelBag: Set<AnyCancellable> = []
     
-    @Published public var products: [SKProduct]?
+    @Published public var products: [SKProduct] = []
     
     public init(call: CombineNetCall, onFailed: ((SKPaymentTransaction) -> Void)? = SKPaymentQueue.default().finishTransaction, onPurchased: ((SKPaymentTransaction) -> Void)? = SKPaymentQueue.default().finishTransaction, onPurchasing: ((SKPaymentTransaction) -> Void)? = nil, onDeferred: ((SKPaymentTransaction) -> Void)? = nil, onRestored: ((SKPaymentTransaction) -> Void)? = nil, onReceiveProducts: @escaping (LUXCombineSubscriptionDelegate, [SKProduct]) -> Void = setter(\.products)) {
         super.init(call: call, onFailed: onFailed, onPurchased: onPurchased, onPurchasing: onPurchasing, onDeferred: onDeferred, onRestored: onRestored, onReceiveProducts: nil)

@@ -10,4 +10,11 @@ import UIKit
 public class LUXSubscriptionTableViewCell: UITableViewCell {
     @IBOutlet weak var subscriptionNameLabel: UILabel!
     @IBOutlet weak var subscriptionDescriptionLabel: UILabel!
+    @IBOutlet weak var priceButton: UIButton!
+    
+    var onPriceTap: (() -> Void)?
+    
+    @IBAction func priceTapped(_ sender: UIButton!) {
+        onPriceTap?()
+    }
 }

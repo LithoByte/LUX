@@ -11,9 +11,10 @@ import StoreKit
 import Combine
 import LithoOperators
 import PlaygroundVCHelpers
+import Prelude
 
-public func subscriptionViewController<C: LUXSubscriptionTableViewCell>(styleVC: @escaping (LUXSubscriptionViewController) -> Void, configureCell: @escaping (SKProduct, C) -> Void = configureSubscriptionCell, onTap: @escaping (SKProduct) -> Void = productToPayment >?> addPayment, termsPressed: (() -> Void)? = nil, delegate: LUXSubscriptionDelegate = LUXSubscriptionDelegate()) -> LUXSubscriptionViewController{
-    let vc = LUXSubscriptionViewController.makeFromXIB()
+public func subscriptionViewController<T: CombineProductsProvider & LUXSubscriptionDelegate, C: UITableViewCell>(styleVC: @escaping (LUXSubscriptionViewController<T>) -> Void, configureCell: @escaping (SKProduct, C) -> Void = ~second(optionalCast) >>> ~configureSubscriptionCell, onTap: @escaping (SKProduct) -> Void = productToPayment >?> addPayment, termsPressed: (() -> Void)? = nil, delegate: LUXCombineSubscriptionDelegate) -> LUXSubscriptionViewController<T> {
+    let vc = LUXSubscriptionViewController<T>.makeFromXIB()
     let vm = subscriptionViewModel(configureCell: configureCell, onTap: onTap, delegate: delegate)
     vc.onViewDidLoad = {
         vm.tableView = $0.tableView
@@ -24,15 +25,15 @@ public func subscriptionViewController<C: LUXSubscriptionTableViewCell>(styleVC:
     return vc
 }
 
-public func subscriptionViewModel<C: LUXSubscriptionTableViewCell>(configureCell: @escaping (SKProduct, C) -> Void = configureSubscriptionCell, onTap: @escaping (SKProduct) -> Void = productToPayment >?> addPayment, delegate: LUXSubscriptionDelegate = LUXSubscriptionDelegate()) -> LUXItemsTableViewModel {
+public func subscriptionViewModel<C: UITableViewCell>(configureCell: @escaping (SKProduct, C) -> Void = ~second(optionalCast) >>> ~configureSubscriptionCell, onTap: @escaping (SKProduct) -> Void = productToPayment >?> addPayment, delegate: LUXCombineSubscriptionDelegate) -> LUXItemsTableViewModel {
     let modelToItem = tappableModelItem(configureCell, onTap: onTap) -*> map
     return LUXItemsTableViewModel(delegate, itemsPublisher: delegate.$products.map(modelToItem).eraseToAnyPublisher())
 }
 
-public class LUXSubscriptionViewController: FUITableViewViewController {
+public class LUXSubscriptionViewController<T: LUXIdSubscriptionDelegate>: FUITableViewViewController {
     @IBOutlet weak var termsButton: UIButton!
     
-    open var subscriptionsDelegate = LUXSubscriptionDelegate()
+    open var subscriptionsDelegate: T?
     
     public var onTermsPressed: (() -> Void)?
     
@@ -46,9 +47,10 @@ public func productToPayment(product: SKProduct) -> (SKPayment?) {
 }
 public let addPayment: (SKPayment) -> Void = SKPaymentQueue.default().add
 
-public func configureSubscriptionCell(product: SKProduct, cell: LUXSubscriptionTableViewCell) {
-    cell.subscriptionNameLabel.text = "\(product.localizedTitle)"
-    cell.subscriptionDescriptionLabel.text = "\(product.localizedDescription)"
+public func configureSubscriptionCell(product: SKProduct, cell: LUXSubscriptionTableViewCell?) {
+    cell?.subscriptionNameLabel.text = "\(product.localizedTitle)"
+    cell?.subscriptionDescriptionLabel.text = "\(product.localizedDescription)"
+    cell?.priceButton.setTitle(productToPriceString(product), for: .normal)
 }
 
 public func productToPriceString(_ product: SKProduct) -> String {
