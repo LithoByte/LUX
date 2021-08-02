@@ -13,11 +13,8 @@ import Prelude
 import LithoOperators
 import FunNet
 
-public class LUXSubscriptionDelegate: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver, Refreshable {
-    
-    public var cancelBag: Set<AnyCancellable> = []
-    @Published var products: [SKProduct] = []
-    public var productsCall: CombineNetCall?
+public class LUXSubscriptionDelegate: NSObject, SKProductsRequestDelegate, SKPaymentTransactionObserver {
+    public var onReceiveProducts: (([SKProduct]) -> Void)?
     
     public var onFailed: ((SKPaymentTransaction) -> Void)?
     public var onPurchased: ((SKPaymentTransaction) -> Void)?
@@ -25,46 +22,81 @@ public class LUXSubscriptionDelegate: NSObject, SKProductsRequestDelegate, SKPay
     public var onDeferred: ((SKPaymentTransaction) -> Void)?
     public var onRestored: ((SKPaymentTransaction) -> Void)?
     
-    public var onRefresh: (() -> Void)?
-    
-    public init(onFailed: ((SKPaymentTransaction) -> Void)? = nil, onPurchased: ((SKPaymentTransaction) -> Void)? = nil, onPurchasing: ((SKPaymentTransaction) -> Void)? = nil, onDeferred: ((SKPaymentTransaction) -> Void)? = nil, onRestored: ((SKPaymentTransaction) -> Void)? = nil) {
+    public init(onFailed: ((SKPaymentTransaction) -> Void)? = nil, onPurchased: ((SKPaymentTransaction) -> Void)? = nil, onPurchasing: ((SKPaymentTransaction) -> Void)? = nil, onDeferred: ((SKPaymentTransaction) -> Void)? = nil, onRestored: ((SKPaymentTransaction) -> Void)? = nil, onReceiveProducts: (([SKProduct]) -> Void)?) {
         super.init()
         self.onFailed = onFailed
         self.onPurchased = onPurchased
         self.onPurchasing = onPurchasing
         self.onDeferred = onDeferred
         self.onRestored = onRestored
+        self.onReceiveProducts = onReceiveProducts
         SKPaymentQueue.default().add(self)
     }
     
-    public func refresh() {
-        onRefresh?()
-    }
-    
-    open func fetchProducts(withIdentifiers identifiers: [String]) {
-        print(identifiers.count)
-        let request = productIdsToRequest(identifiers)
-        request.delegate = self
-        request.start()
-        onRefresh = identifiers *> fetchProducts
-    }
-    
-    open func fetchProducts<T: Decodable>(from call: CombineNetCall, unwrapper: @escaping (T) -> [String]) {
-        self.productsCall = call
-        let productPub = unwrappedModelPublisher(from: call.publisher.$data.eraseToAnyPublisher(), unwrapper)
-        productPub.sink(receiveValue: fetchProducts).store(in: &cancelBag)
-        call.fire()
-    }
-    
     open func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        print("received response")
-        DispatchQueue.main.async {
-            self.products = response.products
+        DispatchQueue.main.async { [weak self] in
+            self?.onReceiveProducts?(response.products)
         }
     }
     
     open func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         transactions.forEach(handleUpdatedTransactions(onFailed: onFailed, onPurchased: onPurchased, onDeferred: onDeferred, onPurchasing: onPurchasing, onRestored: onRestored))
+    }
+}
+
+public class LUXIdSubscriptionDelegate: LUXSubscriptionDelegate, Refreshable {
+    var onRefresh: (() -> Void)?
+    
+    public func refresh() {
+        onRefresh?()
+    }
+    
+    public override init(onFailed: ((SKPaymentTransaction) -> Void)? = SKPaymentQueue.default().finishTransaction, onPurchased: ((SKPaymentTransaction) -> Void)? = SKPaymentQueue.default().finishTransaction, onPurchasing: ((SKPaymentTransaction) -> Void)? = nil, onDeferred: ((SKPaymentTransaction) -> Void)? = nil, onRestored: ((SKPaymentTransaction) -> Void)? = nil, onReceiveProducts: (([SKProduct]) -> Void)?) {
+        super.init(onFailed: onFailed, onPurchased: onPurchased, onPurchasing: onPurchasing, onDeferred: onDeferred, onRestored: onRestored, onReceiveProducts: onReceiveProducts)
+    }
+    
+    open func fetchProducts(withIdentifiers identifiers: [String]) {
+        let request = productIdsToRequest(identifiers)
+        request.delegate = self
+        request.start()
+        onRefresh = identifiers *> fetchProducts
+    }
+}
+
+public class LUXNetCallSubscriptionDelegate<T: NetworkCall & Fireable>: LUXIdSubscriptionDelegate {
+    var call: T?
+    public init(call: T, onFailed: ((SKPaymentTransaction) -> Void)? = SKPaymentQueue.default().finishTransaction,
+                onPurchased: ((SKPaymentTransaction) -> Void)? = SKPaymentQueue.default().finishTransaction,
+                onPurchasing: ((SKPaymentTransaction) -> Void)? = nil,
+                onDeferred: ((SKPaymentTransaction) -> Void)? = nil,
+                onRestored: ((SKPaymentTransaction) -> Void)? = nil,
+                onReceiveProducts: (([SKProduct]) -> Void)?) {
+        super.init(onFailed: onFailed, onPurchased: onPurchased, onPurchasing: onPurchasing, onDeferred: onDeferred, onRestored: onRestored, onReceiveProducts: onReceiveProducts)
+        self.call = call
+    }
+    
+    public override func refresh() {
+        call?.fire()
+    }
+    
+    open func fetchProducts<U: Codable>(unwrapper: @escaping (U) -> [String]) {
+        call?.responder?.dataHandler = ((U.self *-> JsonProvider.decode) -*> ifExecute) >?> (unwrapper >>> fetchProducts)
+        call?.fire()
+    }
+}
+
+public class LUXCombineSubscriptionDelegate: LUXNetCallSubscriptionDelegate<CombineNetCall> {
+    var cancelBag: Set<AnyCancellable> = []
+    
+    @Published public var products: [SKProduct]?
+    
+    public init(call: CombineNetCall, onFailed: ((SKPaymentTransaction) -> Void)? = SKPaymentQueue.default().finishTransaction, onPurchased: ((SKPaymentTransaction) -> Void)? = SKPaymentQueue.default().finishTransaction, onPurchasing: ((SKPaymentTransaction) -> Void)? = nil, onDeferred: ((SKPaymentTransaction) -> Void)? = nil, onRestored: ((SKPaymentTransaction) -> Void)? = nil, onReceiveProducts: @escaping (LUXCombineSubscriptionDelegate, [SKProduct]) -> Void = setter(\.products)) {
+        super.init(call: call, onFailed: onFailed, onPurchased: onPurchased, onPurchasing: onPurchasing, onDeferred: onDeferred, onRestored: onRestored, onReceiveProducts: nil)
+        self.onReceiveProducts = self *-> onReceiveProducts
+    }
+    
+    public override func fetchProducts<U: Codable>(unwrapper: @escaping (U) -> [String]){
+        unwrappedModelPublisher(from: call?.publisher.$data.eraseToAnyPublisher(), unwrapper)?.sink(receiveValue: fetchProducts).store(in: &cancelBag)
     }
 }
 
@@ -74,10 +106,8 @@ public func handleUpdatedTransactions(onFailed: ((SKPaymentTransaction) -> Void)
     return { transaction in
         switch transaction.transactionState {
             case .failed:
-                SKPaymentQueue.default().finishTransaction(transaction)
                 onFailed?(transaction)
             case .purchased:
-                SKPaymentQueue.default().finishTransaction(transaction)
                 onPurchased?(transaction)
             case .purchasing:
                 onPurchasing?(transaction)
