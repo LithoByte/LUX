@@ -15,7 +15,7 @@ public let enableSubmitButton: (LUXResetPasswordViewController) -> Void = ^\.sub
 public let startActivity: (CanIndicateActivity) -> Void = { $0.indicateActivity() }
 public let stopActivity: (CanIndicateActivity) -> Void = { $0.activityFinished() }
 
-open class LUXResetPasswordViewController: FUIViewController {
+open class LUXResetPasswordViewController: FPUIViewController {
     @IBOutlet open weak var newPasswordTextField: UITextField?
     @IBOutlet open weak var confirmPasswordTextField: UITextField?
     @IBOutlet open weak var submitButton: UIButton?

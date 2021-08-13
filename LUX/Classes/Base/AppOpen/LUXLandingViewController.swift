@@ -8,7 +8,7 @@
 import UIKit
 import fuikit
 
-open class LUXLandingViewController: FUIViewController {
+open class LUXLandingViewController: FPUIViewController {
     @IBOutlet open weak var backgroundImageView: UIImageView!
     @IBOutlet open weak var logoImageView: UIImageView!
     @IBOutlet open weak var loginButton: UIButton!

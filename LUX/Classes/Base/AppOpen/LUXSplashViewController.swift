@@ -8,7 +8,7 @@
 import UIKit
 import fuikit
 
-open class LUXSplashViewController: FUIViewController {
+open class LUXSplashViewController: FPUIViewController {
     @IBOutlet open weak var logoTopConstraint: NSLayoutConstraint?
     @IBOutlet open weak var bgImageView: UIImageView?
     @IBOutlet open weak var logoImageView: UIImageView?

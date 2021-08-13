@@ -228,7 +228,7 @@ class SearchTests: XCTestCase {
         let searchBar = UISearchBar()
         searchVC.searchBar = searchBar
         searchVC.viewDidLoad()
-        XCTAssert((searchVC.searchBar?.delegate as? FUISearchBarDelegate) != nil)
+        XCTAssert((searchVC.searchBar?.delegate as? FPUISearchBarDelegate) != nil)
         searchVC.viewWillAppear(true)
         XCTAssert(searchVC.shouldRefresh)
         searchVC.searchBar?.text = "Hello"
@@ -244,7 +244,7 @@ class SearchTests: XCTestCase {
         searchCollectionVC.searchBar?.text = "Hello"
         searchCollectionVC.viewDidLoad()
         XCTAssert(searchCollectionVC.searchViewModel != nil)
-        XCTAssert((searchCollectionVC.searchBar?.delegate as? FUISearchBarDelegate) != nil)
+        XCTAssert((searchCollectionVC.searchBar?.delegate as? FPUISearchBarDelegate) != nil)
         searchCollectionVC.viewWillDisappear(true)
         XCTAssert(searchCollectionVC.searchViewModel?.savedSearch == "Hello")
         searchCollectionVC.viewWillAppear(true)
