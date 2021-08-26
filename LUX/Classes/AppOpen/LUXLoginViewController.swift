@@ -9,7 +9,7 @@ import UIKit
 import fuikit
 import Combine
 
-open class LUXLoginViewController: FUIViewController {
+open class LUXLoginViewController: FPUIViewController {
     @IBOutlet open weak var backgroundImageView: UIImageView!
     @IBOutlet open weak var logoImageView: UIImageView?
     @IBOutlet open weak var logoHeight: NSLayoutConstraint!

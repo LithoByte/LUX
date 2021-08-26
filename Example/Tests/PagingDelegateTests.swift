@@ -23,7 +23,7 @@ class PagingDelegateTests: XCTestCase {
             wasCalled = true
         })
         
-        let delegate = FUITableViewDelegate()
+        let delegate = FPUITableViewDelegate()
         delegate.onWillDisplay = pageManager.willDisplayFunction()
         
         let tv = MockTableView()
@@ -42,7 +42,7 @@ class PagingDelegateTests: XCTestCase {
             wasCalled = true
         })
         
-        let delegate = FUITableViewDelegate()
+        let delegate = FPUITableViewDelegate()
         delegate.onWillDisplay = pageManager.willDisplayFunction()
         
         let tv = MockTableView()
@@ -61,7 +61,7 @@ class PagingDelegateTests: XCTestCase {
             wasCalled = true
         })
         
-        let delegate = FUITableViewDelegate()
+        let delegate = FPUITableViewDelegate()
         delegate.onWillDisplay = pageManager.willDisplayFunction()
         
         let tv = MockTableView()
@@ -80,7 +80,7 @@ class PagingDelegateTests: XCTestCase {
             wasCalled = true
         })
         
-        let delegate = FUITableViewDelegate()
+        let delegate = FPUITableViewDelegate()
         delegate.onWillDisplay = pageManager.willDisplayFunction()
         
         let tv = MockTableView()

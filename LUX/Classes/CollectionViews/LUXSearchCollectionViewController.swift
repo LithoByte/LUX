@@ -8,7 +8,7 @@
 import fuikit
 import LithoUtils
 
-open class LUXSearchCollectionViewController<U>: FUIViewController {
+open class LUXSearchCollectionViewController<U>: FPUIViewController {
     @IBOutlet open weak var collectionView: UICollectionView!
     @IBOutlet open weak var searchBar: UISearchBar?
     @IBOutlet open weak var searchTopConstraint: NSLayoutConstraint?

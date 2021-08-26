@@ -13,7 +13,7 @@ open class LUXSearchViewModel<U>: NSObject {
     open var onIncrementalSearch: (String) -> Void = { _ in } { didSet { assignSearchFunctions() }}
     open var onFullSearch: (String) -> Void = { _ in }  { didSet { assignSearchFunctions() }}
     open var savedSearch: String?
-    open var searchBarDelegate = FUISearchBarDelegate()
+    open var searchBarDelegate = FPUISearchBarDelegate()
     
     public override init() {
         super.init()

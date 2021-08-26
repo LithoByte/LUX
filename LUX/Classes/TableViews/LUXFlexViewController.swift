@@ -12,9 +12,9 @@ import Slippers
 import FunNet
 import fuikit
 
-open class LUXFlexViewController<T>: FUIViewController, Refreshable {
+open class LUXFlexViewController<T>: FPUIViewController, Refreshable {
     @IBOutlet public var tableView: UITableView?
-    open var tableViewDelegate: FUITableViewDelegate? { didSet { didSetTableDelegate() }}
+    open var tableViewDelegate: FPUITableViewDelegate? { didSet { didSetTableDelegate() }}
     open var viewModel: T? { didSet { didSetViewModel() }}
     open var refreshableModelManager: (Refreshable & CallManager)? {
         didSet {

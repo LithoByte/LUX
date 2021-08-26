@@ -13,7 +13,7 @@ import fuikit
 import Prelude
 import Photos
 
-public class LUXImagePickerDelegate: FUIImagePickerDelegate {
+public class LUXImagePickerDelegate: FPUIImagePickerDelegate {
     var dismissPicker: (UIImagePickerController, [UIImagePickerController.InfoKey : Any]) -> Void = ignoreSecondArg(f: dismissAnimated)
     var getInfo: (UIImagePickerController, [UIImagePickerController.InfoKey : Any]) -> URL? = ignoreFirstArg(f: infoToMediaURL)
     

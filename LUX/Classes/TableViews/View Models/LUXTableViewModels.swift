@@ -54,7 +54,7 @@ extension LUXRefreshableTableViewModel {
     }
 }
 extension LUXRefreshableTableViewModel {
-    public func setupOnLoad() -> (FUITableViewViewController) -> Void {
+    public func setupOnLoad() -> (FPUITableViewViewController) -> Void {
         return {
             self.tableView = $0.tableView
             self.refresh()
@@ -109,7 +109,7 @@ public func pageableTableViewModel<T, U, C>(_ call: CombineNetCall,
         let itemsPub: AnyPublisher<[FlexDataSourceItem], Never> = pageManager.$models.dropFirst().map(modelsToItems).eraseToAnyPublisher()
         let vm = LUXItemsTableViewModel(pageManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexDataSource {
-            let delegate = FUITableViewDelegate()
+            let delegate = FPUITableViewDelegate()
             delegate.onWillDisplay = pageManager.willDisplayFunction()
             delegate.onSelect = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\LUXModelItem<U, C>.model) >?> onTap)
             vm.tableDelegate = delegate
@@ -129,7 +129,7 @@ public func pageableTableViewModel<U, C>(_ call: CombineNetCall,
         let itemsPub: AnyPublisher<[FlexDataSourceItem], Never> = pageManager.$models.dropFirst().map(modelsToItems).eraseToAnyPublisher()
         let vm = LUXItemsTableViewModel(pageManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexDataSource {
-            let delegate = FUITableViewDelegate()
+            let delegate = FPUITableViewDelegate()
             delegate.onWillDisplay = pageManager.willDisplayFunction()
             delegate.onSelect = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\LUXModelItem<U, C>.model) >?> onTap)
             vm.tableDelegate = delegate
@@ -150,7 +150,7 @@ public func refreshableTableViewModel<T, U, C>(_ call: CombineNetCall,
         let itemsPub: AnyPublisher<[FlexDataSourceItem], Never> = modelPub.map(modelsToItems).eraseToAnyPublisher()
         let vm = LUXItemsTableViewModel(refreshManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexDataSource {
-            let delegate = FUITableViewDelegate()
+            let delegate = FPUITableViewDelegate()
             delegate.onSelect = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\LUXModelItem<U, C>.model) >?> onTap)
             vm.tableDelegate = delegate
         }
@@ -169,7 +169,7 @@ public func refreshableTableViewModel<U, C>(_ call: CombineNetCall,
         let itemsPub: AnyPublisher<[FlexDataSourceItem], Never> = modelPub.map(modelsToItems).eraseToAnyPublisher()
         let vm = LUXItemsTableViewModel(refreshManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexDataSource {
-            let delegate = FUITableViewDelegate()
+            let delegate = FPUITableViewDelegate()
             delegate.onSelect = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\LUXModelItem<U, C>.model) >?> onTap)
             vm.tableDelegate = delegate
         }

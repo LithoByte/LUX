@@ -19,7 +19,7 @@ class ViewController: LUXFlexViewController<LUXTableViewModel> {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.viewModel = LUXTableViewModel()
-    self.tableViewDelegate = FUITableViewDelegate()
+    self.tableViewDelegate = FPUITableViewDelegate()
     // Do any additional setup after loading the view, typically from a nib.
   }
   
