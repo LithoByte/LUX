@@ -32,7 +32,6 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		6410ADD72598839C00022E72 /* FlexItemsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6410ADD62598839C00022E72 /* FlexItemsTests.swift */; };
 		6410ADDB259887A400022E72 /* CallRefresherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6410ADDA259887A400022E72 /* CallRefresherTests.swift */; };
 		6410ADDF259938F000022E72 /* ValidatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6410ADDE259938F000022E72 /* ValidatorTests.swift */; };
 		6410ADE325993FD100022E72 /* UIColor+HexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6410ADE225993FD100022E72 /* UIColor+HexTests.swift */; };
@@ -101,7 +100,6 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* LUX_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LUX_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6410ADD62598839C00022E72 /* FlexItemsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlexItemsTests.swift; sourceTree = "<group>"; };
 		6410ADDA259887A400022E72 /* CallRefresherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRefresherTests.swift; sourceTree = "<group>"; };
 		6410ADDE259938F000022E72 /* ValidatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorTests.swift; sourceTree = "<group>"; };
 		6410ADE225993FD100022E72 /* UIColor+HexTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+HexTests.swift"; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 				498DB66423B03E9100112A46 /* SplashViewModelTests.swift */,
 				4978124D23A02F7A007DFA9F /* TableViewModelTests.swift */,
 				49781241239DCE78007DFA9F /* TestHelpers.swift */,
-				6410ADD62598839C00022E72 /* FlexItemsTests.swift */,
 				6410ADDA259887A400022E72 /* CallRefresherTests.swift */,
 				6410ADDE259938F000022E72 /* ValidatorTests.swift */,
 				6410ADE225993FD100022E72 /* UIColor+HexTests.swift */,
@@ -489,7 +486,6 @@
 				6410ADDB259887A400022E72 /* CallRefresherTests.swift in Sources */,
 				49C9EF93257AB3CC001D3EEE /* DefaultIsIncludedTests.swift in Sources */,
 				4978123B239DB854007DFA9F /* LoginViewModelTests.swift in Sources */,
-				6410ADD72598839C00022E72 /* FlexItemsTests.swift in Sources */,
 				49781248239DD490007DFA9F /* PagingCallTests.swift in Sources */,
 				6410ADEB2599480300022E72 /* LUXSessionTests.swift in Sources */,
 				6418E0FD25AC0AC50050BEFB /* FlexViewControllerTests.swift in Sources */,
