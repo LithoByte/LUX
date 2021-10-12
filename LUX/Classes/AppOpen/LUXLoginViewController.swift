@@ -8,6 +8,7 @@
 import UIKit
 import fuikit
 import Combine
+import LithoOperators
 
 open class LUXLoginViewController: FPUIViewController {
     @IBOutlet open weak var backgroundImageView: UIImageView!
@@ -24,6 +25,7 @@ open class LUXLoginViewController: FPUIViewController {
     
     public var cancelBag = Set<AnyCancellable>()
     open var loginViewModel: LUXLoginProtocol?
+    open var onShowPasswordPressed: (() -> Void)?
     open var onSignUpPressed: ((LUXLoginViewController) -> Void)?
     open var onForgotPasswordPressed: ((LUXLoginViewController) -> Void)?
     open var onLegalPressed: ((LUXLoginViewController) -> Void)?
@@ -38,6 +40,11 @@ open class LUXLoginViewController: FPUIViewController {
             self.spinner?.isHidden = !visible
         }.store(in: &cancelBag)
         loginViewModel?.inputs.viewDidLoad()
+        if let textField = passwordTextField {
+            setRightView(textField, showPasswordButton(target: self, selector: #selector(showPasswordPressed)))
+            onShowPasswordPressed = textField *> (toggle(\.isSecureTextEntry) <> ((^\.rightView) >?> ~>toggle(\UIButton.isSelected)))
+        }
+        
     }
     
     @IBAction @objc open func usernameChanged() {
@@ -52,7 +59,30 @@ open class LUXLoginViewController: FPUIViewController {
         loginViewModel?.inputs.submitButtonPressed()
     }
     
+    @objc open func showPasswordPressed() {
+        onShowPasswordPressed?()
+    }
+    
     @IBAction @objc open func signUpPressed() { onSignUpPressed?(self) }
     @IBAction @objc open func forgotPasswordPressed() { onForgotPasswordPressed?(self) }
     @IBAction @objc open func termsPressed() { onLegalPressed?(self) }
 }
+
+let setRightView: (UITextField, UIView) -> Void = setter(\UITextField.rightView)
+public func showPasswordButton(target: Any?, selector: Selector) -> UIButton {
+    return UIButton(type: .custom).configure({
+        $0.setImage(UIImage(systemName: "eye"), for: .normal)
+        $0.setImage(UIImage(systemName: "eye.slash"), for: .selected)
+        $0.addTarget(target, action: selector, for: .touchUpInside)
+    })
+}
+
+
+// MOVE TO LITHOOPERATORS
+public func toggle<T>(_ kp: WritableKeyPath<T, Bool>) -> (T) -> Void {
+    return { t in
+        var copy = t
+        copy[keyPath: kp].toggle()
+    }
+}
+
