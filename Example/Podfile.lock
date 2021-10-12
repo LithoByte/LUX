@@ -1,6 +1,7 @@
 PODS:
   - FlexDataSource (0.2.0):
     - fuikit/Core
+    - LithoOperators
   - fuikit (0.1.5):
     - fuikit/Core (= 0.1.5)
     - fuikit/CoreBluetooth (= 0.1.5)
@@ -97,7 +98,7 @@ PODS:
   - Slippers (0.1.1)
 
 DEPENDENCIES:
-  - FlexDataSource (from `https://github.com/LithoByte/flex-data-source`)
+  - FlexDataSource (from `https://github.com/LithoByte/flex-data-source`, branch `cjc8/model-item`)
   - fuikit (from `https://github.com/LithoByte/fuikit`, branch `feature/cjc8/fpui`)
   - FunNet/Combine (from `https://github.com/schrockblock/funnet`, branch `feature/cjc8/update-lithooperators`)
   - FunNet/Multipart (from `https://github.com/schrockblock/funnet`, branch `feature/cjc8/update-lithooperators`)
@@ -114,6 +115,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   FlexDataSource:
+    :branch: cjc8/model-item
     :git: https://github.com/LithoByte/flex-data-source
   fuikit:
     :branch: feature/cjc8/fpui
@@ -134,7 +136,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FlexDataSource:
-    :commit: ee22bf5a75ead0c3334186074e3e425812912482
+    :commit: c0e8787f712b42f607e0eed31362f28c4cd860f6
     :git: https://github.com/LithoByte/flex-data-source
   fuikit:
     :commit: d68fce0612db80b5064ee688cf2e416de883cecb
@@ -156,7 +158,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/LithoByte/slippers
 
 SPEC CHECKSUMS:
-  FlexDataSource: 7d859ae7d182576ec900541a761aa5d4aadc04e6
+  FlexDataSource: 5baca69463a91999f1a548730e3e35f192a619ce
   fuikit: 976080e1c04037e01d14541135a104cb208d8c0d
   FunNet: e66d2df77a5663556970a1914c5911ecde2842ef
   LithoOperators: 8fc0c6a49e34a8d1ca01b777844f58e36c062d9f
@@ -167,6 +169,6 @@ SPEC CHECKSUMS:
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   Slippers: 3814c93fd93305f918a984e724d5db4d9569a660
 
-PODFILE CHECKSUM: 5c8bd4c1278d40a461d5ae64c0d90b69287bf34b
+PODFILE CHECKSUM: fbb4cfd01d1258ea9dfe3ba0ec6543225e29c434
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.11.2

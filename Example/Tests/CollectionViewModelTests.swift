@@ -22,7 +22,7 @@ class CollectionViewModelItemTests: XCTestCase {
     
 
     func testStandardViewModelItem() {
-        let vm = LUXModelCollectionItem(Human(id: 123, name: "Calvin Collins"), configurer)
+        let vm = FlexModelCollectionItem(Human(id: 123, name: "Calvin Collins"), configurer)
         let cell = UICollectionViewCell()
         vm.configureCell(cell)
         XCTAssert(cell.backgroundColor == .gray)
@@ -30,7 +30,7 @@ class CollectionViewModelItemTests: XCTestCase {
 
     func testTappableViewModelItem() {
         var wasTapped: Bool = false
-        let vm = LUXTappableModelCollectionItem(model: Human(id: 123, name: "Calvin Collins"), configurer: configurer, tap: {
+        let vm = FlexTappableModelCollectionItem(model: Human(id: 123, name: "Calvin Collins"), configurer: configurer, tap: {
             wasTapped = true
             XCTAssert($0.name == "Calvin Collins")
         })
@@ -41,7 +41,7 @@ class CollectionViewModelItemTests: XCTestCase {
     func testButtonViewModelItem() {
         var cellTapped: Bool = false
         var buttonTapped: Bool = false
-        let vm = LUXButtonTappableModelCollectionItem(model: Human(id: 123, name: "Calvin Collins"), configurer: configurer, tap: { _ in
+        let vm = FlexButtonTappableModelCollectionItem(model: Human(id: 123, name: "Calvin Collins"), configurer: configurer, tap: { _ in
             cellTapped = true
         }, buttonPressed: { buttonTapped = true })
         vm.onButtonPressed()

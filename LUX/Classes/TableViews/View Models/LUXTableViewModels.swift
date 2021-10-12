@@ -111,7 +111,7 @@ public func pageableTableViewModel<T, U, C>(_ call: CombineNetCall,
         if let ds = vm.dataSource as? FlexDataSource {
             let delegate = FPUITableViewDelegate()
             delegate.onWillDisplay = pageManager.willDisplayFunction()
-            delegate.onSelect = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\LUXModelItem<U, C>.model) >?> onTap)
+            delegate.onSelect = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\FlexModelItem<U, C>.model) >?> onTap)
             vm.tableDelegate = delegate
         }
         vm.setupEndRefreshing(from: call)
@@ -131,7 +131,7 @@ public func pageableTableViewModel<U, C>(_ call: CombineNetCall,
         if let ds = vm.dataSource as? FlexDataSource {
             let delegate = FPUITableViewDelegate()
             delegate.onWillDisplay = pageManager.willDisplayFunction()
-            delegate.onSelect = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\LUXModelItem<U, C>.model) >?> onTap)
+            delegate.onSelect = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\FlexModelItem<U, C>.model) >?> onTap)
             vm.tableDelegate = delegate
         }
         vm.setupEndRefreshing(from: call)
@@ -151,7 +151,7 @@ public func refreshableTableViewModel<T, U, C>(_ call: CombineNetCall,
         let vm = LUXItemsTableViewModel(refreshManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexDataSource {
             let delegate = FPUITableViewDelegate()
-            delegate.onSelect = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\LUXModelItem<U, C>.model) >?> onTap)
+            delegate.onSelect = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\FlexModelItem<U, C>.model) >?> onTap)
             vm.tableDelegate = delegate
         }
         vm.setupEndRefreshing(from: call)
@@ -170,7 +170,7 @@ public func refreshableTableViewModel<U, C>(_ call: CombineNetCall,
         let vm = LUXItemsTableViewModel(refreshManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexDataSource {
             let delegate = FPUITableViewDelegate()
-            delegate.onSelect = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\LUXModelItem<U, C>.model) >?> onTap)
+            delegate.onSelect = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\FlexModelItem<U, C>.model) >?> onTap)
             vm.tableDelegate = delegate
         }
         vm.setupEndRefreshing(from: call)

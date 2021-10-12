@@ -128,7 +128,7 @@ public func pageableCollectionViewModel<T, U, C>(_ call: CombineNetCall,
         if let ds = vm.dataSource as? FlexCollectionDataSource {
             let delegate = LUXCollectionDelegate()
             delegate.onWillDisplayCell = pageManager.willDisplayFunction()
-            delegate.onDidSelectItem = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\LUXModelCollectionItem<U, C>.model) >?> onTap)
+            delegate.onDidSelectItem = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\FlexModelCollectionItem<U, C>.model) >?> onTap)
             vm.collectionDelegate = delegate
         }
         vm.setupEndRefreshing(from: call)
@@ -149,7 +149,7 @@ public func pageableCollectionViewModel<U, C>(_ call: CombineNetCall,
         if let ds = vm.dataSource as? FlexCollectionDataSource {
             let delegate = LUXCollectionDelegate()
             delegate.onWillDisplayCell = pageManager.willDisplayFunction()
-            delegate.onDidSelectItem = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\LUXModelCollectionItem<U, C>.model) >?> onTap)
+            delegate.onDidSelectItem = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\FlexModelCollectionItem<U, C>.model) >?> onTap)
             vm.collectionDelegate = delegate
         }
         vm.setupEndRefreshing(from: call)
@@ -170,7 +170,7 @@ public func refreshableCollectionViewModel<T, U, C>(_ call: CombineNetCall,
         let vm = LUXItemsCollectionViewModel(refreshManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexCollectionDataSource {
             let delegate = LUXCollectionDelegate()
-            delegate.onDidSelectItem = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\LUXModelCollectionItem<U, C>.model) >?> onTap)
+            delegate.onDidSelectItem = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\FlexModelCollectionItem<U, C>.model) >?> onTap)
             vm.collectionDelegate = delegate
         }
         vm.setupEndRefreshing(from: call)
@@ -185,12 +185,12 @@ public func refreshableCollectionViewModel<U, C>(_ call: CombineNetCall,
         let dataPub = call.publisher.$data.eraseToAnyPublisher()
         let modelPub: AnyPublisher<[U], Never> = modelPublisher(from: dataPub)
         let refreshManager = LUXRefreshableNetworkCallManager(call)
-        let modelsToItems: ([U]) -> [LUXModelCollectionItem<U, C>] = map(f: modelItem(configurer))
+        let modelsToItems: ([U]) -> [FlexModelCollectionItem<U, C>] = map(f: modelItem(configurer))
         let itemsPub: AnyPublisher<[FlexCollectionItem], Never> = filterItems(modelPub.eraseToAnyPublisher()).map(modelsToItems).eraseToAnyPublisher()
         let vm = LUXItemsCollectionViewModel(refreshManager, itemsPublisher: itemsPub)
         if let ds = vm.dataSource as? FlexCollectionDataSource {
             let delegate = LUXCollectionDelegate()
-            delegate.onDidSelectItem = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\LUXModelCollectionItem<U, C>.model) >?> onTap)
+            delegate.onDidSelectItem = ds.itemTapOnSelect(onTap: (optionalCast >?> ^\FlexModelCollectionItem<U, C>.model) >?> onTap)
             vm.collectionDelegate = delegate
         }
         vm.setupEndRefreshing(from: call)
