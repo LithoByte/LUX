@@ -32,7 +32,17 @@ open class LUXPageCallModelsManager<T>: LUXCallPager where T: Decodable {
                 _ call: CombineNetCall) {
         super.init(pageKeyName: pageKeyName, countKeyName: countKeyName, defaultCount: defaultCount, firstPageValue: firstPageValue, call)
         
-        optModelPublisher(from: call.responder?.$data.eraseToAnyPublisher()) ?> subscribeForPaging
+        modelPublisher(from: call.publisher.$data.eraseToAnyPublisher()) |> subscribeForPaging
+    }
+    
+    public init<U: Codable>(pageKeyName: String = "page",
+                countKeyName: String = "count",
+                defaultCount: Int = 20,
+                firstPageValue: Int = 1,
+                _ call: CombineNetCall,
+                            unwrapper: @escaping (U) -> [T]?) {
+        super.init(pageKeyName: pageKeyName, countKeyName: countKeyName, defaultCount: defaultCount, firstPageValue: firstPageValue, call)
+        unwrappedModelPublisher(from: call.publisher.$data.eraseToAnyPublisher(), unwrapper) |> subscribeForPaging
     }
     
     open func subscribeForPaging(_ modelsPublisher: AnyPublisher<[T], Never>) {
