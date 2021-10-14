@@ -81,7 +81,9 @@ class LoginViewControllerTests: XCTestCase {
     }
     
     func testShowPassword() {
+        struct User: Codable { }
         let vc = LUXLoginViewController.makeFromXIB()
+        vc.loginViewModel = LUXLoginViewModel(credsCall: nil, loginModelToJson: { _, _ in User() }, saveAuth: nil)
         let _ = vc.view
         // test password right view not nil
         XCTAssertNotNil(vc.passwordTextField)
@@ -89,13 +91,13 @@ class LoginViewControllerTests: XCTestCase {
         // test password is secure by default
         XCTAssertTrue(vc.passwordTextField?.isSecureTextEntry != nil && vc.passwordTextField!.isSecureTextEntry)
         
-        vc.showPasswordPressed()
+        vc.rightViewPressed()
         
         // test password is not sure after press
         XCTAssertFalse(vc.passwordTextField!.isSecureTextEntry)
         
         // test password is secure after second test
-        vc.showPasswordPressed()
+        vc.rightViewPressed()
         XCTAssertTrue(vc.passwordTextField!.isSecureTextEntry)
     }
 }
