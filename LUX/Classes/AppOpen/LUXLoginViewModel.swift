@@ -15,6 +15,7 @@ import LithoOperators
 public protocol LUXLoginInputs {
     func usernameChanged(username: String?)
     func passwordChanged(password: String?)
+    func rightViewPressed()
     func submitButtonPressed()
     func viewDidLoad()
 }
@@ -22,6 +23,7 @@ public protocol LUXLoginInputs {
 public protocol LUXLoginOutputs {
     var submitButtonEnabledPublisher: AnyPublisher<Bool, Never> { get }
     var activityIndicatorVisiblePublisher: AnyPublisher<Bool, Never> { get }
+    var showButtonPressedPublisher: AnyPublisher<(), Never> { get }
     var advanceAuthedPublisher: AnyPublisher<(), Never> { get }
 }
 
@@ -45,6 +47,9 @@ open class LUXLoginViewModel: LUXLoginProtocol, LUXLoginInputs, LUXLoginOutputs 
     public var activityIndicatorVisiblePublisher: AnyPublisher<Bool, Never>
     var activityIndicatorVisibleSubject = PassthroughSubject<Bool, Never>()
     
+    public var showButtonPressedPublisher: AnyPublisher<(), Never>
+    private var showButtonPressedSubject = PassthroughSubject<(), Never>()
+    
     public var advanceAuthedPublisher: AnyPublisher<(), Never>
     public var advanceAuthed = PassthroughSubject<(), Never>()
     
@@ -56,7 +61,7 @@ open class LUXLoginViewModel: LUXLoginProtocol, LUXLoginInputs, LUXLoginOutputs 
     
     public init<T>(credsCall: CombineNetCall? = nil, loginModelToJson: @escaping (String, String) -> T, saveAuth: ((Data) -> Bool)? = nil) where T: Encodable {
         credentialLoginCall = credsCall
-        
+        showButtonPressedPublisher = showButtonPressedSubject.eraseToAnyPublisher()
         activityIndicatorVisiblePublisher = activityIndicatorVisibleSubject.eraseToAnyPublisher()
         
         if let authSaved = saveAuth, let responder = credsCall?.responder {
@@ -95,6 +100,10 @@ open class LUXLoginViewModel: LUXLoginProtocol, LUXLoginInputs, LUXLoginOutputs 
     
     open func viewDidLoad() {
         self.viewDidLoadProperty.send(())
+    }
+    
+    open func rightViewPressed() {
+        self.showButtonPressedSubject.send(())
     }
     
     open func authResponseReceived(response: HTTPURLResponse) {

@@ -102,8 +102,8 @@ DEPENDENCIES:
   - fuikit (from `https://github.com/LithoByte/fuikit`, branch `feature/cjc8/fpui`)
   - FunNet/Combine (from `https://github.com/schrockblock/funnet`, branch `feature/cjc8/update-lithooperators`)
   - FunNet/Multipart (from `https://github.com/schrockblock/funnet`, branch `feature/cjc8/update-lithooperators`)
-  - LithoOperators (from `https://github.com/LithoByte/LithoOperators`)
-  - LithoUtils/Core (from `https://github.com/LithoByte/litho-utils`)
+  - LithoOperators (from `https://github.com/LithoByte/LithoOperators`, branch `feature/cjc8/new-operators`)
+  - LithoUtils/Core (from `https://github.com/LithoByte/litho-utils`, branch `cjc8/right-view-setter`)
   - LUX (from `../`)
   - PlaygroundVCHelpers (from `https://github.com/ThryvInc/playground-vc-helpers`)
   - Slippers (from `https://github.com/LithoByte/slippers`)
@@ -124,8 +124,10 @@ EXTERNAL SOURCES:
     :branch: feature/cjc8/update-lithooperators
     :git: https://github.com/schrockblock/funnet
   LithoOperators:
+    :branch: feature/cjc8/new-operators
     :git: https://github.com/LithoByte/LithoOperators
   LithoUtils:
+    :branch: cjc8/right-view-setter
     :git: https://github.com/LithoByte/litho-utils
   LUX:
     :path: "../"
@@ -145,10 +147,10 @@ CHECKOUT OPTIONS:
     :commit: 4fb1df13db008e5ebfb741954270ad301d4d9eb8
     :git: https://github.com/schrockblock/funnet
   LithoOperators:
-    :commit: 180a93436cc4d22e7e4a83ea1509ee67a08d761b
+    :commit: 1183e055818416cc0d77252bbbd19bc4689c04f3
     :git: https://github.com/LithoByte/LithoOperators
   LithoUtils:
-    :commit: 8640dd95de3f3cc7359d998f3b084be56dffa419
+    :commit: 883998135731cb7038355010e723eea9ea4278f6
     :git: https://github.com/LithoByte/litho-utils
   PlaygroundVCHelpers:
     :commit: 1b1f5ed572a1965e1d52bbc1b21f3796a6f144e2
@@ -169,6 +171,6 @@ SPEC CHECKSUMS:
   SDWebImage: 4ea20cca2986adc5aacde07aa686742fd4c67a37
   Slippers: 3814c93fd93305f918a984e724d5db4d9569a660
 
-PODFILE CHECKSUM: fbb4cfd01d1258ea9dfe3ba0ec6543225e29c434
+PODFILE CHECKSUM: 8972c06aaeb164c593025ee85876a401de81a956
 
 COCOAPODS: 1.11.2
