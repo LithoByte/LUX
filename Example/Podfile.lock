@@ -6,14 +6,20 @@ PODS:
     - fuikit/Core (= 0.1.5)
     - fuikit/CoreBluetooth (= 0.1.5)
     - fuikit/CoreLocation (= 0.1.5)
-  - fuikit/Core (0.1.5)
-  - fuikit/CoreBluetooth (0.1.5)
-  - fuikit/CoreLocation (0.1.5)
+    - LithoOperators
+  - fuikit/Core (0.1.5):
+    - LithoOperators
+  - fuikit/CoreBluetooth (0.1.5):
+    - LithoOperators
+  - fuikit/CoreLocation (0.1.5):
+    - LithoOperators
   - FunNet/Combine (0.1.1):
     - FunNet/Core
     - LithoOperators
   - FunNet/Core (0.1.1):
     - LithoOperators
+    - LithoUtils/Core
+    - Slippers
   - FunNet/Multipart (0.1.1):
     - LithoOperators
   - LithoOperators (0.1.4):
@@ -98,11 +104,11 @@ PODS:
   - Slippers (0.1.1)
 
 DEPENDENCIES:
-  - FlexDataSource (from `https://github.com/LithoByte/flex-data-source`, branch `cjc8/model-item`)
-  - fuikit (from `https://github.com/LithoByte/fuikit`, branch `feature/cjc8/fpui`)
-  - FunNet/Combine (from `https://github.com/schrockblock/funnet`, branch `feature/cjc8/update-lithooperators`)
-  - FunNet/Multipart (from `https://github.com/schrockblock/funnet`, branch `feature/cjc8/update-lithooperators`)
-  - LithoOperators (from `https://github.com/LithoByte/LithoOperators`, branch `feature/cjc8/new-operators`)
+  - FlexDataSource (from `https://github.com/LithoByte/flex-data-source`)
+  - fuikit (from `https://github.com/LithoByte/fuikit`)
+  - FunNet/Combine (from `https://github.com/LithoByte/funnet`)
+  - FunNet/Multipart (from `https://github.com/LithoByte/funnet`)
+  - LithoOperators (from `https://github.com/LithoByte/LithoOperators`)
   - LithoUtils/Core (from `https://github.com/LithoByte/litho-utils`, branch `cjc8/right-view-setter`)
   - LUX (from `../`)
   - PlaygroundVCHelpers (from `https://github.com/ThryvInc/playground-vc-helpers`)
@@ -115,16 +121,12 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   FlexDataSource:
-    :branch: cjc8/model-item
     :git: https://github.com/LithoByte/flex-data-source
   fuikit:
-    :branch: feature/cjc8/fpui
     :git: https://github.com/LithoByte/fuikit
   FunNet:
-    :branch: feature/cjc8/update-lithooperators
-    :git: https://github.com/schrockblock/funnet
+    :git: https://github.com/LithoByte/funnet
   LithoOperators:
-    :branch: feature/cjc8/new-operators
     :git: https://github.com/LithoByte/LithoOperators
   LithoUtils:
     :branch: cjc8/right-view-setter
@@ -138,16 +140,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FlexDataSource:
-    :commit: c0e8787f712b42f607e0eed31362f28c4cd860f6
+    :commit: cc75cbf0b774136590a645f75880c6ec651dacb4
     :git: https://github.com/LithoByte/flex-data-source
   fuikit:
-    :commit: d68fce0612db80b5064ee688cf2e416de883cecb
+    :commit: ef35d74aec979888ba9e172fee16d892a1bf6c79
     :git: https://github.com/LithoByte/fuikit
   FunNet:
-    :commit: 4fb1df13db008e5ebfb741954270ad301d4d9eb8
-    :git: https://github.com/schrockblock/funnet
+    :commit: d34da046e579ce6a2d71bcb6b5cfd91dc47bc8ef
+    :git: https://github.com/LithoByte/funnet
   LithoOperators:
-    :commit: 1183e055818416cc0d77252bbbd19bc4689c04f3
+    :commit: e1203c96bfd693bc3579b6080439e2580716d9e4
     :git: https://github.com/LithoByte/LithoOperators
   LithoUtils:
     :commit: 883998135731cb7038355010e723eea9ea4278f6
@@ -161,8 +163,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   FlexDataSource: 5baca69463a91999f1a548730e3e35f192a619ce
-  fuikit: 976080e1c04037e01d14541135a104cb208d8c0d
-  FunNet: e66d2df77a5663556970a1914c5911ecde2842ef
+  fuikit: 13532ee7ca21ac9a1fd4119fea6c1b3fec55a28e
+  FunNet: 35f31b2ce9525af9f096a6cffb5ae506a1bf5f6f
   LithoOperators: 8fc0c6a49e34a8d1ca01b777844f58e36c062d9f
   LithoUtils: 672d313a7fede3968e22f082b293cbc01ebcb7f0
   LUX: 98b3495fc34d7fdb4ec47b4ad5a9d69e5838343d
@@ -171,6 +173,6 @@ SPEC CHECKSUMS:
   SDWebImage: 4ea20cca2986adc5aacde07aa686742fd4c67a37
   Slippers: 3814c93fd93305f918a984e724d5db4d9569a660
 
-PODFILE CHECKSUM: 8972c06aaeb164c593025ee85876a401de81a956
+PODFILE CHECKSUM: 450d2a2c6732225d1a71cdf8ad3a1f1097912ee0
 
 COCOAPODS: 1.11.2
