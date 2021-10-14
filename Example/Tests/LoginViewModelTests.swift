@@ -7,10 +7,13 @@
 //
 
 import XCTest
+import Combine
 @testable import LUX
 @testable import FunNet
 
 class LoginViewModelTests: XCTestCase {
+    
+    var cancelBag: Set<AnyCancellable> = []
 
     func testSubmitButtonDisabledOnLoad() {
         var wasCalled = false
@@ -234,6 +237,16 @@ class LoginViewModelTests: XCTestCase {
         XCTAssert(calledSaveToken)
         XCTAssert(shouldAdvance)
         cancel.cancel()
+    }
+    
+    func testRightViewPressedFunc() {
+        var wasCalled = false
+        let viewModel = LUXLoginViewModel(credsCall: nil, loginModelToJson: { _, _ in Human() }, saveAuth: nil)
+        viewModel.showButtonPressedPublisher.sink(receiveValue: {
+            wasCalled = true
+        }).store(in: &cancelBag)
+        viewModel.rightViewPressed()
+        XCTAssertTrue(wasCalled)
     }
 
 }
