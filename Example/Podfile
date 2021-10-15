@@ -4,13 +4,13 @@ platform :ios, '13.0'
 target 'LUX_Example' do
   pod 'LUX', :path => '../'
   pod 'PlaygroundVCHelpers', git: 'https://github.com/ThryvInc/playground-vc-helpers'
-  pod 'FunNet/Combine', git: 'https://github.com/schrockblock/funnet', branch: 'feature/cjc8/update-lithooperators'
-  pod 'FunNet/Multipart', git: 'https://github.com/schrockblock/funnet', branch: 'feature/cjc8/update-lithooperators'
+  pod 'FunNet/Combine', git: 'https://github.com/LithoByte/funnet'
+  pod 'FunNet/Multipart', git: 'https://github.com/LithoByte/funnet'
   pod 'Slippers', git: 'https://github.com/LithoByte/slippers'
   pod 'LithoOperators', git: 'https://github.com/LithoByte/LithoOperators'
-  pod 'FlexDataSource', git: 'https://github.com/LithoByte/flex-data-source', branch: 'cjc8/model-item'
-  pod 'fuikit', git: 'https://github.com/LithoByte/fuikit', branch: 'feature/cjc8/fpui'
-  pod 'LithoUtils/Core', git: 'https://github.com/LithoByte/litho-utils'
+  pod 'FlexDataSource', git: 'https://github.com/LithoByte/flex-data-source'
+  pod 'fuikit', git: 'https://github.com/LithoByte/fuikit'
+  pod 'LithoUtils/Core', git: 'https://github.com/LithoByte/litho-utils', branch: 'cjc8/right-view-setter'
   
   target 'LUX_Tests' do
     inherit! :search_paths

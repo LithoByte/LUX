@@ -1,6 +1,5 @@
 import UIKit
 import PlaygroundSupport
-import PlaygroundVCHelpers
 import LUX
 import LithoOperators
 import Prelude
@@ -11,7 +10,7 @@ let styleVC: (LUXLoginViewController) -> Void = { loginVC in
 }
 
 let vc = LUXLoginViewController(nibName: "LUXLoginViewController", bundle: Bundle(for: LUXLoginViewController.self))
-vc.onViewDidLoad = optionalCast >>> (styleVC >||> ifExecute)
+vc.onViewDidLoad = optionalCast >>> (styleVC -*> ifExecute)
 
 PlaygroundPage.current.liveView = vc
 PlaygroundPage.current.needsIndefiniteExecution = true

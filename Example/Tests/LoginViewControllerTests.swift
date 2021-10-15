@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import PlaygroundVCHelpers
 @testable import LUX
 
 class MyLoginViewController: LUXLoginViewController {
@@ -78,5 +79,25 @@ class LoginViewControllerTests: XCTestCase {
         XCTAssertTrue(vc.termsWasPressed)
         
     }
-
+    
+    func testShowPassword() {
+        struct User: Codable { }
+        let vc = LUXLoginViewController.makeFromXIB()
+        vc.loginViewModel = LUXLoginViewModel(credsCall: nil, loginModelToJson: { _, _ in User() }, saveAuth: nil)
+        let _ = vc.view
+        // test password right view not nil
+        XCTAssertNotNil(vc.passwordTextField)
+        XCTAssertNotNil(vc.passwordTextField?.rightView)
+        // test password is secure by default
+        XCTAssertTrue(vc.passwordTextField?.isSecureTextEntry != nil && vc.passwordTextField!.isSecureTextEntry)
+        
+        vc.rightViewPressed()
+        
+        // test password is not sure after press
+        XCTAssertFalse(vc.passwordTextField!.isSecureTextEntry)
+        
+        // test password is secure after second test
+        vc.rightViewPressed()
+        XCTAssertTrue(vc.passwordTextField!.isSecureTextEntry)
+    }
 }

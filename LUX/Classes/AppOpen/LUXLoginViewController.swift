@@ -8,6 +8,8 @@
 import UIKit
 import fuikit
 import Combine
+import LithoOperators
+import LithoUtils
 
 open class LUXLoginViewController: FPUIViewController {
     @IBOutlet open weak var backgroundImageView: UIImageView!
@@ -38,6 +40,11 @@ open class LUXLoginViewController: FPUIViewController {
             self.spinner?.isHidden = !visible
         }.store(in: &cancelBag)
         loginViewModel?.inputs.viewDidLoad()
+        if let textField = passwordTextField {
+            setRightView(textField, showPasswordButton(target: self, selector: #selector(rightViewPressed)))
+            loginViewModel?.outputs.showButtonPressedPublisher.sink(receiveValue: textField *> (toggle(\.isSecureTextEntry) <> ((^\.rightView) >?> ~>toggle(\UIButton.isSelected)))).store(in: &cancelBag)
+        }
+        
     }
     
     @IBAction @objc open func usernameChanged() {
@@ -52,7 +59,19 @@ open class LUXLoginViewController: FPUIViewController {
         loginViewModel?.inputs.submitButtonPressed()
     }
     
+    @objc open func rightViewPressed() {
+        loginViewModel?.inputs.rightViewPressed()
+    }
+    
     @IBAction @objc open func signUpPressed() { onSignUpPressed?(self) }
     @IBAction @objc open func forgotPasswordPressed() { onForgotPasswordPressed?(self) }
     @IBAction @objc open func termsPressed() { onLegalPressed?(self) }
+}
+
+public func showPasswordButton(target: Any?, selector: Selector) -> UIButton {
+    return UIButton(type: .custom).configure {
+        $0.setImage(UIImage(systemName: "eye"), for: .normal)
+        $0.setImage(UIImage(systemName: "eye.slash"), for: .selected)
+        $0.addTarget(target, action: selector, for: .touchUpInside)
+    }
 }
