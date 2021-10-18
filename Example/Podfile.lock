@@ -109,7 +109,7 @@ DEPENDENCIES:
   - FunNet/Combine (from `https://github.com/LithoByte/funnet`)
   - FunNet/Multipart (from `https://github.com/LithoByte/funnet`)
   - LithoOperators (from `https://github.com/LithoByte/LithoOperators`)
-  - LithoUtils/Core (from `https://github.com/LithoByte/litho-utils`, branch `cjc8/right-view-setter`)
+  - LithoUtils/Core (from `https://github.com/LithoByte/litho-utils`)
   - LUX (from `../`)
   - PlaygroundVCHelpers (from `https://github.com/ThryvInc/playground-vc-helpers`)
   - Slippers (from `https://github.com/LithoByte/slippers`)
@@ -129,7 +129,6 @@ EXTERNAL SOURCES:
   LithoOperators:
     :git: https://github.com/LithoByte/LithoOperators
   LithoUtils:
-    :branch: cjc8/right-view-setter
     :git: https://github.com/LithoByte/litho-utils
   LUX:
     :path: "../"
@@ -152,7 +151,7 @@ CHECKOUT OPTIONS:
     :commit: e1203c96bfd693bc3579b6080439e2580716d9e4
     :git: https://github.com/LithoByte/LithoOperators
   LithoUtils:
-    :commit: 883998135731cb7038355010e723eea9ea4278f6
+    :commit: 28a7106d5b404c06e0f99342542920a749b1c8c3
     :git: https://github.com/LithoByte/litho-utils
   PlaygroundVCHelpers:
     :commit: 1b1f5ed572a1965e1d52bbc1b21f3796a6f144e2
@@ -173,6 +172,6 @@ SPEC CHECKSUMS:
   SDWebImage: 4ea20cca2986adc5aacde07aa686742fd4c67a37
   Slippers: 3814c93fd93305f918a984e724d5db4d9569a660
 
-PODFILE CHECKSUM: 450d2a2c6732225d1a71cdf8ad3a1f1097912ee0
+PODFILE CHECKSUM: b8ffd5250d35ab93d5ebf32c181f65da0b28d2d7
 
 COCOAPODS: 1.11.2
