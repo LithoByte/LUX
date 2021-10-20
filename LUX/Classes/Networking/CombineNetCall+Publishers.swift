@@ -13,7 +13,7 @@ import Combine
     public func modelPublisher<T: Codable>() -> AnyPublisher<T, Never> {
         return LUX.modelPublisher(from: publisher.$data.eraseToAnyPublisher())
     }
-    public func unwrappedModelPublisher<T: Codable, U: Codable>(unwrapper: @escaping (T) -> U) -> AnyPublisher<U, Never> {
+    public func unwrappedModelPublisher<T: Codable, U: Codable>(unwrapper: @escaping (T) -> U?) -> AnyPublisher<U?, Never> {
         return self.modelPublisher().map(unwrapper).eraseToAnyPublisher()
     }
 }
