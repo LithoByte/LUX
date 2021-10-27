@@ -24,6 +24,8 @@ open class LUXSegmentedTableViewModel: LUXRefreshableTableViewModel {
         if let count = segments?.count, selectedIndex < count {
             dataSource = segments?[selectedIndex]
             tableView?.reloadData()
+        } else {
+            dataSource = nil
         }
     }
 }

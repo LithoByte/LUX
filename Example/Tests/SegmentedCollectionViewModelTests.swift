@@ -1,8 +1,8 @@
 //
-//  SegmentedTableViewModelTests.swift
+//  SegmentedCollectionViewModelTests.swift
 //  LUX_Tests
 //
-//  Created by Calvin Collins on 4/6/21.
+//  Created by Calvin Collins on 10/27/21.
 //  Copyright © 2021 CocoaPods. All rights reserved.
 //
 
@@ -11,35 +11,35 @@ import FunNet
 import FlexDataSource
 @testable import LUX
 
-class SegmentedTableViewModelTests: XCTestCase {
+class SegmentedCollectionViewModelTests: XCTestCase {
     func testEmptyTableView() {
         let call = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
-        let vm = LUXSegmentedTableViewModel(LUXCallRefresher(call))
+        let vm = LUXSegmentedCollectionViewModel(LUXCallRefresher(call))
         vm.segments = []
         XCTAssertNil(vm.dataSource)
     }
     
-    func testNonEmptyTableView(){
+    func testNonEmptyCollectionView(){
         let call = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
-        let vm = LUXSegmentedTableViewModel(LUXCallRefresher(call))
-        let sections = [FlexDataSourceSection(title: "One", items: []), FlexDataSourceSection(title: "Two", items: [])]
-        let source = FlexDataSource(nil, sections)
+        let vm = LUXSegmentedCollectionViewModel(LUXCallRefresher(call))
+        let sections = [FlexCollectionSection(title: "One", items: []), FlexCollectionSection(title: "Two", items: [])]
+        let source = FlexCollectionDataSource(nil, sections)
         vm.segments = [source]
         XCTAssertNotNil(vm.dataSource)
         vm.selectedIndex = 0
         XCTAssertNotNil(vm.dataSource)
-        XCTAssertEqual(vm.dataSource! as! FlexDataSource, source)
+        XCTAssertEqual(vm.dataSource! as! FlexCollectionDataSource, source)
         XCTAssertNotNil(vm.segments)
     }
     
     func testSegmentOutOfRange() {
         let call = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
-        let vm = LUXSegmentedTableViewModel(LUXCallRefresher(call))
-        let sections = [FlexDataSourceSection(title: "One", items: []), FlexDataSourceSection(title: "Two", items: [])]
-        let source = FlexDataSource(nil, sections)
+        let vm = LUXSegmentedCollectionViewModel(LUXCallRefresher(call))
+        let sections = [FlexCollectionSection(title: "One", items: []), FlexCollectionSection(title: "Two", items: [])]
+        let source = FlexCollectionDataSource(nil, sections)
         vm.segments = [source]
         XCTAssertNotNil(vm.dataSource)
-        vm.selectedIndex = 1
+        vm.selectedIndex = 2
         XCTAssertNil(vm.dataSource)
         XCTAssertNotNil(vm.segments)
     }

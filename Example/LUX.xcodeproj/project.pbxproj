@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23A8D2A5272A0B3000DE80DD /* SegmentedCollectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A8D2A4272A0B3000DE80DD /* SegmentedCollectionViewModelTests.swift */; };
+		23A8D2A7272A0E0100DE80DD /* CombineModelFunctionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23A8D2A6272A0E0100DE80DD /* CombineModelFunctionsTests.swift */; };
 		4913C59F25CA1A5B001C7EBA /* TextFitsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4913C59E25CA1A5B001C7EBA /* TextFitsTests.swift */; };
 		49781239239DB84C007DFA9F /* PagingModelsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D3C366239C416900D59DF0 /* PagingModelsTests.swift */; };
 		4978123A239DB850007DFA9F /* PagingDelegateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D3C367239C416900D59DF0 /* PagingDelegateTests.swift */; };
@@ -62,6 +64,8 @@
 
 /* Begin PBXFileReference section */
 		1CDCE1150B473AE788C4BA83 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		23A8D2A4272A0B3000DE80DD /* SegmentedCollectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedCollectionViewModelTests.swift; sourceTree = "<group>"; };
+		23A8D2A6272A0E0100DE80DD /* CombineModelFunctionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineModelFunctionsTests.swift; sourceTree = "<group>"; };
 		4913C59E25CA1A5B001C7EBA /* TextFitsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFitsTests.swift; sourceTree = "<group>"; };
 		491D44E2244A29F1009D6A3A /* SectionTableViewModel.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SectionTableViewModel.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4951271E2416E28700C42ED5 /* TableViewModel.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TableViewModel.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -243,6 +247,8 @@
 				49E4726A2623794800E9C2CD /* MultiSizeCVTests.swift */,
 				49E4726E26237BC300E9C2CD /* CVCSizeOptionsTests.swift */,
 				49E4727226237BF100E9C2CD /* FillGridTests.swift */,
+				23A8D2A4272A0B3000DE80DD /* SegmentedCollectionViewModelTests.swift */,
+				23A8D2A6272A0E0100DE80DD /* CombineModelFunctionsTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -503,6 +509,7 @@
 				6410ADDF259938F000022E72 /* ValidatorTests.swift in Sources */,
 				6418E0DC25AA7ED40050BEFB /* LoginViewControllerTests.swift in Sources */,
 				498DB66523B03E9100112A46 /* SplashViewModelTests.swift in Sources */,
+				23A8D2A5272A0B3000DE80DD /* SegmentedCollectionViewModelTests.swift in Sources */,
 				4978124A239DF285007DFA9F /* SinkThroughTests.swift in Sources */,
 				6418E0E825AAA3880050BEFB /* LUXOpenFlowControllerTests.swift in Sources */,
 				49781242239DCE78007DFA9F /* TestHelpers.swift in Sources */,
@@ -511,6 +518,7 @@
 				49E4726B2623794800E9C2CD /* MultiSizeCVTests.swift in Sources */,
 				49C9EF8F257AAFD4001D3EEE /* MatcherStrategyTests.swift in Sources */,
 				6418E0E025AA9E530050BEFB /* LUXCollectionViewCellTests.swift in Sources */,
+				23A8D2A7272A0E0100DE80DD /* CombineModelFunctionsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
