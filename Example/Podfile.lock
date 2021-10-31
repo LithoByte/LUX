@@ -41,6 +41,7 @@ PODS:
     - LUX/CollectionViews (= 0.2.20)
     - LUX/Networking (= 0.2.20)
     - LUX/Search (= 0.2.20)
+    - LUX/StoreKit (= 0.2.20)
     - LUX/TableViews (= 0.2.20)
     - LUX/Utilities (= 0.2.20)
   - LUX/AppOpenFlow (0.2.20):
@@ -90,6 +91,11 @@ PODS:
     - LithoUtils/Core
     - LUX/BaseSearch
     - LUX/TableViews
+  - LUX/StoreKit (0.2.20):
+    - FlexDataSource
+    - LithoOperators
+    - LithoUtils/Core
+    - PlaygroundVCHelpers
   - LUX/TableViews (0.2.20):
     - LithoUtils/Core
     - LUX/BaseTableViews
@@ -167,7 +173,7 @@ SPEC CHECKSUMS:
   FunNet: 35f31b2ce9525af9f096a6cffb5ae506a1bf5f6f
   LithoOperators: 8fc0c6a49e34a8d1ca01b777844f58e36c062d9f
   LithoUtils: 672d313a7fede3968e22f082b293cbc01ebcb7f0
-  LUX: 98b3495fc34d7fdb4ec47b4ad5a9d69e5838343d
+  LUX: 801e4c9f28b4989704d3fc2d741093799f0813a3
   PlaygroundVCHelpers: c7cc8994d2851ebd1590217101b4c6888d1c9cc8
   Prelude: fe4cc0fd961d34edf48fe6b04d05c863449efb0a
   SDWebImage: 4ea20cca2986adc5aacde07aa686742fd4c67a37

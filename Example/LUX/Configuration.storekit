@@ -1,0 +1,93 @@
+{
+  "identifier" : "3A04A699",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "D4D7ADB7",
+      "localizations" : [
+
+      ],
+      "name" : "Test Subscriptions",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "0.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "5E311D41",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "This is a monthly subscription.",
+              "displayName" : "Monthly Subscription",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.LUX.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Monthly Subscription",
+          "subscriptionGroupID" : "D4D7ADB7",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "5.00",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "CE003214",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "This is a 6 Month subscription.",
+              "displayName" : "6 Months Subscription",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.LUX.biyearly",
+          "recurringSubscriptionPeriod" : "P6M",
+          "referenceName" : "BiYearly Subscription",
+          "subscriptionGroupID" : "D4D7ADB7",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "displayPrice" : "9",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6F4B3CA8",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "This is a yearly subscription.",
+              "displayName" : "Yearly Subscription",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.LUX.yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Yearly Subscription",
+          "subscriptionGroupID" : "D4D7ADB7",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 1,
+    "minor" : 1
+  }
+}
