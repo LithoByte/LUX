@@ -10,7 +10,7 @@ target 'LUX_Example' do
   pod 'LithoOperators', git: 'https://github.com/LithoByte/LithoOperators'
   pod 'FlexDataSource', git: 'https://github.com/LithoByte/flex-data-source'
   pod 'fuikit', git: 'https://github.com/LithoByte/fuikit'
-  pod 'LithoUtils/Core', git: 'https://github.com/LithoByte/litho-utils', branch: 'cjc8/right-view-setter'
+  pod 'LithoUtils/Core', git: 'https://github.com/LithoByte/litho-utils'
   
   target 'LUX_Tests' do
     inherit! :search_paths
