@@ -7,11 +7,14 @@
 
 import Foundation
 import Slippers
+import Security
+import LithoOperators
 
 @objc public protocol LUXSession {
     @objc func authHeaders() -> [String: String]?
     @objc var host: String { get }
     
+    @objc func setAuthValue(authString: String)
     @objc func isAuthenticated() -> Bool
     @objc func clearAuth()
 }
@@ -28,6 +31,75 @@ open class LUXSessionManager: NSObject {
         }
         return nil
     }
+}
+
+open class LUXKeyChainSession: LUXSession {
+    public var host: String
+    public let authHeaderKey: String
+    
+    public init(host: String, authHeaderKey: String) {
+        self.host = host
+        self.authHeaderKey = authHeaderKey
+    }
+    
+    public func authHeaders() -> [String : String]? {
+        var item: CFTypeRef?
+        let _ = SecItemCopyMatching(authRetrieveQueryDictionary(host) as CFDictionary, &item)
+        
+        if let existingItem = item as? [String : Any],
+           let keyData = existingItem[kSecValueData as String] as? Data,
+           let apiKey = String(data: keyData, encoding: String.Encoding.utf8) {
+            return [authHeaderKey: apiKey]
+        }
+        
+        return nil
+    }
+    
+    
+    public func setAuthValue(authString: String) {
+        if let _ = authHeaders() {
+            let status = SecItemUpdate(authUpdateQueryDictionary(host) as CFDictionary, authUpdateAttrsDictionary(authString) as CFDictionary)
+            print(status)
+        } else {
+            let status = SecItemAdd(authAddQueryDictionary(host, authString) as CFDictionary, nil)
+            print(status)
+        }
+    }
+    
+    public func isAuthenticated() -> Bool {
+        return authHeaders() != nil
+    }
+    
+    public func clearAuth() {
+        let _ = SecItemDelete(authUpdateQueryDictionary(host) as CFDictionary)
+    }
+}
+
+public func authUpdateAttrsDictionary(_ value: String) -> [String: Any] {
+    return [kSecValueData as String: value]
+}
+
+public func authAddQueryDictionary(_ server: String, _ value: String) -> [String: Any] {
+    if let data = value.data(using: .utf8) {
+        return baseAuthQueryDictionary(server) << [kSecValueData as String: data]
+    } else {
+        return baseAuthQueryDictionary(server)
+    }
+}
+
+public func authRetrieveQueryDictionary(_ server: String) -> [String: Any] {
+    return baseAuthQueryDictionary(server) << [kSecMatchLimit as String: kSecMatchLimitOne,
+            kSecReturnAttributes as String: true,
+            kSecReturnData as String: true]
+}
+
+public func authUpdateQueryDictionary(_ server: String) -> [String: Any] {
+    return baseAuthQueryDictionary(server)
+}
+
+public func baseAuthQueryDictionary(_ server: String) -> [String: Any] {
+    return [kSecClass as String: kSecClassInternetPassword,
+            kSecAttrServer as String: server]
 }
 
 open class LUXAppGroupUserDefaultsSession: LUXSession {
@@ -75,8 +147,10 @@ open class LUXMultiHeaderDefaultsSession: LUXSession {
         return userDefaults.dictionary(forKey: host) as? [String: String]
     }
     
-    open func setAuthHeaders(authString: String) {
-        userDefaults.set(authString, forKey: host)
+    public func setAuthValue(authString: String) {}
+    
+    open func setAuthHeaders(dict authHeaders: [String: String]) {
+        userDefaults.set(authHeaders, forKey: host)
         userDefaults.synchronize()
     }
     

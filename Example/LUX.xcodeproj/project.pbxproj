@@ -64,6 +64,7 @@
 		1CDCE1150B473AE788C4BA83 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4913C59E25CA1A5B001C7EBA /* TextFitsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFitsTests.swift; sourceTree = "<group>"; };
 		491D44E2244A29F1009D6A3A /* SectionTableViewModel.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SectionTableViewModel.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		491D45FB27596737001761A8 /* LUX_Example.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LUX_Example.entitlements; sourceTree = "<group>"; };
 		4951271E2416E28700C42ED5 /* TableViewModel.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TableViewModel.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4978123D239DCC38007DFA9F /* RefreshCallTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshCallTests.swift; sourceTree = "<group>"; };
 		49781241239DCE78007DFA9F /* TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
@@ -156,6 +157,7 @@
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
+				491D45FB27596737001761A8 /* LUX_Example.entitlements */,
 				49D3C362239C414700D59DF0 /* config.yml */,
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
 				607FACD21AFB9204008FA782 /* Example for LUX */,
@@ -654,6 +656,7 @@
 			baseConfigurationReference = 69E2072452A596824D56C8B0 /* Pods-LUX_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LUX_Example.entitlements;
 				DEVELOPMENT_TEAM = HK6WSAR793;
 				INFOPLIST_FILE = LUX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -671,6 +674,7 @@
 			baseConfigurationReference = B7F7F45FCAC1859F0E260A0B /* Pods-LUX_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = LUX_Example.entitlements;
 				DEVELOPMENT_TEAM = HK6WSAR793;
 				INFOPLIST_FILE = LUX/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
