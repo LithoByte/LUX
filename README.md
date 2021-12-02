@@ -1,6 +1,6 @@
 # LUX
 
-[![CircleCI](https://circleci.com/gh/LithoByte/LUX.svg?style=svg)](https://circleci.com/gh/LithoByte/LUX)
+[![CircleCI](https://circleci.com/gh/LithoByte/LUX.svg?style=shield)](https://circleci.com/gh/LithoByte/LUX)
 [![Version](https://img.shields.io/cocoapods/v/LUX.svg?style=flat)](https://cocoapods.org/pods/LUX)
 [![License](https://img.shields.io/cocoapods/l/LUX.svg?style=flat)](https://cocoapods.org/pods/LUX)
 [![Platform](https://img.shields.io/cocoapods/p/LUX.svg?style=flat)](https://cocoapods.org/pods/LUX)
