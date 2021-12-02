@@ -36,7 +36,7 @@ Pod::Spec.new do |s|
     sp.dependency 'LithoOperators'
     sp.dependency 'FunNet/Core'
     sp.dependency 'fuikit/Core'
-    sp.dependency 'Slippers'
+    sp.dependency 'Slippers/Core'
     sp.dependency 'SDWebImage'
   end
   
@@ -70,7 +70,7 @@ Pod::Spec.new do |s|
     
     sp.dependency 'LUX/Auth'
     sp.dependency 'FunNet/Core'
-    sp.dependency 'Slippers'
+    sp.dependency 'Slippers/Core'
   end
   
   s.subspec 'TableViews' do |sp|

@@ -6,10 +6,10 @@ target 'LUX_Example' do
   pod 'PlaygroundVCHelpers', git: 'https://github.com/ThryvInc/playground-vc-helpers'
   pod 'FunNet/Combine', git: 'https://github.com/LithoByte/funnet'
   pod 'FunNet/Multipart', git: 'https://github.com/LithoByte/funnet'
-  pod 'Slippers', git: 'https://github.com/LithoByte/slippers'
+  pod 'Slippers/Core', git: 'https://github.com/LithoByte/slippers'
   pod 'LithoOperators', git: 'https://github.com/LithoByte/LithoOperators'
   pod 'FlexDataSource', git: 'https://github.com/LithoByte/flex-data-source'
-  pod 'fuikit', git: 'https://github.com/LithoByte/fuikit'
+  pod 'fuikit/Core', git: 'https://github.com/LithoByte/fuikit'
   pod 'LithoUtils/Core', git: 'https://github.com/LithoByte/litho-utils'
   
   target 'LUX_Tests' do
