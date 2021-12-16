@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LUXLoginViewController" customModule="LUX" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicatorView" destination="AGS-Ko-oC9" id="CJc-Q5-GgC"/>
                 <outlet property="backgroundImageView" destination="DGV-72-Yvn" id="UXT-D1-zuU"/>
                 <outlet property="forgotPasswordButton" destination="QtP-OY-4W3" id="iPp-Dq-PNA"/>
                 <outlet property="legalButton" destination="bs4-J0-JDT" id="3l3-8C-JUz"/>
@@ -18,7 +20,6 @@
                 <outlet property="logoImageView" destination="6kJ-Hx-FMJ" id="YUJ-lA-Pch"/>
                 <outlet property="passwordTextField" destination="R7Q-he-D1X" id="XmZ-tq-GFR"/>
                 <outlet property="signUpButton" destination="iOg-Mj-t8J" id="pnQ-YT-yiI"/>
-                <outlet property="spinner" destination="AGS-Ko-oC9" id="KTd-hY-ndE"/>
                 <outlet property="usernameTextField" destination="mzo-Zd-pbM" id="eJn-ml-OsK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -47,7 +48,7 @@
                         <action selector="passwordChanged" destination="-1" eventType="editingChanged" id="z3z-1l-wTc"/>
                     </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAM-Sd-P0o">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GAM-Sd-P0o">
                     <rect key="frame" x="16" y="303" width="382" height="41"/>
                     <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -59,7 +60,7 @@
                         <action selector="loginButtonPressed" destination="-1" eventType="touchUpInside" id="uyb-7h-CfW"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOg-Mj-t8J">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iOg-Mj-t8J">
                     <rect key="frame" x="16" y="801" width="382" height="41"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="41" id="1P9-pB-L8t"/>
@@ -79,7 +80,7 @@
                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AGS-Ko-oC9">
                     <rect key="frame" x="197" y="360" width="20" height="20"/>
                 </activityIndicatorView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QtP-OY-4W3">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QtP-OY-4W3">
                     <rect key="frame" x="296" y="354" width="102" height="28"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="Forgot Password"/>
@@ -87,7 +88,7 @@
                         <action selector="forgotPasswordPressed" destination="-1" eventType="touchUpInside" id="KUZ-Pk-Agd"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bs4-J0-JDT">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bs4-J0-JDT">
                     <rect key="frame" x="279" y="390" width="119" height="28"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <state key="normal" title="Terms &amp; Conditions"/>
@@ -97,6 +98,7 @@
                     </connections>
                 </button>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="R7Q-he-D1X" firstAttribute="trailing" secondItem="mzo-Zd-pbM" secondAttribute="trailing" id="4eo-0T-PN8"/>
@@ -125,7 +127,6 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="mzo-Zd-pbM" secondAttribute="trailing" constant="16" id="vaD-wX-gDo"/>
                 <constraint firstItem="bs4-J0-JDT" firstAttribute="top" secondItem="QtP-OY-4W3" secondAttribute="bottom" constant="8" id="w08-VH-10w"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="-926.08695652173924" y="-11.383928571428571"/>
         </view>
     </objects>

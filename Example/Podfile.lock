@@ -15,6 +15,10 @@ PODS:
     - LithoOperators
   - LithoOperators (0.1.4):
     - Prelude
+  - LithoUtils (0.1.0):
+    - fuikit/Core
+    - LithoOperators
+    - LithoUtils/Core (= 0.1.0)
   - LithoUtils/Core (0.1.0):
     - fuikit/Core
     - LithoOperators
@@ -100,7 +104,7 @@ DEPENDENCIES:
   - FunNet/Combine (from `https://github.com/LithoByte/funnet`)
   - FunNet/Multipart (from `https://github.com/LithoByte/funnet`)
   - LithoOperators (from `https://github.com/LithoByte/LithoOperators`)
-  - LithoUtils/Core (from `https://github.com/LithoByte/litho-utils`)
+  - LithoUtils (from `https://github.com/LithoByte/litho-utils`)
   - LUX (from `../`)
   - PlaygroundVCHelpers (from `https://github.com/ThryvInc/playground-vc-helpers`)
   - Slippers/Core (from `https://github.com/LithoByte/slippers`)
@@ -163,6 +167,6 @@ SPEC CHECKSUMS:
   SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
   Slippers: 5a3c6f24a556a59a091e2cb60e588472827be87c
 
-PODFILE CHECKSUM: 1b66245eee991810fd91d285a3d3eeb51952bc85
+PODFILE CHECKSUM: 940b727264080c97240a108fc65ed553ccdfa5dc
 
 COCOAPODS: 1.11.2

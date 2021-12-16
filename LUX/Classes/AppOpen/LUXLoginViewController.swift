@@ -11,7 +11,7 @@ import Combine
 import LithoOperators
 import LithoUtils
 
-open class LUXLoginViewController: FPUIViewController {
+open class LUXLoginViewController: FPUIViewController, CanIndicateActivity {
     @IBOutlet open weak var backgroundImageView: UIImageView!
     @IBOutlet open weak var logoImageView: UIImageView?
     @IBOutlet open weak var logoHeight: NSLayoutConstraint!
@@ -22,7 +22,7 @@ open class LUXLoginViewController: FPUIViewController {
     @IBOutlet open weak var signUpButton: UIButton?
     @IBOutlet open weak var forgotPasswordButton: UIButton?
     @IBOutlet open weak var legalButton: UIButton?
-    @IBOutlet open weak var spinner: UIActivityIndicatorView?
+    @IBOutlet open weak var activityIndicatorView: UIActivityIndicatorView?
     
     public var cancelBag = Set<AnyCancellable>()
     open var loginViewModel: LUXLoginProtocol?
@@ -36,15 +36,14 @@ open class LUXLoginViewController: FPUIViewController {
         loginViewModel?.outputs.submitButtonEnabledPublisher.sink { enabled in
             self.loginButton?.isEnabled = enabled
         }.store(in: &cancelBag)
-        loginViewModel?.outputs.activityIndicatorVisiblePublisher.sink { (visible) in
-            self.spinner?.isHidden = !visible
-        }.store(in: &cancelBag)
         loginViewModel?.inputs.viewDidLoad()
         if let textField = passwordTextField {
             setRightView(textField, showPasswordButton(target: self, selector: #selector(rightViewPressed)))
             loginViewModel?.outputs.showButtonPressedPublisher.sink(receiveValue: textField *> (toggle(\.isSecureTextEntry) <> ((^\.rightView) >?> ~>toggle(\UIButton.isSelected)))).store(in: &cancelBag)
         }
-        
+        if let activityIndicatorView = activityIndicatorView, let vm = loginViewModel{
+            bindActivityIndicatorVisibleToPublisher(activityIndicatorView, publisher: vm.outputs.activityIndicatorVisiblePublisher, cancelBag: &cancelBag)
+        }
     }
     
     @IBAction @objc open func usernameChanged() {
