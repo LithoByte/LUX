@@ -133,7 +133,7 @@ CHECKOUT OPTIONS:
     :commit: fb44caf7c572d5909c719aab3f6be232254e94a1
     :git: https://github.com/LithoByte/flex-data-source
   fuikit:
-    :commit: ef35d74aec979888ba9e172fee16d892a1bf6c79
+    :commit: 3d8e64ed509d23bf46f8cb31eaa1fcd13d00645a
     :git: https://github.com/LithoByte/fuikit
   FunNet:
     :commit: cc221683fff2984b2a06518133567c1ac5658edc
