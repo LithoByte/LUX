@@ -11,7 +11,7 @@ import Combine
 import LithoOperators
 import LithoUtils
 
-open class LUXLoginViewController: FPUIViewController {
+open class LUXLoginViewController: FPUIViewController, CanIndicateActivity {
     @IBOutlet open weak var backgroundImageView: UIImageView!
     @IBOutlet open weak var logoImageView: UIImageView?
     @IBOutlet open weak var logoHeight: NSLayoutConstraint!
@@ -22,7 +22,7 @@ open class LUXLoginViewController: FPUIViewController {
     @IBOutlet open weak var signUpButton: UIButton?
     @IBOutlet open weak var forgotPasswordButton: UIButton?
     @IBOutlet open weak var legalButton: UIButton?
-    @IBOutlet open weak var spinner: UIActivityIndicatorView?
+    @IBOutlet open weak var activityIndicatorView: UIActivityIndicatorView?
     
     public var cancelBag = Set<AnyCancellable>()
     open var loginViewModel: LUXLoginProtocol?
