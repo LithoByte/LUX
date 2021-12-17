@@ -20,7 +20,7 @@ enum House: String, Codable, CaseIterable {
 }
 struct Emperor: Codable {
     var name: String?
-    var imageUrlString: String? = "https://preview.redd.it/e6c2zqbu9gf51.jpg?width=500&format=pjpg&auto=webp&s=9c1e6dcf6d163ae036d534fc315a190223e77ed8"
+    var imageUrlString: String? = "https://picsum.photos/200/200"
 }
 struct Reign: Codable {
     var id: Int

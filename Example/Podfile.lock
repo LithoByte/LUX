@@ -93,9 +93,9 @@ PODS:
     - Prelude (~> 3.0)
   - PlaygroundVCHelpers (0.0.2)
   - Prelude (3.0.0)
-  - SDWebImage (5.12.1):
-    - SDWebImage/Core (= 5.12.1)
-  - SDWebImage/Core (5.12.1)
+  - SDWebImage (5.12.2):
+    - SDWebImage/Core (= 5.12.2)
+  - SDWebImage/Core (5.12.2)
   - Slippers/Core (0.1.1)
 
 DEPENDENCIES:
@@ -164,7 +164,7 @@ SPEC CHECKSUMS:
   LUX: a0a8013d109a4d4887f75fcc91637221e6749abb
   PlaygroundVCHelpers: c7cc8994d2851ebd1590217101b4c6888d1c9cc8
   Prelude: fe4cc0fd961d34edf48fe6b04d05c863449efb0a
-  SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
+  SDWebImage: 240e5c12b592fb1268c1d03b8c90d90e8c2ffe82
   Slippers: 5a3c6f24a556a59a091e2cb60e588472827be87c
 
 PODFILE CHECKSUM: 940b727264080c97240a108fc65ed553ccdfa5dc
