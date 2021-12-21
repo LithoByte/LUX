@@ -13,42 +13,57 @@ public class LUXPinterestStyleLayout: UICollectionViewLayout {
     private var numberOfColumns = 2
     private let cellPadding: CGFloat = 6
     private var cache: [UICollectionViewLayoutAttributes] = []
-    private var contentHeight: CGFloat = 0
-    
-    private var _contentSize: CGSize? { didSet { invalidateLayout() }}
-    public func setContentSize(_ contentSize: CGSize) { _contentSize = contentSize }
-    
-    open var heightForCellAtIndexPath: ((UICollectionView, IndexPath) -> CGFloat)?
-    
-    private var contentWidth: CGFloat {
+    private var contentHeight: CGFloat = 0.0 { didSet { invalidateLayout() }}
+    private var contentHeightSetter: CGFloat {
+        get { return contentHeight }
+        set { contentHeight = newValue}
+    }
+    private var contentWidth: CGFloat = 0.0 { didSet { invalidateLayout() }}
+    private var contentWidthSetter: CGFloat {
       guard let collectionView = collectionView else {
         return 0
       }
       let insets = collectionView.contentInset
-      return collectionView.bounds.width - (insets.left + insets.right)
+      contentWidth = collectionView.bounds.width - (insets.left + insets.right)
+      return contentWidth
     }
+    private var contentSize: CGSize? { didSet { invalidateLayout() }}
+    private var contentSizeSetter: CGSize {
+        get { return contentSize ?? CGSize(width: 0, height: 0) }
+        set { contentSize = newValue}
+    }
+    private var itemCount: Int { calculateItemCount() }
+    
+    open var heightForCellAtIndexPath: ((UICollectionView, IndexPath) -> CGFloat)?
+    
     
     open func setContentSizeFromCache() {
         if let last = cache.last {
-            _contentSize = CGSize(width: contentWidth, height: last.frame.minY + last.frame.height)
+            contentSizeSetter = CGSize(width: contentWidth, height: last.frame.minY + last.frame.height)
         }
     }
     
     public override var collectionViewContentSize: CGSize {
-      return CGSize(width: contentWidth, height: contentHeight)
+      return contentSize ?? CGSize(width: contentWidth, height: contentHeight)
+    }
+    
+    open func calculateItemCount() -> Int {
+        var count = 0
+        if let cv = collectionView {
+            for i in 0..<cv.numberOfSections { count += cv.numberOfItems(inSection: i) }
+        }
+        return count
     }
     
     public override func prepare() {
         super.prepare()
         
-        guard let collectionView = collectionView else { return }
-        cacheFramesAndCalculate(collectionView.numberOfSections, collectionView.numberOfItems(inSection:))
-        
+        cacheFramesAndCalculate()
         setContentSizeFromCache()
 
     }
     
-    open func cacheFramesAndCalculate(_ numberOfSections: Int, _ numberOfItemsInSection: (Int) -> Int) {
+    open func cacheFramesAndCalculate() {
         cache.removeAll()
         guard cache.isEmpty, let collectionView = collectionView else { return }
         
@@ -62,25 +77,25 @@ public class LUXPinterestStyleLayout: UICollectionViewLayout {
         var column = 0
         var yOffset: [CGFloat] = .init(repeating: 0, count: numberOfColumns)
 
-        for item in 0..<collectionView.numberOfItems(inSection: 0) {
-          let indexPath = IndexPath(item: item, section: 0)
+        for item in 0..<itemCount {
+        let indexPath = IndexPath(item: item, section: 0)
             
-            let photoHeight = heightForCellAtIndexPath?(collectionView, indexPath) ?? 180
-          let height = cellPadding * 2 + photoHeight
-          let frame = CGRect(x: xOffset[column],
+        let photoHeight = heightForCellAtIndexPath?(collectionView, indexPath) ?? 180
+        let height = cellPadding * 2 + photoHeight
+        let frame = CGRect(x: xOffset[column],
                              y: yOffset[column],
                              width: columnWidth,
                              height: height)
-          let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
+        let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
             
-          let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
-          attributes.frame = insetFrame
-          cache.append(attributes)
+        let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+        attributes.frame = insetFrame
+        cache.append(attributes)
 
-          contentHeight = max(contentHeight, frame.maxY)
-          yOffset[column] = yOffset[column] + height
+        contentHeightSetter = max(contentHeightSetter, frame.maxY)
+        yOffset[column] = yOffset[column] + height
 
-          column = column < (numberOfColumns - 1) ? (column + 1) : 0
+        column = column < (numberOfColumns - 1) ? (column + 1) : 0
         }
     }
     
