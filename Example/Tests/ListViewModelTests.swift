@@ -36,4 +36,16 @@ class ListViewModelTests: XCTestCase {
         XCTAssert(wasCalled)
         cancel.cancel()
     }
+    
+    func testFilterModels() {
+        var wasCalled = false
+        let subject = PassthroughSubject<[Human], Never>()
+        let vm = LUXFilteredModelListViewModel(modelsPublisher: subject.eraseToAnyPublisher(), filter: { _ in return true}, modelToItem: humanConfigurer >>> configurerToItem)
+        let cancel = vm.$models.sinkThrough {
+            _ in wasCalled = true
+        }
+        subject.send([Human]())
+        XCTAssert(wasCalled)
+        cancel.cancel()
+    }
 }

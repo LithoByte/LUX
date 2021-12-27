@@ -33,6 +33,8 @@ open class LUXLoginViewController: FPUIViewController, CanIndicateActivity {
     override open func viewDidLoad() {
         super.viewDidLoad()
         
+        usernameTextField?.delegate = loginViewModel?.inputs.usernameDelegate
+        passwordTextField?.delegate = loginViewModel?.inputs.passwordDelegate
         loginViewModel?.outputs.submitButtonEnabledPublisher.sink { enabled in
             self.loginButton?.isEnabled = enabled
         }.store(in: &cancelBag)
