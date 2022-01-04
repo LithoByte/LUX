@@ -60,4 +60,5 @@ class ListViewModelTests: XCTestCase {
         XCTAssert(wasFiltered)
         cancel.cancel()
     }
+
 }

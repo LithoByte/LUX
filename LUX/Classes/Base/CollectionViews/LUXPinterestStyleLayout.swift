@@ -13,20 +13,19 @@ public class LUXPinterestStyleLayout: UICollectionViewLayout {
     private var numberOfColumns = 2
     private let cellPadding: CGFloat = 6
     private var cache: [UICollectionViewLayoutAttributes] = []
-    private var contentHeight: CGFloat = 0.0 { didSet { invalidateLayout() }}
+    private var contentHeight: CGFloat = 0.0
     private var contentHeightSetter: CGFloat {
         get { return contentHeight }
         set { contentHeight = newValue}
     }
-    private var contentWidth: CGFloat = 0.0 { didSet { invalidateLayout() }}
-    private var contentWidthSetter: CGFloat {
+    private var contentWidth: CGFloat {
       guard let collectionView = collectionView else {
         return 0
       }
       let insets = collectionView.contentInset
-      contentWidth = collectionView.bounds.width - (insets.left + insets.right)
-      return contentWidth
+      return collectionView.bounds.width - (insets.left + insets.right)
     }
+  
     private var contentSize: CGSize? { didSet { invalidateLayout() }}
     private var contentSizeSetter: CGSize {
         get { return contentSize ?? CGSize(width: 0, height: 0) }
