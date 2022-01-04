@@ -31,7 +31,6 @@ open class LUXRefreshableTableViewModel: LUXTableViewModel, Refreshable {
     }
     
     @objc open func endRefreshing() {
-        tableView?.setContentOffset(.zero, animated: true)
         tableView?.refreshControl?.endRefreshing()
     }
     
