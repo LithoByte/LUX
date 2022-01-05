@@ -64,7 +64,7 @@ open class LUXLoginViewModel: LUXLoginProtocol, LUXLoginInputs, LUXLoginOutputs 
     
     private var cancelBag = Set<AnyCancellable>()
     
-    public init<T>(usernameDelegate: UITextFieldDelegate?, passwordDelegate: UITextFieldDelegate?, credsCall: CombineNetCall? = nil, loginModelToJson: @escaping (String, String) -> T, saveAuth: ((Data) -> Bool)? = nil) where T: Encodable {
+    public init<T>(credsCall: CombineNetCall? = nil, loginModelToJson: @escaping (String, String) -> T, saveAuth: ((Data) -> Bool)? = nil) where T: Encodable {
         
         credentialLoginCall = credsCall
         showButtonPressedPublisher = showButtonPressedSubject.eraseToAnyPublisher()
