@@ -17,6 +17,8 @@ public protocol LUXLoginInputs {
     func passwordChanged(password: String?)
     func rightViewPressed()
     func submitButtonPressed()
+    var usernameDelegate: UITextFieldDelegate? { get set}
+    var passwordDelegate: UITextFieldDelegate? { get set}
     func viewDidLoad()
 }
 
@@ -31,8 +33,9 @@ public protocol LUXLoginProtocol {
     var inputs: LUXLoginInputs { get }
     var outputs: LUXLoginOutputs { get }
 }
-
 open class LUXLoginViewModel: LUXLoginProtocol, LUXLoginInputs, LUXLoginOutputs {
+    public var usernameDelegate: UITextFieldDelegate?
+    public var passwordDelegate: UITextFieldDelegate?
     open var inputs: LUXLoginInputs { return self }
     open var outputs: LUXLoginOutputs { return self }
     
@@ -56,10 +59,10 @@ open class LUXLoginViewModel: LUXLoginProtocol, LUXLoginInputs, LUXLoginOutputs 
     let credsSubject = CurrentValueSubject<(String?, String?)?, Never>(nil)
     
     public let credentialLoginCall: CombineNetCall?
-    
     private var cancelBag = Set<AnyCancellable>()
     
     public init<T>(credsCall: CombineNetCall? = nil, loginModelToJson: @escaping (String, String) -> T, saveAuth: ((Data) -> Bool)? = nil) where T: Encodable {
+        
         credentialLoginCall = credsCall
         showButtonPressedPublisher = showButtonPressedSubject.eraseToAnyPublisher()
         activityIndicatorVisiblePublisher = activityIndicatorVisibleSubject.eraseToAnyPublisher()

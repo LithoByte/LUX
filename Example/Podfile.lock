@@ -134,16 +134,16 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FlexDataSource:
-    :commit: fb44caf7c572d5909c719aab3f6be232254e94a1
+    :commit: b18c46a4d4f833fbea79930783225b988c7621b0
     :git: https://github.com/LithoByte/flex-data-source
   fuikit:
-    :commit: 3d8e64ed509d23bf46f8cb31eaa1fcd13d00645a
+    :commit: 5ca748d86d04756bcc448f12d3c11afa2403af75
     :git: https://github.com/LithoByte/fuikit
   FunNet:
     :commit: cc221683fff2984b2a06518133567c1ac5658edc
     :git: https://github.com/LithoByte/funnet
   LithoOperators:
-    :commit: e1203c96bfd693bc3579b6080439e2580716d9e4
+    :commit: 443b07ee450cda946647da8f9e7414b5628b4800
     :git: https://github.com/LithoByte/LithoOperators
   LithoUtils:
     :commit: a636308969618cab4fcd50e5ed1c362a0ab1e3e3
