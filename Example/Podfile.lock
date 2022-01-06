@@ -34,6 +34,7 @@ PODS:
     - LUX/BaseSearch (= 0.2.20)
     - LUX/BaseTableViews (= 0.2.20)
     - LUX/CollectionViews (= 0.2.20)
+    - LUX/CombineUtilities (= 0.2.20)
     - LUX/Networking (= 0.2.20)
     - LUX/Search (= 0.2.20)
     - LUX/TableViews (= 0.2.20)
@@ -77,6 +78,10 @@ PODS:
   - LUX/CollectionViews (0.2.20):
     - LithoUtils/Core
     - LUX/BaseCollectionViews
+  - LUX/CombineUtilities (0.2.20):
+    - LithoOperators
+    - LithoUtils/Core
+    - Prelude (~> 3.0)
   - LUX/Networking (0.2.20):
     - FunNet/Combine
     - LithoUtils/Core
@@ -93,9 +98,9 @@ PODS:
     - Prelude (~> 3.0)
   - PlaygroundVCHelpers (0.0.2)
   - Prelude (3.0.0)
-  - SDWebImage (5.12.1):
-    - SDWebImage/Core (= 5.12.1)
-  - SDWebImage/Core (5.12.1)
+  - SDWebImage (5.12.2):
+    - SDWebImage/Core (= 5.12.2)
+  - SDWebImage/Core (5.12.2)
   - Slippers/Core (0.1.1)
 
 DEPENDENCIES:
@@ -143,7 +148,7 @@ CHECKOUT OPTIONS:
     :commit: cc221683fff2984b2a06518133567c1ac5658edc
     :git: https://github.com/LithoByte/funnet
   LithoOperators:
-    :commit: 443b07ee450cda946647da8f9e7414b5628b4800
+    :commit: 518f40dd4c8e347b416bbe8faa96114f9eb09a3b
     :git: https://github.com/LithoByte/LithoOperators
   LithoUtils:
     :commit: a636308969618cab4fcd50e5ed1c362a0ab1e3e3
@@ -161,10 +166,10 @@ SPEC CHECKSUMS:
   FunNet: 84bc45acb92e38183f5e26be3f36ab2ce14c67be
   LithoOperators: 8fc0c6a49e34a8d1ca01b777844f58e36c062d9f
   LithoUtils: 672d313a7fede3968e22f082b293cbc01ebcb7f0
-  LUX: a0a8013d109a4d4887f75fcc91637221e6749abb
+  LUX: 5fd4d9fbd9e8b624b06d45f85bd3dc4994bb6781
   PlaygroundVCHelpers: c7cc8994d2851ebd1590217101b4c6888d1c9cc8
   Prelude: fe4cc0fd961d34edf48fe6b04d05c863449efb0a
-  SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
+  SDWebImage: 240e5c12b592fb1268c1d03b8c90d90e8c2ffe82
   Slippers: 5a3c6f24a556a59a091e2cb60e588472827be87c
 
 PODFILE CHECKSUM: 940b727264080c97240a108fc65ed553ccdfa5dc
