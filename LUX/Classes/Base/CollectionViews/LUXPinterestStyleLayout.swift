@@ -101,18 +101,18 @@ public class LUXPinterestStyleLayout: UICollectionViewLayout {
     }
     
     open func cacheFramesAndCalculate() {
-        cache.removeAll()
-        guard cache.isEmpty, let collectionView = collectionView else { return }
+            cache.removeAll()
+            guard cache.isEmpty, let collectionView = collectionView else { return }
         
-        let xOffset = calculateXOffset()
-        let columnWidth = contentWidth / CGFloat(_columnCount!)
-        var column = 0
-        var yOffset: [CGFloat] = .init(repeating: 0, count: _columnCount!)
+            let xOffset = calculateXOffset()
+            let columnWidth = contentWidth / CGFloat(_columnCount!)
+            var column = 0
+            var yOffset: [CGFloat] = .init(repeating: 0, count: _columnCount!)
 
-        for item in 0..<itemCount {
-        let indexPath = IndexPath(item: item, section: 0)
+            for item in 0..<itemCount {
+            let indexPath = IndexPath(item: item, section: 0)
             
-        let photoHeight = heightForCellAtIndexPath?(collectionView, indexPath) ?? 180
+            let photoHeight = heightForCellAtIndexPath?(collectionView, indexPath) ?? 180
             let height = _cellPadding * 2 + photoHeight
             
             //had to give a magic number. Not sure if the magic number is good.
