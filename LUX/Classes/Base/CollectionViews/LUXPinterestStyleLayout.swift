@@ -15,14 +15,13 @@ public class LUXPinterestStyleLayout: UICollectionViewLayout {
     private var _cellPadding: CGFloat = 0 {didSet { invalidateLayout() }}
     public func setCellPadding(_ padding: CGFloat = 0) { _cellPadding = padding }
     
-    private var _tuple: (columnCount: Int, baseItemWidth: CGFloat) = (0, 0.0)
-    
     private var cache: [UICollectionViewLayoutAttributes] = []
     
     private var _baseItemWidth: CGFloat? { didSet { invalidateLayout() }}
     public func setBaseItemWidth(_ width: CGFloat) { _baseItemWidth = width }
     
-    public var widthForColumn: ((Int) -> CGFloat?)? = { _ in return nil }
+    public var setWidthForColumn: Int?
+    private var widthForColumn: ((Int) -> CGFloat?)? = { _ in return nil }
     
     private var contentHeight: CGFloat = 0.0
     private var contentWidth: CGFloat {
@@ -76,7 +75,8 @@ public class LUXPinterestStyleLayout: UICollectionViewLayout {
             let columnWidth = contentWidth / CGFloat(_columnCount!)
             offSet = columnWidth
             for column in 0..<columnCount {
-                xOffSet.append(offSet * CGFloat(column))
+                let width = (widthForColumn ?? { _ in return 0 })(setWidthForColumn ?? 0) ?? offSet
+                xOffSet.append(width * CGFloat(column))
             }
         } else if let baseWidth = _baseItemWidth {
             if _columnCount == nil {
