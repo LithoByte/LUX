@@ -18,16 +18,20 @@ open class LUXSelectionViewModel<Model, ViewType> where Model: Equatable, ViewTy
     
     @Published open var selectedModels: [Model] = []
     
-    open var viewSelector: (Model, ViewType) -> Void = { _, _ in }
-    open var viewDeselector: (Model, ViewType) -> Void = { _, _ in }
+    open var viewSelector: (Model, ViewType) -> Void
+    open var viewDeselector: (Model, ViewType) -> Void
     
     open lazy var getSelectedIndex: (UIView) -> Int? = { [weak self] view in self?.modelViewPairs.firstIndex(where: ignoreFirstArg(f: view -*> (==))) }
     
     public init(models: [Model],
+                initialSelectedModels: [Model]?,
                 views: [ViewType],
                 viewSelector: @escaping (Model, ViewType) -> Void,
                 viewDeselector: @escaping (Model, ViewType) -> Void) {
         self.models = models
+        if let initialSelectedModels = initialSelectedModels {
+            self.selectedModels = initialSelectedModels
+        }
         self.views = views
         self.viewSelector = viewSelector
         self.viewDeselector = viewDeselector
@@ -52,8 +56,8 @@ open class LUXSelectionViewModel<Model, ViewType> where Model: Equatable, ViewTy
     open func toggleIndex(_ index: Int) {
         if !selectedModels.contains(models[index]) {
             if isSingleSelect {
-                modelViewPairs.forEach(viewDeselector)
                 selectedModels.removeAll()
+                modelViewPairs.forEach(viewDeselector)
             }
             
             modelViewPairs[index] |> viewSelector
