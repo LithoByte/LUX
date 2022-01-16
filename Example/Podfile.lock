@@ -139,7 +139,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FlexDataSource:
-    :commit: b18c46a4d4f833fbea79930783225b988c7621b0
+    :commit: 7eba24b993a02ca1f2fb4523bac50ce99e7f17c4
     :git: https://github.com/LithoByte/flex-data-source
   fuikit:
     :commit: 5ca748d86d04756bcc448f12d3c11afa2403af75
