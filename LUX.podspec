@@ -46,6 +46,14 @@ Pod::Spec.new do |s|
     sp.dependency 'Prelude', '~> 3.0'
   end
   
+  s.subspec 'CombineUtilities' do |sp|
+    sp.source_files = 'LUX/Classes/CombineUtilities/**/*.swift'
+    sp.resources = 'LUX/Classes/CombineUtilities/**/*.xib'
+    sp.ios.deployment_target = '13.0'
+    sp.dependency 'LithoOperators'
+    sp.dependency 'Prelude', '~> 3.0'
+  end
+  
   s.subspec 'Auth' do |sp|
     sp.source_files = 'LUX/Classes/Auth/**/*.swift'
     sp.resources = 'LUX/Classes/Auth/**/*.xib'
