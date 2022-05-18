@@ -30,7 +30,7 @@ class DefaultIsIncludedTests: XCTestCase {
             return true
         }
         
-        XCTAssert(defaultMatches(nil, "Neo Anderson", nilMatcher, emptyMatcher, matcher))
+        XCTAssert(defaultMatchesString(nil, "Neo Anderson", nilMatcher, emptyMatcher, matcher))
         XCTAssert(wasNilCalled)
         XCTAssertFalse(wasEmptyCalled)
         XCTAssertFalse(wasMatcherCalled)
@@ -55,7 +55,7 @@ class DefaultIsIncludedTests: XCTestCase {
             return true
         }
         
-        XCTAssert(defaultMatches("", "Neo Anderson", nilMatcher, emptyMatcher, matcher))
+        XCTAssert(defaultMatchesString("", "Neo Anderson", nilMatcher, emptyMatcher, matcher))
         XCTAssertFalse(wasNilCalled)
         XCTAssert(wasEmptyCalled)
         XCTAssertFalse(wasMatcherCalled)
@@ -82,7 +82,7 @@ class DefaultIsIncludedTests: XCTestCase {
             return true
         }
         
-        XCTAssert(defaultMatches("Neo", "Neo Anderson", nilMatcher, emptyMatcher, matcher))
+        XCTAssert(defaultMatchesString("Neo", "Neo Anderson", nilMatcher, emptyMatcher, matcher))
         XCTAssertFalse(wasNilCalled)
         XCTAssertFalse(wasEmptyCalled)
         XCTAssert(wasMatcherCalled)

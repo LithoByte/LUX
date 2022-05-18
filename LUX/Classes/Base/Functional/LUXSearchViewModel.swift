@@ -36,18 +36,21 @@ public func lowercased(string: String) -> String { return string.lowercased() }
 public func lowercased(string: String?) -> String? { return string?.lowercased() }
 
 public func defaultIsIncluded<T>(_ search: String?, _ t: T, _ modelToString: (T) -> String?, _ nilMatcher: () -> Bool, _ emptyMatcher: () -> Bool, _ matcher: (String, String) -> Bool) -> Bool {
-    if let text = modelToString(t) {
-        return defaultMatches(search, text, nilMatcher, emptyMatcher, matcher)
-    } else {
-        return nilMatcher()
+    return defaultIsMatch(search, "", t, modelToString, nilMatcher, emptyMatcher, matcher: matcher)
+}
+
+public func defaultIsMatch<T, U>(_ filterValue: U?, _ filterIdentity: U, _ model: T, _ modelToFilter: (T) -> U?, _ nilMatcher: () -> Bool = returnTrue, _ identityMatcher: () -> Bool = returnTrue, matcher: (U, U) -> Bool = (==)) -> Bool where U: Equatable {
+    if let value = modelToFilter(model), let u = filterValue {
+        return u == filterIdentity ? identityMatcher() : matcher(u, value)
     }
+    return nilMatcher()
 }
 
 public func defaultIsIncluded<T>(_ search: String?, _ t: T, _ modelToString: (T) -> String, _ nilMatcher: () -> Bool, _ emptyMatcher: () -> Bool, _ matcher: (String, String) -> Bool) -> Bool {
-    return defaultMatches(search, modelToString(t), nilMatcher, emptyMatcher, matcher)
+    return defaultMatchesString(search, modelToString(t), nilMatcher, emptyMatcher, matcher)
 }
 
-public func defaultMatches(_ search: String?, _ text: String, _ nilMatcher: () -> Bool, _ emptyMatcher: () -> Bool, _ matcher: (String, String) -> Bool) -> Bool {
+public func defaultMatchesString(_ search: String?, _ text: String, _ nilMatcher: () -> Bool, _ emptyMatcher: () -> Bool, _ matcher: (String, String) -> Bool) -> Bool {
     if let searchText = search {
         if searchText.isEmpty {
             return emptyMatcher()
