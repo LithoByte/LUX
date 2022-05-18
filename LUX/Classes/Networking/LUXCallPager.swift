@@ -8,6 +8,7 @@
 import FunNet
 import Slippers
 import Combine
+import Foundation
 
 open class LUXCallPager: Pager, NetworkFetcher {
     open var call: CombineNetCall?
@@ -18,8 +19,11 @@ open class LUXCallPager: Pager, NetworkFetcher {
         self.call = call
         super.init(firstPageValue: firstPageValue, onPageUpdate: nil)
         self.onPageUpdate = { [unowned self] page in
-            self.call?.endpoint.getParams.updateValue(page, forKey: pageKeyName)
-            self.call?.endpoint.getParams.updateValue(defaultCount, forKey: countKeyName)
+            if var getParams = self.call?.endpoint.getParams.filter({ $0.name != pageKeyName }).filter({ $0.name != countKeyName }) {
+                getParams.append(URLQueryItem(name: pageKeyName, value: "\(page)"))
+                getParams.append(URLQueryItem(name: countKeyName, value: "\(defaultCount)"))
+                self.call?.endpoint.getParams = getParams
+            }
             self.call?.fire()
             self.isFetching = true
         }

@@ -25,11 +25,11 @@ open class LUXFlexViewController<T>: FPUIViewController, Refreshable {
     }
     open var indicatingCall: CombineNetCall? {
         didSet {
-            cancelBag.insert(indicatingCall?.responder?.$response.sink { _ in
+            cancelBag.insert(indicatingCall?.publisher.$response.sink { _ in
                 self.tableView?.setContentOffset(.zero, animated: true)
                 self.tableView?.refreshControl?.endRefreshing()
             })
-            cancelBag.insert(indicatingCall?.responder?.$data.sink { _ in
+            cancelBag.insert(indicatingCall?.publisher.$data.sink { _ in
                 self.tableView?.setContentOffset(.zero, animated: true)
                 self.tableView?.refreshControl?.endRefreshing()
             })

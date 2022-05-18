@@ -142,19 +142,19 @@ class SearchTests: XCTestCase {
     
     func testDefaultSearchAddsParam() {
         let searcher = Searcher()
-        let call = FunNetCall(configuration: ServerConfiguration(host: "", apiRoute: ""), Endpoint())
+        let call = NetworkCall(configuration: ServerConfiguration(host: "", apiRoute: ""), endpoint: Endpoint())
         call.firingFunc = { _ in }
         let search = defaultOnSearch(searcher, call, paramName: "search")
         
         search("hullo")
         
-        XCTAssertEqual(call.endpoint.getParams["search"] as? String, "hullo")
+        XCTAssertEqual(call.endpoint.getParams.first { $0.name == "search" }?.value, "hullo")
     }
     
     func testDefaultSearchFiresCall() {
         var wasFired = false
         let searcher = Searcher()
-        let call = FunNetCall(configuration: ServerConfiguration(host: "", apiRoute: ""), Endpoint())
+        let call = NetworkCall(configuration: ServerConfiguration(host: "", apiRoute: ""), endpoint: Endpoint())
         call.firingFunc = { _ in wasFired = true }
         let search = defaultOnSearch(searcher, call, paramName: "search")
         
@@ -167,13 +167,13 @@ class SearchTests: XCTestCase {
         var wasFired = false
         var wasCalled = false
         let searcher = Searcher()
-        let call = FunNetCall(configuration: ServerConfiguration(host: "", apiRoute: ""), Endpoint())
+        let call = NetworkCall(configuration: ServerConfiguration(host: "", apiRoute: ""), endpoint: Endpoint())
         call.firingFunc = { _ in wasFired = true }
         let refresher = Refresher { wasCalled = true }
         let search = defaultOnSearch(searcher, call, refresher, paramName: "search")
         
         search("hullo")
-        XCTAssertEqual(call.endpoint.getParams["search"] as? String, "hullo")
+        XCTAssertEqual(call.endpoint.getParams.first { $0.name == "search" }?.value, "hullo")
         XCTAssertTrue(wasCalled)
         XCTAssertFalse(wasFired)
         
@@ -182,13 +182,13 @@ class SearchTests: XCTestCase {
     func testDefaultSearchRemovesParam() {
         var wasFired = false
         let searcher = Searcher()
-        let call = FunNetCall(configuration: ServerConfiguration(host: "", apiRoute: ""), Endpoint())
+        let call = NetworkCall(configuration: ServerConfiguration(host: "", apiRoute: ""), endpoint: Endpoint())
         call.firingFunc = { _ in wasFired = true }
         let search = defaultOnSearch(searcher, call, paramName: "search")
         
         search("hullo")
         
-        XCTAssertEqual(call.endpoint.getParams["search"] as? String, "hullo")
+        XCTAssertEqual(call.endpoint.getParams.first { $0.name == "search" }?.value, "hullo")
         XCTAssert(wasFired)
         
         wasFired = false
@@ -196,7 +196,7 @@ class SearchTests: XCTestCase {
         search("")
         
         XCTAssert(wasFired)
-        XCTAssertNil(call.endpoint.getParams["search"])
+        XCTAssertNil(call.endpoint.getParams.first { $0.name == "search" }?.value)
     }
     
     func testIncrementalSearchDelegate() {

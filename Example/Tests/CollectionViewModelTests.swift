@@ -61,7 +61,7 @@ class CollectionViewModelItemTests: XCTestCase {
     
     func testRefreshableViewModel() {
         let call: CombineNetCall = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
-        call.firingFunc = { $0.responder?.data = json.data(using: .utf8) }
+        call.firingFunc = ~>{ (call: CombineNetCall) in call.publisher.data = json.data(using: .utf8) }
         let refresher = LUXCallRefresher(call)
         let vm = LUXRefreshableCollectionViewModel(refresher)
         let collection = UICollectionView(frame: .zero, collectionViewLayout: .init())
@@ -157,7 +157,7 @@ class CollectionViewModelItemTests: XCTestCase {
             $1.backgroundColor = .black
         }
         let call: CombineNetCall = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
-        call.firingFunc = { $0.responder?.data = json.data(using: .utf8) }
+        call.firingFunc = ~>{ (call: CombineNetCall) in call.publisher.data = json.data(using: .utf8) }
         
         let vm = refreshableCollectionViewModel(call, id, humanCollectionViewCell, { _ in
             
@@ -173,7 +173,7 @@ class CollectionViewModelItemTests: XCTestCase {
             $1.backgroundColor = .black
         }
         let call: CombineNetCall = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
-        call.firingFunc = { $0.responder?.data = json.data(using: .utf8) }
+        call.firingFunc = ~>{ (call: CombineNetCall) in call.publisher.data = json.data(using: .utf8) }
         
         let vm = pageableCollectionViewModel(call, id, humanCollectionViewCell, { _ in })
         

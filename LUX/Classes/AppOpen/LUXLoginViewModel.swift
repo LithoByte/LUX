@@ -67,7 +67,7 @@ open class LUXLoginViewModel: LUXLoginProtocol, LUXLoginInputs, LUXLoginOutputs 
         showButtonPressedPublisher = showButtonPressedSubject.eraseToAnyPublisher()
         activityIndicatorVisiblePublisher = activityIndicatorVisibleSubject.eraseToAnyPublisher()
         
-        if let authSaved = saveAuth, let responder = credsCall?.responder {
+        if let authSaved = saveAuth, let responder = credsCall?.publisher {
             advanceAuthedPublisher = responder.$data.skipNils().map(authSaved).filter { $0 }.map { _ in () }.eraseToAnyPublisher()
         } else {
             advanceAuthedPublisher = advanceAuthed.eraseToAnyPublisher()
@@ -84,9 +84,9 @@ open class LUXLoginViewModel: LUXLoginProtocol, LUXLoginInputs, LUXLoginOutputs 
             self.activityIndicatorVisibleSubject.send(true)
         }.store(in: &cancelBag)
         
-        credentialLoginCall?.responder?.$httpResponse.skipNils().dropFirst().sink(receiveValue: authResponseReceived).store(in: &cancelBag)
-        credentialLoginCall?.responder?.$error.skipNils().dropFirst().sink { _ in self.activityIndicatorVisibleSubject.send(false) }.store(in: &cancelBag)
-        credentialLoginCall?.responder?.$response.skipNils().dropFirst().sink { _ in self.activityIndicatorVisibleSubject.send(false) }.store(in: &cancelBag)
+        credentialLoginCall?.publisher.$httpResponse.skipNils().dropFirst().sink(receiveValue: authResponseReceived).store(in: &cancelBag)
+        credentialLoginCall?.publisher.$error.skipNils().dropFirst().sink { _ in self.activityIndicatorVisibleSubject.send(false) }.store(in: &cancelBag)
+        credentialLoginCall?.publisher.$response.skipNils().dropFirst().sink { _ in self.activityIndicatorVisibleSubject.send(false) }.store(in: &cancelBag)
     }
     
     open func usernameChanged(username: String?) {

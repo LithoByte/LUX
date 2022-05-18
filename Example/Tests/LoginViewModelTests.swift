@@ -218,7 +218,7 @@ class LoginViewModelTests: XCTestCase {
         let call = CombineNetCall(configuration: ServerConfiguration(host: "lithobyte.co", apiRoute: "api/v1"), Endpoint())
         call.firingFunc = { _ in
             wasCalled = true
-            call.responder?.data = "hi".data(using: .utf8)
+            call.publisher.data = "hi".data(using: .utf8)
         }
         let viewModel = LUXLoginViewModel(credsCall: call, loginModelToJson: { _, _ in Human() }) { _ in
             calledSaveToken = true

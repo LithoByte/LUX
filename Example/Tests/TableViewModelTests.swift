@@ -54,7 +54,7 @@ class TableViewModelTests: XCTestCase {
 class RefreshableTableViewModelTests: XCTestCase {
     func testViewModel() {
         let call: CombineNetCall = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
-        call.firingFunc = { $0.responder?.data = json.data(using: .utf8) }
+        call.firingFunc = ~>{ (call: CombineNetCall) in call.publisher.data = json.data(using: .utf8) }
         let refresher = LUXCallRefresher(call)
         var wasRefreshed: Bool = false
         let vm = LUXRefreshableTableViewModel(refresher)
@@ -72,7 +72,7 @@ class RefreshableTableViewModelTests: XCTestCase {
     
     func testPageTableViewModel() {
         let call: CombineNetCall = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
-        call.firingFunc = { $0.responder?.data = json.data(using: .utf8) }
+        call.firingFunc = ~>{ (call: CombineNetCall) in call.publisher.data = json.data(using: .utf8) }
         let configurer: (Human, UITableViewCell) -> Void = {
             humanConfigurer($0)($1)
         }
@@ -85,7 +85,7 @@ class RefreshableTableViewModelTests: XCTestCase {
     
     func testRefreshableTableViewModel() {
         let call: CombineNetCall = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
-        call.firingFunc = { $0.responder?.data = json.data(using: .utf8) }
+        call.firingFunc = ~>{ (call: CombineNetCall) in call.publisher.data = json.data(using: .utf8) }
         let configurer: (Human, UITableViewCell) -> Void = {
             humanConfigurer($0)($1)
         }
