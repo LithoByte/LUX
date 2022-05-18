@@ -34,7 +34,7 @@ struct HumanHolder: Codable {
 class CallRefresherTests: XCTestCase {
     func testRefresh() {
         let call: CombineNetCall = CombineNetCall(configuration: ServerConfiguration(host: "https://lithobyte.co", apiRoute: "/v1/api"), Endpoint())
-        call.firingFunc = { $0.responder?.data = json.data(using: .utf8) }
+        call.firingFunc = ~>{ (call: CombineNetCall) in call.publisher.data = json.data(using: .utf8) }
         let refresher = LUXCallRefresher(call)
         XCTAssert(!refresher.isFetching)
         refresher.onRefresh = {

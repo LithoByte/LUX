@@ -11,6 +11,7 @@ target 'LUX_Example' do
   pod 'FlexDataSource', git: 'https://github.com/LithoByte/flex-data-source'
   pod 'fuikit/Core', git: 'https://github.com/LithoByte/fuikit'
   pod 'LithoUtils', git: 'https://github.com/LithoByte/litho-utils'
+  pod 'LithoStrings', git: 'https://github.com/LithoByte/LithoStrings'
   
   target 'LUX_Tests' do
     inherit! :search_paths

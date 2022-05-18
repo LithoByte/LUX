@@ -57,19 +57,19 @@ open class LUXRefreshableCollectionViewModel: LUXCollectionViewModel, Refreshabl
 }
 extension LUXRefreshableCollectionViewModel {
     public func setupEndRefreshing(from call: CombineNetCall) {
-        call.responder?.$data.sink { _ in
+        call.publisher.$data.sink { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.endRefreshing()
             }
         }.store(in: &cancelBag)
         
-        call.responder?.$error.sink { _ in
+        call.publisher.$error.sink { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.endRefreshing()
             }
         }.store(in: &cancelBag)
         
-        call.responder?.$serverError.sink { _ in
+        call.publisher.$serverError.sink { _ in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.endRefreshing()
             }

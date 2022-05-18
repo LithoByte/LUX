@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import LithoOperators
+import Prelude
 @testable import LUX
 @testable import FunNet
 
@@ -14,20 +16,23 @@ class PagingModelsTests: XCTestCase {
     var call: CombineNetCall = CombineNetCall(configuration: ServerConfiguration(host: "lithobyte.co", apiRoute: "api/v1"), Endpoint())
 
     override func setUp() {
-        call.firingFunc = { netCall in
-            if let page: Int = netCall.endpoint.getParams["page"] as? Int, let responder = netCall.responder {
-                switch page {
-                    case 1:
-                        responder.data = firstPageOfHumans.data(using: .utf8)
-                        break
-                    case 2:
-                        responder.data = secondPageOfHumans.data(using: .utf8)
-                        break
-                    case 3:
-                        responder.data = thirdPageOfHumans.data(using: .utf8)
-                        break
-                default:
-                    XCTFail()
+        call.firingFunc = ~>{ (netCall: CombineNetCall) in
+            if let pageString: String = netCall.endpoint.getParams.first(where: ^\.name >>> isEqualTo("page"))?.value {
+                if let page = Int(pageString) {
+                    let responder = netCall.publisher
+                    switch page {
+                        case 1:
+                            responder.data = firstPageOfHumans.data(using: .utf8)
+                            break
+                        case 2:
+                            responder.data = secondPageOfHumans.data(using: .utf8)
+                            break
+                        case 3:
+                            responder.data = thirdPageOfHumans.data(using: .utf8)
+                            break
+                    default:
+                        XCTFail()
+                    }
                 }
             }
         }
@@ -37,7 +42,7 @@ class PagingModelsTests: XCTestCase {
         var wasCalled = false
         
         let pageManager = LUXPageCallModelsManager<Human>(call)
-        let cancel = pageManager.$models.sinkThrough { (humans) in
+        let cancel = pageManager.$models.dropFirst().sink { (humans) in
             print("was called")
             wasCalled = true
         }
@@ -53,7 +58,7 @@ class PagingModelsTests: XCTestCase {
         var wasCalled = false
         
         let pageManager = LUXPageCallModelsManager<Human>(call)
-        let cancel = pageManager.$models.sinkThrough { (humans) in
+        let cancel = pageManager.$models.dropFirst().sink { (humans) in
             XCTAssertEqual(humans.count, 1)
             XCTAssertEqual(humans.first?.id, 1)
             wasCalled = true
@@ -67,7 +72,7 @@ class PagingModelsTests: XCTestCase {
     func testNextPage() {
         var callCount = 0
         let pageManager = LUXPageCallModelsManager<Human>(call)
-        let cancel = pageManager.$models.sinkThrough { (humans) in
+        let cancel = pageManager.$models.dropFirst().sink { (humans) in
             callCount += 1
                 print("next callCount: \(callCount)")
             if callCount == 2 {
@@ -101,7 +106,7 @@ class PagingModelsTests: XCTestCase {
     func testRefreshAfterNextPage() {
         var callCount = 0
         let pageManager = LUXPageCallModelsManager<Human>(call)
-        let cancel = pageManager.$models.sinkThrough { (humans) in
+        let cancel = pageManager.$models.dropFirst().sink { (humans) in
             callCount += 1
             if callCount == 2 {
                 XCTAssertEqual(humans.count, 2)
